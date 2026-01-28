@@ -1,4 +1,4 @@
-# HKUST Climbing Society Website (V0.0.2)
+# HKUST Climbing Society Website (V0.0.3)
 
 A modern, high-performance web application for the **HKUST Sport Climbing Students' Society**. Built with Next.js, TypeScript, and Framer Motion, featuring a "pro-max" design aesthetic, interactive calendar, and comprehensive member resources.
 
@@ -31,6 +31,11 @@ src/
 └── lib/            # Utility functions & Shared logic
 ```
 
+## 🐞 Support & Feedback
+Found a bug or have a suggestion?
+- **Report Bugs**: Please open an **[Issue](https://github.com/tototofu123/hkust_climb_soc_web/issues)** on this repository.
+- **Social Contact**: Reach out to us via our **[Instagram (@hkust_climbing)](https://www.instagram.com/hkust_climbing/)** for society inquiries.
+
 ## 🔒 Security & Privacy (Future Roadmap)
 - Implementation of secure member authentication.
 - Private member forums and equipment reservation system.
@@ -47,6 +52,10 @@ npm run dev
 
 ---
 © 2026 HKUST Climbing Society. All rights reserved.
+
+### 📝 Edited: Community Support (v0.0.3)
+- **Support Section**: Added instructions for bug reporting via GitHub Issues and Instagram contact.
+- **Version Sync**: Consistent versioning across all project metadata.
 
 ### 📝 Edited: Event Refinement (v0.0.2)
 - **Fee Transparency**: Updated "Top Out Climbing" fee to explicitly include equipment rentals.

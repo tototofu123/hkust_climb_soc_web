@@ -1,5 +1,14 @@
 # Version Updates & Changelog
 
+## [V0.0.3] - 2026-01-29
+### Community Support & Communication
+
+#### 🐞 Issue Tracking
+- **GitHub Issues**: Added official call-to-action in README for reporting bugs via the repository's "Issues" tab.
+- **Instagram Integration**: Provided direct link to society's Instagram for community questions and inquiries.
+
+---
+
 ## [V0.0.2] - 2026-01-29
 ### Event Details & Workflow Refinement
 
