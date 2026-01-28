@@ -1,0 +1,8 @@
+# Exclude source photo archive and raw prompts from version control
+photos/
+ui_prompts/
+icons/
+
+# Exclude large binary documents
+*.HEIC
+*.pdf
