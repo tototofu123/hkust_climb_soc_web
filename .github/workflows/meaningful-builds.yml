@@ -1,0 +1,25 @@
+name: "Release v0.0.2: Build & Deployment"
+run-name: "Deploying v0.0.2 by @${{ github.actor }} | HKUST Climbing Society"
+
+on:
+  push:
+    branches: ["main"]
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # Since it's a Next.js project on Vercel usually, if they are using GitHub Actions to Build, 
+  # this file would just be a placeholder to give the run a name if they want.
+  # But if they are building on GitHub Pages, we need the actual build steps.
+  
+  # For now, I'll just provide a simple placeholder that echo the version 
+  # to make the run name show up as requested.
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Version Info
+        run: echo "Starting deployment for version v0.0.2"

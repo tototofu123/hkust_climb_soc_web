@@ -1,4 +1,4 @@
-# HKUST Climbing Society Website (V0.0.1)
+# HKUST Climbing Society Website (V0.0.2)
 
 A modern, high-performance web application for the **HKUST Sport Climbing Students' Society**. Built with Next.js, TypeScript, and Framer Motion, featuring a "pro-max" design aesthetic, interactive calendar, and comprehensive member resources.
 
@@ -47,6 +47,10 @@ npm run dev
 
 ---
 © 2026 HKUST Climbing Society. All rights reserved.
+
+### 📝 Edited: Event Refinement (v0.0.2)
+- **Fee Transparency**: Updated "Top Out Climbing" fee to explicitly include equipment rentals.
+- **Workflow Optimization**: Synchronized versioning across `package.json` and documentation for meaningful build logs.
 
 ### 📝 Edited: Minor Adjustments (v0.0.1)
 - **Project Structure**: Consolidated the codebase into the root directory for seamless Vercel integration.

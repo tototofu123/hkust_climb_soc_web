@@ -1,5 +1,16 @@
 # Version Updates & Changelog
 
+## [V0.0.2] - 2026-01-29
+### Event Details & Workflow Refinement
+
+#### 📅 Schedule & Pricing
+- **Top Out Climbing**: Added "(includes rentals)" to the 100 HKD/person fee description on all event pages.
+
+#### 🚀 GitHub & CI/CD
+- **Meaningful Workflows**: Prepared the repository for structured GitHub Action names to include versioning and clear task descriptions.
+
+---
+
 ## [V0.0.1] - 2026-01-29
 ### Minor Adjustments & Vercel Optimization
 

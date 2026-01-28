@@ -15,7 +15,7 @@ export default function EventsPage() {
             date: "7/2",
             time: "1:30 PM - 4:30 PM",
             location: "Location TBA",
-            fee: "100 HKD/person",
+            fee: "100 HKD/person (includes rentals)",
             description: "Join us for a session of top out climbing! Perfect for those looking to push their limits and reach the top.",
             image: "/photos/events/top_out_climbing.jpg",
             tags: ["Climbing", "Social"]
