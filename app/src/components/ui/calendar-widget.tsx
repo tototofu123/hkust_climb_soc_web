@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useMemo } from "react";
-import { Button } from "@/components/ui/button";
 
 // Hardcoded Data for Jan-May 2026
 const SPECIAL_DATES = {
@@ -38,7 +37,6 @@ export const CalendarWidget = ({
     // Start with current date, clamped to range
     const [viewDate, setViewDate] = useState(() => {
         const now = new Date();
-        const year = now.getFullYear();
         // If outside 2026 or before Jan/after May, clamp?
         // User said "locates at users recent date" which is Jan 2026.
         if (now < MIN_DATE) return MIN_DATE;

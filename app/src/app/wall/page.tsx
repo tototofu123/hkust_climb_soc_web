@@ -1,20 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { MapPin, Clock, Ruler, AlertCircle, Calendar, ChevronRight, ArrowLeft, ExternalLink } from "lucide-react";
+import { Ruler, MapPin, Calendar, ChevronRight, ExternalLink } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog";
+import Image from "next/image";
 
 export default function WallPage() {
     const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -142,7 +133,6 @@ export default function WallPage() {
         { id: "crimp_1v1", name: "Crimp 1v1 Board", category: "others", image: "/photos/equipment/crimp_battle.jpg", desc: "Finger strength board.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=lattice+crimp+board" },
     ];
 
-    const currentCategory = categories.find(c => c.id === activeCategory);
     const displayedItems = activeCategory ? equipmentItems.filter(item => item.category === activeCategory) : [];
 
     return (
@@ -308,12 +298,10 @@ export default function WallPage() {
                                             className="group cursor-pointer relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                                         >
                                             <div className="h-48 overflow-hidden bg-[var(--surface)] relative">
-                                                {/* @ts-ignore */}
-                                                <img
-                                                    /* @ts-ignore */
+                                                <Image
                                                     src={cat.image}
-                                                    /* @ts-ignore */
                                                     alt={cat.name}
+                                                    fill
                                                     className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                                                 />
                                                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
@@ -344,7 +332,6 @@ export default function WallPage() {
                                     {displayedItems.map((item) => (
                                         <a
                                             key={item.id}
-                                            /* @ts-ignore */
                                             href={item.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -357,12 +344,10 @@ export default function WallPage() {
 
                                             <div className="relative z-10 flex flex-col h-full">
                                                 <div className="mb-4 rounded-xl bg-[var(--surface)] w-full h-40 overflow-hidden shadow-inner relative">
-                                                    {/* @ts-ignore */}
-                                                    <img
-                                                        /* @ts-ignore */
+                                                    <Image
                                                         src={item.image}
-                                                        /* @ts-ignore */
                                                         alt={item.name}
+                                                        fill
                                                         className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                                                     />
                                                 </div>

@@ -3,7 +3,7 @@
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
+import { Clock, MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { CalendarWidget } from "@/components/ui/calendar-widget";
 
@@ -33,14 +33,6 @@ export default function EventsPage() {
         }
     ];
 
-    const galleryImages = [
-        "/photos/pakshuiwun_groupphoto.jpg",
-        "/photos/hkust-umcup.jpg",
-        "/photos/hangboardarea.jpg",
-        "/photos/equipment.jpg",
-        "/photos/fire chicken.jpg",
-        "/photos/belayblackandwhite.jpg"
-    ];
 
     return (
         <div className="pt-20 lg:pt-24 min-h-screen">
@@ -52,7 +44,7 @@ export default function EventsPage() {
                             News & <span className="text-[var(--accent)]">Events</span>
                         </h1>
                         <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-                            Join the community, challenge yourself, and make memories. Here's what's happening next at HKUST Climbing Society.
+                            Join the community, challenge yourself, and make memories. Here&apos;s what&apos;s happening next at HKUST Climbing Society.
                         </p>
                     </div>
                 </ScrollReveal>
