@@ -1,5 +1,21 @@
 # Version Updates & Changelog
 
+## [V0.0.1] - 2026-01-29
+### Minor Adjustments & Vercel Optimization
+
+#### 🚀 Deployment & Structure
+- **Flattened Repository**: Moved all files from `/app` subdirectory to the root to ensure Vercel auto-detection of Next.js.
+- **Asset Integration**: Migrated `photos/` and `icons/` to `public/` and updated `.gitignore` to ensure they are tracked by Git while keeping source folders private.
+
+#### 🎨 UI & UX Fixes
+- **Laptop Responsiveness**: Removed fixed heights and arbitrary offsets from the `CalendarWidget` to prevent stretching and misalignment on laptop viewports.
+- **Calendar Alignment**: Standardized text positioning in calendar cells across all screen sizes.
+
+#### 📅 Schedule Updates
+- **Training Exclusion**: Removed April 7, 2026 (7/4) from the automated training schedule as requested.
+
+---
+
 ## [V0] - 2026-01-28
 ### Initial Refinement & Pro-Max Transformation
 

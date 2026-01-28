@@ -41,9 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 # Assets Exclusions (Private/Raw)
-photos/
-ui_prompts/
-icons/
+/photos/
+/ui_prompts/
+/icons/
 *.HEIC
 *.pdf
 lint*.txt

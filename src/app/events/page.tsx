@@ -53,7 +53,7 @@ export default function EventsPage() {
             <section className="py-12 px-6">
                 <ScrollReveal>
                     <div className="max-w-4xl mx-auto mb-16">
-                        <div className="bg-[var(--card)] rounded-3xl border border-[var(--border)] shadow-xl overflow-hidden md:h-[600px]">
+                        <div className="bg-[var(--card)] rounded-3xl border border-[var(--border)] shadow-xl overflow-hidden">
                             <CalendarWidget />
                         </div>
                     </div>

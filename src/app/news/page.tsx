@@ -123,7 +123,7 @@ export default function EventsPage() {
                                 View our full schedule including weekly training sessions and holidays.
                             </p>
                         </div>
-                        <div className="bg-[var(--card)] rounded-3xl border border-[var(--border)] shadow-xl overflow-hidden md:h-[600px]">
+                        <div className="bg-[var(--card)] rounded-3xl border border-[var(--border)] shadow-xl overflow-hidden">
                             <CalendarWidget />
                         </div>
                     </div>

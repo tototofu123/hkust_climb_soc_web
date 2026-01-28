@@ -17,7 +17,8 @@ const SPECIAL_DATES = {
         "2026-04-06", // Easter Monday
         "2026-05-01", // Labour Day
         "2026-05-25", // Buddha's Birthday
-    ]
+    ],
+    exceptions: ["2026-04-07"] // User requested: 7/4 is not a training day
 };
 
 const TRAINING_START = new Date(2026, 1, 3); // Feb 3, 2026 (Month is 0-indexed: 1 = Feb)
@@ -83,7 +84,7 @@ export const CalendarWidget = ({
             } else {
                 // Regular Logic
                 // Training: Tuesdays, between Feb 3 and May 5
-                if (dayOfWeek === 2) {
+                if (dayOfWeek === 2 && !SPECIAL_DATES.exceptions.includes(dateStr)) {
                     if (currentDate >= TRAINING_START && currentDate <= TRAINING_END) {
                         type = "training";
                     }
@@ -181,12 +182,12 @@ export const CalendarWidget = ({
             </div>
 
             {/* Days Grid */}
-            <div className="grid grid-cols-7 gap-1 auto-rows-fr h-full">
+            <div className="grid grid-cols-7 gap-1 flex-grow">
                 {days.map((d) => (
                     <div
                         key={d.key}
                         className={cn(
-                            "aspect-square rounded-lg flex flex-col items-center justify-center text-sm relative transition-all",
+                            "min-h-[40px] md:min-h-[50px] aspect-square rounded-lg flex flex-col items-center justify-center text-sm relative transition-all",
                             d.type === "empty" && "invisible",
                             d.type === "default" && "text-[var(--text-secondary)] hover:bg-[var(--surface)]",
                             // Training: Blue - Black text for light mode (Forced)
@@ -204,7 +205,7 @@ export const CalendarWidget = ({
                             isCompact && "text-xs"
                         )}
                     >
-                        <span className="z-10 relative top-[-6px]">{d.day}</span>
+                        <span className="z-10">{d.day}</span>
 
                         {/* Labels - Inside the box */}
                         {!isCompact && d.label && (
