@@ -1,37 +1,32 @@
-# Codebase Map & Agent Tracing (V0)
+# Codebase Map & Agent Tracing (V0.0.4)
 
-This document serves as a guide for developers to understand the project architecture and file responsibilities.
+This document serves as a guide for developers and AI agents to understand the project architecture, file responsibilities, and standardized workflows.
 
-## 📂 Directory Tree (Simplified)
+## 🤖 Agent Knowledge Base
+For any AI helper working on this repo:
+- **System Instructions**: Refer to `.agent/instructions.md` for design and logic rules.
+- **Workflow - Minor Adjustment**: Call `.agent/workflows/minor-adjustment.md` for any small fixes or text updates.
+
+## 📂 Directory Tree
 
 ```text
-hkust_climb_soc/app/
-├── public/                 # Static assets
-│   └── photos/             # Organized photo categories
-│       ├── equipment/      # Gear product shots (contain fit)
-│       ├── events/         # Trip & Competition photos
-│       ├── location/       # Facility & Gym shots
-│       ├── logos/          # Society branding
-│       └── team/           # Group & Committee photos
+hkust_climb_soc/
+├── .agent/                 # 🤖 Agent instructions & local workflows
+├── .github/                # 🚀 CI/CD & GitHub Actions
+│   └── workflows/          # Deployment names & logic
+├── public/                 # Static assets (Visible on web)
+│   └── photos/             # Categorized photos (equipment, events, etc.)
 ├── src/
 │   ├── app/                # Application Layer (Next.js App Router)
-│   │   ├── about/          # Mission & Community
-│   │   ├── apply/          # Membership Portal
-│   │   ├── contact/        # FAQ & Communication
+│   │   ├── interactive3d/  # Portfolio & 3D experiences
 │   │   ├── events/         # Schedule & Gallery
-│   │   ├── shop/           # Merchandise
-│   │   ├── team/           # Comps & Committee
-│   │   ├── wall/           # Facility & Gear Details
-│   │   ├── layout.tsx      # Root Layout (Nav/Footer)
-│   │   ├── page.tsx        # Home Landing Page
-│   │   └── not-found.tsx   # Custom 404 UI
+│   │   ├── ...             # Other route segments
 │   ├── components/         # Presentation Layer
-│   │   ├── layout/         # Navbar, Footer
-│   │   └── ui/             # Atomic components (Hero, Grid, etc.)
+│   │   └── ui/             # Atomic & Interactive components
 │   └── lib/                # Logic Layer (utils.ts)
-├── README.md               # User documentation
-├── CODEBASE.md             # Agent documentation
-└── VERSION_UPDATES.md      # Changelog
+├── README.md               # User & Community documentation
+├── CODEBASE.md             # Developer & Agent roadmap
+└── VERSION_UPDATES.md      # Detailed changelog (bbed by every change)
 ```
 
 ## 🛠️ File Responsibility Mapping
@@ -39,18 +34,11 @@ hkust_climb_soc/app/
 | Path | Purpose | Key Logic |
 |:---|:---|:---|
 | `src/app/page.tsx` | Main entry point | Orchestrates the Bento Grid landing page. |
-| `src/components/ui/bento-grid.tsx` | Core navigation UI | Dynamic layout with image headers and navigation links. |
 | `src/components/ui/calendar-widget.tsx` | Schedule logic | Interactive monthly view for HKUST climbing slots. |
-| `src/app/wall/page.tsx` | Resource catalog | Lists categorised equipment and rental policies. |
-| `src/components/ui/hero.tsx` | Branding | High-impact animated title and Chinese society name. |
-| `src/app/not-found.tsx` | Error UX | Branded handling for broken links. |
+| `.agent/workflows/` | Process logic | Defines how agents should commit and version the project. |
+| `.github/workflows/` | Deployment UI | Controls how build logs appear in GitHub Actions. |
 
-## 🎨 Design System (Gems)
-- **Colors**: Defined in `globals.css` using CSS Variables for easy white-labeling.
-- **Components**: Atomic design pattern used in `src/components/ui`.
-- **Images**: Standardized `object-contain` for products and `object-cover` for hero/atmosphere shots.
-
-## 🛡️ Future Security Considerations
-- **Auth**: NextAuth transition for member-only sections.
-- **DB**: Integration with MongoDB/PostgreSQL for application storage.
-- **Environment**: Sensitive API keys must reside in `.env.local` (not tracked in Git).
+## 🎨 Design System (Source of Truth)
+- **Design Tokens**: Defined in `globals.css`. Always use `[var(--accent)]`, `[var(--card)]`, etc.
+- **Component Standard**: Always use the **Aceternity** / **shadcn** hybrid style established in `src/components/ui`.
+- **Versioning**: Every push = Version bump. This is non-negotiable for project tracing.

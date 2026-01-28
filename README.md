@@ -1,4 +1,4 @@
-# HKUST Climbing Society Website (V0.0.3)
+# HKUST Climbing Society Website (V0.0.4)
 
 A modern, high-performance web application for the **HKUST Sport Climbing Students' Society**. Built with Next.js, TypeScript, and Framer Motion, featuring a "pro-max" design aesthetic, interactive calendar, and comprehensive member resources.
 
@@ -52,6 +52,10 @@ npm run dev
 
 ---
 © 2026 HKUST Climbing Society. All rights reserved.
+
+### 📝 Edited: Agent Instruction System (v0.0.4)
+- **AI Agent Support**: Implemented `.agent/` directory with persistent instructions and workflows for future AI pair programmers.
+- **Architecture Mapping**: Updated `CODEBASE.md` to reflect the current flattened directory structure and AI knowledge base.
 
 ### 📝 Edited: Community Support (v0.0.3)
 - **Support Section**: Added instructions for bug reporting via GitHub Issues and Instagram contact.
