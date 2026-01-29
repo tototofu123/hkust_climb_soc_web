@@ -1,4 +1,4 @@
-# HKUST Climbing Society Website (V0.1.6)
+# HKUST Climbing Society Website (V0.2.2)
 
 A modern, high-performance web application for the **HKUST Sport Climbing Students' Society**. Built with Next.js, TypeScript, and Framer Motion, featuring a "pro-max" design aesthetic, interactive calendar, and comprehensive member resources.
 
@@ -53,9 +53,28 @@ npm run dev
 ---
 © 2026 HKUST Climbing Society. All rights reserved.
 
+### 📝 Edited: UI & Performance Upgrade (v0.2.2)
+- **UI**: Integrated Liquid Glass Button for Hero CTA.
+- **Performance**: Replaced event thumbnails with higher resolution assets.
+- **Date**: 2026-01-29
+
 ### 📝 Edited: UI & Performance Upgrade (v0.1.6)
 - **UI**: Integrated Liquid Glass Button for Hero CTA.
 - **Performance**: Replaced event thumbnails with higher resolution assets.
+- **Date**: 2026-01-29
+
+### 📝 Edited: UI & Interaction Polish (v0.2.1)
+- **UI**: Fixed Liquid Button visual artifacts (black dots) by scaling down displacement map and adding a native "blue" variant.
+- **UI**: Harmonized CTA button text sizes (text-lg) for a more unified and professional aesthetic.
+- **Date**: 2026-01-29
+
+### 📝 Edited: Data-Driven Architecture (v0.2.0)
+- **Database**: Migrated Events to JSON-driven architecture (`src/data/events.json`) for easier society management.
+- **Logic**: Implemented automated registration status system (e.g., "No registration needed" for Fundays).
+- **Date**: 2026-01-29
+
+### 📝 Edited: UI & Performance Upgrade (v0.1.6)
+- **UI**: Matched font sizes for "Join Us" and "Learn More" buttons for cleaner look.
 - **Date**: 2026-01-29
 
 ### 📝 Edited: UI & Performance Upgrade (v0.1.5)
