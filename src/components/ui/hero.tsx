@@ -95,17 +95,18 @@ export function Hero({
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
                         <LiquidButton
                             asChild
-                            className="px-8 py-5 text-2xl font-bold rounded-full bg-blue-600 text-white shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform"
+                            size="default"
+                            className="px-7 py-4 text-xl font-bold rounded-full bg-blue-600 text-white shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform"
                         >
                             <Link href={ctaHref}>
-                                <span className="flex items-center gap-3">
-                                    {ctaText} <Flame className="w-7 h-7 animate-pulse text-orange-400" />
+                                <span className="flex items-center gap-2">
+                                    {ctaText} <Flame className="w-6 h-6 animate-pulse text-orange-400" />
                                 </span>
                             </Link>
                         </LiquidButton>
 
                         {secondaryCtaText && secondaryCtaHref && (
-                            <Button asChild variant="outline" className="px-7 py-5 text-lg rounded-full border-2 border-[var(--border)] hover:bg-[var(--surface)] transition-all duration-300">
+                            <Button asChild variant="outline" className="px-7 py-4 text-lg rounded-full border-2 border-[var(--border)] hover:bg-[var(--surface)] transition-all duration-300">
                                 <Link href={secondaryCtaHref}>{secondaryCtaText}</Link>
                             </Button>
                         )}
