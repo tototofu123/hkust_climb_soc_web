@@ -1,5 +1,24 @@
 # Version Updates & Changelog
 
+## [V0.0.7] - 2026-01-29
+### Homepage Optimization Finalization
+
+#### 🎨 UI & UX
+- **Hard Code Removal**: Successfully located and removed the remaining stats section component from the homepage source.
+- **Protocol Refresh**: Re-aligned all project metadata with the latest versioning standards.
+
+---
+
+
+## [V0.0.6] - 2026-01-29
+### Persistent Session Protocols
+
+#### 🛡️ AI Governance
+- **Mandatory Entry Checklist**: Integrated a high-priority checklist at the start of `.agent/instructions.md` that forces agents to verify current versioning and auto-push requirements.
+- **Strict Workflows**: Updated all workflows to explicitly state they are MANDATORY for all sessions.
+
+---
+
 ## [V0.0.5] - 2026-01-29
 ### Homepage Optimization & Clean-up
 

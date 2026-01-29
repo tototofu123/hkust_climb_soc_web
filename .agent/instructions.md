@@ -1,6 +1,11 @@
 # Project Instructions: HKUST Climbing Society
 
-These instructions are the "Source of Truth" for any agent working on this codebase. Follow these rules to maintain the "Pro-Max" quality and consistency established.
+## 🚨 MANDATORY SESSION ENTRY CHECKLIST
+1. **Initialize**: Read `.agent/instructions.md` and `.agent/workflows/minor-adjustment.md`.
+2. **Synchronize**: Check `package.json` for current version.
+3. **Commitment**: **Every single code modification/request MUST result in a version bump (Minor 0.0.x)**.
+4. **Visibility**: Update `package.json`, `README.md`, `CODEBASE.md`, `VERSION_UPDATES.md`, and `.github/workflows/meaningful-builds.yml` for EVERY push.
+5. **Auto-Push**: ALWAYS push to Git immediately after a change to trigger Vercel.
 
 ## 🎨 Design & Aesthetic Rules
 - **Themes**: Always use the defined dark mode variables from `src/app/globals.css`.
