@@ -1,4 +1,4 @@
-# HKUST Climbing Society Website (V1.0.1)
+# HKUST Climbing Society Website (V1.0.2)
 
 A modern, high-performance web application for the **HKUST Sport Climbing Students' Society**. Built with Next.js, TypeScript, and Framer Motion, featuring a "pro-max" design aesthetic, interactive calendar, and comprehensive member resources.
 
@@ -70,6 +70,10 @@ npm run dev
 - **Architecture**: implemented CSV-driven database (`src/data/events.csv`) for easy Excel management.
 - **Assets**: Complete restructuring of `public/photos` into strict categories (`wall`, `equipment`, `events`).
 - **UI/UX**: Standardized button design system (removed Liquid Glass) and cleaned up navigation routes.
+- **Date**: 2026-01-29
+
+### 📝 Edited: CSV Database Integration (v1.0.2)
+- **Database**: Migrated to CSV-first storage (src/data/events.csv).
 - **Date**: 2026-01-29
 
 ### 📝 Edited: CSV Database Integration (v1.0.1)

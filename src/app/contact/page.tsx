@@ -28,7 +28,7 @@ export default function ContactPage() {
             title: "Visit Us",
             description: "Find us at the climbing wall for training sessions.",
             value: "LG4, HKUST (Near Swimming Pool)",
-            href: "https://maps.app.goo.gl/d3j7XqW9wz8J9z8J9", // Placeholder map link, can be updated
+            href: "https://www.google.com/maps?sca_esv=02d96f4dae5a5963&biw=843&bih=900&aic=0&output=search&q=sports+complex+hkust&source=lnms&fbs=ADc_l-YQanUcJSoe62luYRIM6gsUt2zjmW_MvZe6pHkYHWOdy8woxLkmF_YUe3IvdgohA_8I4_ca4rhKIxeMpNo7WLG7bYpGpb7DGicGHMGxd4PB52sz6mSoR4bK03a8gm2D5q8RpvTZxhQfb1PuO9XLUxTAO3cw0l4q95lLBfT1G9-JkSqSNpAJFBxCABp2C05myxtrAi5k88yruABA1rdNzCDzB3jXB-SdcAkdwKAvKLw8ZSpSxqM&entry=mc&ved=1t:200715&ictx=111",
             action: "Get Directions"
         }
     ];
