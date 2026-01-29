@@ -39,7 +39,7 @@ export default function ContactPage() {
                 <ScrollReveal>
                     <div className="text-center mb-16">
                         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                            Get in <span className="text-[var(--accent)]">Touch</span>
+                            Contact <span className="text-[var(--accent)]">Us</span>
                         </h1>
                         <p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
                             Have questions about joining, training, or events? We&apos;d love to hear from you.
@@ -59,7 +59,9 @@ export default function ContactPage() {
                                     {method.description}
                                 </p>
                                 <div className="space-y-4">
-                                    <p className="font-semibold text-lg">{method.value}</p>
+                                    <p className="font-semibold text-lg">
+                                        {method.title === "Visit Us" ? "Climbing Wall, LG4, Indoor Sports Complex, HKUST" : method.value}
+                                    </p>
                                     <Button asChild variant="outline" className="w-full rounded-xl border-[var(--border)] hover:bg-[var(--accent)] hover:text-white hover:border-[var(--accent)] transition-all duration-300">
                                         <a href={method.href} target="_blank" rel="noopener noreferrer">
                                             {method.action}
