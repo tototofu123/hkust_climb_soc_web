@@ -152,6 +152,14 @@ export const BentoGrid = ({
             colSpan: 2,
         },
 
+        {
+            title: "Contact",
+            meta: "Get in touch",
+            description: "Questions? Reach out via email or Instagram.",
+            href: "/contact",
+            tags: ["Support"],
+            colSpan: 1,
+        },
     ];
 
     const gridItems = items || defaultItems;

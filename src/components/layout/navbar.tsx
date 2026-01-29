@@ -14,6 +14,7 @@ const navLinks = [
     { href: "/team", label: "Team" },
     { href: "/events", label: "Events" },
     { href: "/apply", label: "Apply" },
+    { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
