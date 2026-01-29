@@ -1,4 +1,4 @@
-# Codebase Map & Agent Tracing (V0.0.7)
+# Codebase Map & Agent Tracing (V0.0.8)
 
 This document serves as a guide for developers and AI agents to understand the project architecture, file responsibilities, and standardized workflows.
 

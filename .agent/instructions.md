@@ -5,7 +5,8 @@
 2. **Synchronize**: Check `package.json` for current version.
 3. **Commitment**: **Every single code modification/request MUST result in a version bump (Minor 0.0.x)**.
 4. **Visibility**: Update `package.json`, `README.md`, `CODEBASE.md`, `VERSION_UPDATES.md`, and `.github/workflows/meaningful-builds.yml` for EVERY push.
-5. **Auto-Push**: ALWAYS push to Git immediately after a change to trigger Vercel.
+5. **Auto-Push**: ALWAYS push to Git immediately after a change to trigger Vercel. **This is an enforced requirement.**
+6. **No-Exception Rule**: Do not ask for permission to version bump or push; it is the default behavior for this project.
 
 ## 🎨 Design & Aesthetic Rules
 - **Themes**: Always use the defined dark mode variables from `src/app/globals.css`.

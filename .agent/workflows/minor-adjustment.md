@@ -2,6 +2,8 @@
 
 Use this workflow for every small change, minor fix, or project adjustment. This is the required protocol for HKUST Climbing Society.
 
+// turbo-all
+
 1.  **Modify Source**: Apply the requested code change (e.g., updating event pricing, fixing a typo).
 2.  **Bump Version**:
     -   Identify current version in `package.json`.
