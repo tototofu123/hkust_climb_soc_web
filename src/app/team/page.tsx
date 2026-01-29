@@ -63,10 +63,11 @@ export default function TeamPage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]">
                             {/* Large Item */}
                             <div className="md:col-span-2 md:row-span-2 relative rounded-2xl overflow-hidden shadow-lg group">
-                                <img
+                                <Image
                                     src="/photos/events/hkust_umcup.jpg"
                                     alt="HKUST-UM Cup Team"
-                                    className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                    fill
+                                    className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                     <div>
@@ -78,10 +79,11 @@ export default function TeamPage() {
 
                             {/* Tall Item - Bun Festival */}
                             <div className="md:row-span-2 relative rounded-2xl overflow-hidden shadow-lg group bg-black">
-                                <img
+                                <Image
                                     src="/photos/events/2024_bun_carnival.jpg"
                                     alt="Bun Festival Competition"
-                                    className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                    fill
+                                    className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                     <div>
@@ -95,10 +97,11 @@ export default function TeamPage() {
 
                             {/* Wide Item - Moonboard */}
                             <div className="md:col-span-3 relative rounded-2xl overflow-hidden shadow-lg group h-64">
-                                <img
+                                <Image
                                     src="/photos/events/ustum_moonboard.jpg"
                                     alt="HKUST-UM Moonboard Session"
-                                    className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                    fill
+                                    className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                     <div>

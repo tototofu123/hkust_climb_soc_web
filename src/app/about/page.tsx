@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Users, Heart, Trophy, Calendar } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import Image from "next/image";
 
 export default function AboutPage() {
     return (
@@ -31,10 +32,11 @@ export default function AboutPage() {
                         <h2 className="text-2xl font-bold mb-6 text-center">Our Community in Action</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="relative aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
-                                <img
+                                <Image
                                     src="/photos/events/pak_shui_wun_group.jpg"
                                     alt="HKUST Climbing Society Group Photo at Pak Shui Wun"
-                                    className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                    fill
+                                    className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                                     <p className="text-white font-medium text-sm">Outdoor Training @ Pak Shui Wun</p>
@@ -43,11 +45,11 @@ export default function AboutPage() {
 
                             {/* Moved Photo from Team Page */}
                             <div className="relative aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
-                                <img
+                                <Image
                                     src="/photos/events/shek_o_group.jpg"
                                     alt="HKUST Climbing Team @ Shek O"
-                                    className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
-                                    style={{ objectPosition: 'center' }}
+                                    fill
+                                    className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                                     <p className="text-white font-medium text-sm">Our Growing Family</p>

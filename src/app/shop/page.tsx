@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Instagram } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import Image from "next/image";
 
 export default function ShopPage() {
     return (
@@ -29,10 +30,11 @@ export default function ShopPage() {
                             <div className="space-y-6 w-full">
                                 <div className="group/item bg-[var(--surface)] p-4 rounded-xl transition-all hover:shadow-md">
                                     <div className="relative h-40 w-full mb-4 rounded-lg overflow-hidden bg-white/5">
-                                        <img
+                                        <Image
                                             src="/photos/equipment/chalk_ball.jpg"
                                             alt="Chalk Ball"
-                                            className="w-full h-full object-contain transition-transform group-hover/item:scale-110"
+                                            fill
+                                            className="object-contain transition-transform group-hover/item:scale-110"
                                         />
                                     </div>
                                     <div className="flex justify-between items-center px-2">
@@ -43,10 +45,11 @@ export default function ShopPage() {
 
                                 <div className="group/item bg-[var(--surface)] p-4 rounded-xl transition-all hover:shadow-md">
                                     <div className="relative h-40 w-full mb-4 rounded-lg overflow-hidden bg-white/5">
-                                        <img
+                                        <Image
                                             src="/photos/equipment/one_time_use_socks.jpg"
                                             alt="Climbing Socks"
-                                            className="w-full h-full object-contain transition-transform group-hover/item:scale-110"
+                                            fill
+                                            className="object-contain transition-transform group-hover/item:scale-110"
                                         />
                                     </div>
                                     <div className="flex justify-between items-center px-2">
