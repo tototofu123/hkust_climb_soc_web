@@ -12,7 +12,7 @@ export default function EventsPage() {
         {
             id: 1,
             title: "Top Out Climbing",
-            date: "7/2",
+            date: "7 February (Saturday)",
             time: "1:30 PM - 4:30 PM",
             location: "Location TBA",
             fee: "100 HKD/person (includes rentals)",
@@ -23,7 +23,7 @@ export default function EventsPage() {
         {
             id: 2,
             title: "Outdoor Climbing Trip",
-            date: "28/2",
+            date: "28 February (Saturday)",
             time: "12:00 PM - 6:00 PM",
             location: "Location TBA",
             fee: "Details soon",

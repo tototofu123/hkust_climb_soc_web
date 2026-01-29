@@ -1,5 +1,5 @@
-name: "Release v0.1.1: Build & Deployment"
-run-name: "Deploying v0.1.1 by @${{ github.actor }} | HKUST Climbing Society"
+name: "Release v0.1.2: Build & Deployment"
+run-name: "Deploying v0.1.2 by @${{ github.actor }} | HKUST Climbing Society"
 
 on:
   push:
@@ -22,4 +22,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Version Info
-        run: echo "Starting deployment for version v0.1.1"
+        run: echo "Starting deployment for version v0.1.2"
