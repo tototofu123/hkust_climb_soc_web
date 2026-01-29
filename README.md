@@ -1,4 +1,4 @@
-# HKUST Climbing Society Website (V1.0.2)
+# HKUST Climbing Society Website (V1.0.1)
 
 A modern, high-performance web application for the **HKUST Sport Climbing Students' Society**. Built with Next.js, TypeScript, and Framer Motion, featuring a "pro-max" design aesthetic, interactive calendar, and comprehensive member resources.
 
@@ -52,6 +52,10 @@ npm run dev
 
 ---
 © 2026 HKUST Climbing Society. All rights reserved.
+
+### 🚀 Release: v1.0.1 (Post-Launch Patch)
+- **Fixes**: Updated Google Maps links in Contact page and Footer to point correctly to the HKUST Sports Complex.
+- **Date**: 2026-01-29
 
 ### 🚀 Release: v1.0.0 (Official Launch)
 - **Milestone**: Official stable release of the new HKUST Climbing Society website.
