@@ -7,31 +7,11 @@ import { Clock, MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { CalendarWidget } from "@/components/ui/calendar-widget";
 
+import eventsData from "@/data/events.json";
+import { ClimbingEvent } from "@/lib/types";
+
 export default function EventsPage() {
-    const upcomingEvents = [
-        {
-            id: 1,
-            title: "Top Out Climbing",
-            date: "7 February (Saturday)",
-            time: "1:30 PM - 4:30 PM",
-            location: "Location TBA",
-            fee: "100 HKD/person (includes rentals)",
-            description: "Join us for a session of top out climbing! Perfect for those looking to push their limits and reach the top.",
-            image: "/photos/events/top_out_climbing.jpg",
-            tags: ["Climbing", "Social"]
-        },
-        {
-            id: 2,
-            title: "Outdoor Climbing Trip",
-            date: "28 February (Saturday)",
-            time: "12:00 PM - 6:00 PM",
-            location: "Location TBA",
-            fee: "Details soon",
-            description: "Experience the thrill of outdoor climbing on real rock. A great opportunity to apply your gym skills in nature.",
-            image: "/photos/events/pak_shui_wun_group.jpg",
-            tags: ["Outdoor", "Adventure"]
-        }
-    ];
+    const upcomingEvents = eventsData as ClimbingEvent[];
 
     return (
         <div className="pt-20 lg:pt-24 min-h-screen">
@@ -72,14 +52,17 @@ export default function EventsPage() {
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
                                     <Image
                                         src={event.image || "/photos/icons/image02.jpg"}
-                                        alt={event.title}
+                                        alt={event.eventName}
                                         fill
                                         className="object-contain transition-transform duration-700 group-hover:scale-105"
                                     />
-                                    <div className="absolute bottom-4 left-4 z-20 flex gap-2">
-                                        {event.tags.map(tag => (
+                                    <div className="absolute bottom-4 left-4 z-20 flex flex-wrap gap-2">
+                                        <Badge variant="secondary" className="bg-[var(--accent)] text-white border-none shadow-lg">
+                                            {event.eventType}
+                                        </Badge>
+                                        {event.hashtags.map(tag => (
                                             <Badge key={tag} variant="secondary" className="bg-white/10 backdrop-blur-md text-white border-white/20">
-                                                {tag}
+                                                #{tag}
                                             </Badge>
                                         ))}
                                     </div>
@@ -89,8 +72,8 @@ export default function EventsPage() {
                                 <div className="p-8 flex-grow flex flex-col">
                                     <div className="flex items-start justify-between mb-4">
                                         <div>
-                                            <h3 className="text-2xl font-bold mb-1">{event.title}</h3>
-                                            <p className="text-[var(--accent)] font-medium">{event.date}</p>
+                                            <h3 className="text-2xl font-bold mb-1">{event.eventName}</h3>
+                                            <p className="text-[var(--accent)] font-medium">{event.dateOfEvent}</p>
                                         </div>
                                     </div>
 
@@ -105,18 +88,30 @@ export default function EventsPage() {
                                         </div>
                                         <div className="flex items-center text-[var(--text-secondary)]">
                                             <div className="w-5 h-5 mr-3 flex items-center justify-center font-bold text-[var(--accent)]">$</div>
-                                            {event.fee}
+                                            {event.price}
                                         </div>
                                         <p className="text-[var(--text-muted)] text-sm leading-relaxed mt-4">
-                                            {event.description}
+                                            {event.details}
                                         </p>
                                     </div>
 
                                     {/* Action Button */}
                                     <div className="pt-6 border-t border-[var(--border)]/50">
-                                        <Button className="w-full group/btn" disabled={event.location.includes("TBA")}>
-                                            Sign Up Coming Soon <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-                                        </Button>
+                                        {event.signupLink ? (
+                                            <Button asChild className="w-full group/btn bg-blue-600 hover:bg-blue-700 text-white">
+                                                <a href={event.signupLink} target="_blank" rel="noopener noreferrer">
+                                                    Register Now <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                                                </a>
+                                            </Button>
+                                        ) : event.eventType.includes("Funday") ? (
+                                            <Button variant="outline" className="w-full border-dashed border-[var(--border)] text-[var(--text-muted)] cursor-default hover:bg-transparent">
+                                                No registration needed
+                                            </Button>
+                                        ) : (
+                                            <Button className="w-full group/btn" disabled>
+                                                Registration Coming Soon <ArrowRight className="w-4 h-4 ml-2" />
+                                            </Button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
