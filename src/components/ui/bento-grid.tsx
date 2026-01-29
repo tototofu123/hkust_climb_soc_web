@@ -62,12 +62,12 @@ export const BentoGrid = ({
             meta: "Since 1994",
             description: "Learn about our history, mission, and the executive committee.",
             header: (
-                <div className="flex flex-1 w-full h-full min-h-[100px] rounded-xl overflow-hidden mb-2 relative">
+                <div className="w-full aspect-video rounded-xl overflow-hidden mb-2 relative bg-[var(--surface)]">
                     <Image
                         src="/photos/events/shek_o_group.jpg"
                         alt="HKUST Climbing Team @ Shek O"
                         fill
-                        className="object-cover group-hover/bento:scale-105 transition-transform duration-500"
+                        className="object-contain group-hover/bento:scale-105 transition-transform duration-500"
                     />
                 </div>
             ),
@@ -80,12 +80,12 @@ export const BentoGrid = ({
             meta: "LG4 + Training",
             description: "Details on our 8m wall, opening hours, and weekly training sessions.",
             header: (
-                <div className="flex flex-1 w-full h-full min-h-[100px] rounded-xl overflow-hidden mb-2 relative">
+                <div className="w-full aspect-video rounded-xl overflow-hidden mb-2 relative bg-[var(--surface)]">
                     <Image
                         src="/photos/location/hangboard_area.jpg"
                         alt="Climbing Wall Area"
                         fill
-                        className="object-cover group-hover/bento:scale-105 transition-transform duration-500"
+                        className="object-contain group-hover/bento:scale-105 transition-transform duration-500"
                     />
                 </div>
             ),
@@ -137,12 +137,12 @@ export const BentoGrid = ({
             meta: "Free Training",
             description: "Membership application, weekly free sessions, and gear details.",
             header: (
-                <div className="flex flex-1 w-full h-full min-h-[100px] rounded-xl overflow-hidden mb-2 relative">
+                <div className="w-full aspect-video rounded-xl overflow-hidden mb-2 relative bg-[var(--surface)]">
                     <Image
                         src="/photos/events/pak_shui_wun_group.jpg"
                         alt="Join HKUST Climbing Community"
                         fill
-                        className="object-cover group-hover/bento:scale-105 transition-transform duration-500"
+                        className="object-contain group-hover/bento:scale-105 transition-transform duration-500"
                     />
                 </div>
             ),
