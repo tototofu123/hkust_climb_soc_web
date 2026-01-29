@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import Link from "next/link";
 import { Flame } from "lucide-react";
 
@@ -93,20 +92,23 @@ export function Hero({
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
-                        <LiquidButton
+                        <Button
                             asChild
-                            variant="blue"
-                            className="px-8 py-5 text-lg font-bold rounded-full shadow-lg"
+                            className="px-8 py-7 text-lg font-bold rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform"
                         >
                             <Link href={ctaHref}>
                                 <span className="flex items-center gap-2">
                                     {ctaText} <Flame className="w-5 h-5" />
                                 </span>
                             </Link>
-                        </LiquidButton>
+                        </Button>
 
                         {secondaryCtaText && secondaryCtaHref && (
-                            <Button asChild variant="outline" className="px-8 py-5 text-lg rounded-full border-2 border-[var(--border)] hover:bg-[var(--surface)] transition-all duration-300">
+                            <Button
+                                asChild
+                                variant="outline"
+                                className="px-8 py-7 text-lg font-bold rounded-full border-2 border-[var(--border)] hover:bg-[var(--surface)] transition-all duration-300"
+                            >
                                 <Link href={secondaryCtaHref}>{secondaryCtaText}</Link>
                             </Button>
                         )}
