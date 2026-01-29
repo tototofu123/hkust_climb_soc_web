@@ -96,11 +96,11 @@ export function Hero({
                         <LiquidButton
                             asChild
                             size="default"
-                            className="px-7 py-4 text-xl font-bold rounded-full bg-blue-600 text-white shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform"
+                            className="px-9 py-5 text-3xl font-black rounded-full bg-blue-600 text-white shadow-xl hover:shadow-blue-500/40 transition-all duration-300 transform hover:scale-105"
                         >
                             <Link href={ctaHref}>
-                                <span className="flex items-center gap-2">
-                                    {ctaText} <Flame className="w-6 h-6 animate-pulse text-orange-400" />
+                                <span className="flex items-center gap-4">
+                                    {ctaText} <Flame className="w-8 h-8 animate-pulse text-orange-400" />
                                 </span>
                             </Link>
                         </LiquidButton>
