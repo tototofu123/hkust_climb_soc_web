@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import Link from "next/link";
 import { Flame } from "lucide-react";
 
@@ -91,43 +92,24 @@ export function Hero({
                     )}
 
                     {/* CTA Buttons */}
-                    <motion.div
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 1 }}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                    >
-                        <div
-                            className="inline-block group relative bg-gradient-to-b from-[var(--accent)]/10 to-transparent 
-                            p-px rounded-2xl backdrop-blur-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                        <LiquidButton
+                            asChild
+                            className="px-10 py-7 text-xl font-bold rounded-full bg-blue-600 text-white shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform"
                         >
-                            <Button
-                                asChild
-                                variant="ghost"
-                                className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
-                                bg-[var(--card)] hover:bg-[var(--surface)]
-                                text-[var(--text-primary)] transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-[var(--border)]
-                                hover:shadow-md"
-                            >
-                                <Link href={ctaHref}>
-                                    <span className="opacity-90 group-hover:opacity-100 transition-opacity">
-                                        {ctaText}
-                                    </span>
-                                    <Flame
-                                        className="ml-2 w-5 h-5 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 
-                                        transition-all duration-300 inline-block"
-                                    />
-                                </Link>
-                            </Button>
-                        </div>
+                            <Link href={ctaHref}>
+                                <span className="flex items-center gap-2">
+                                    {ctaText} <Flame className="w-6 h-6 animate-pulse" />
+                                </span>
+                            </Link>
+                        </LiquidButton>
 
                         {secondaryCtaText && secondaryCtaHref && (
-                            <Button asChild variant="outline" className="px-8 py-6 text-lg">
+                            <Button asChild variant="outline" className="px-8 py-7 text-lg rounded-full border-2">
                                 <Link href={secondaryCtaHref}>{secondaryCtaText}</Link>
                             </Button>
                         )}
-                    </motion.div>
+                    </div>
                 </motion.div>
             </div>
         </div>
