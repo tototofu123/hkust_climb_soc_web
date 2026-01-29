@@ -1,5 +1,27 @@
 # Version Updates & Changelog
 
+## [V0.0.5] - 2026-01-29
+### Homepage Optimization & Clean-up
+
+#### 🎨 UI & UX
+- **Removed Stats Section**: Excised the "30+ Years History" and "500+ Members" statistics from the homepage to simplify the landing experience.
+- **Improved Spacing**: Adjusted vertical rhythm between the Features Grid and the final Call-to-Action.
+
+---
+
+## [V0.0.4] - 2026-01-29
+### Agent Instruction System & Policy Guardrails
+
+#### 🤖 AI Governance
+- **Instruction Hub**: Created `.agent/instructions.md` to define design rules, asset standards, and versioning policies.
+- **Workflow Automation**: Implemented `.agent/workflows/minor-adjustment.md` to standardize how AI agents handle small updates.
+- **Versioning Policy**: Formalized the SemVer strategy where `0.0.x` is for minor adjustements, while `0.x.0` and `x.0.0` require explicit user approval.
+
+#### 📁 Documentation
+- **Codebase Mapping**: Updated `CODEBASE.md` to map the new `.agent` and `.github` structures for future agent sessions.
+
+---
+
 ## [V0.0.3] - 2026-01-29
 ### Community Support & Communication
 

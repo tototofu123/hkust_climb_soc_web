@@ -42,32 +42,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-24 bg-[var(--surface)]/30 backdrop-blur-md relative border-y border-[var(--border)]">
-        <div className="container mx-auto px-4">
-          <ScrollReveal delay={0.2}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div className="p-6">
-                <span className="block text-4xl font-bold text-[var(--accent)] mb-2">30+</span>
-                <span className="text-[var(--text-secondary)]">Years History</span>
-              </div>
-              <div className="p-6">
-                <span className="block text-4xl font-bold text-[var(--accent)] mb-2">500+</span>
-                <span className="text-[var(--text-secondary)]">Members</span>
-              </div>
-              <div className="p-6">
-                <span className="block text-4xl font-bold text-[var(--accent)] mb-2">12m</span>
-                <span className="text-[var(--text-secondary)]">Wall Height</span>
-              </div>
-              <div className="p-6">
-                <span className="block text-4xl font-bold text-[var(--accent)] mb-2">Weekly</span>
-                <span className="text-[var(--text-secondary)]">Training</span>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-24 px-4 relative">
         <div className="container mx-auto max-w-4xl text-center">
