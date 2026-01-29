@@ -1,13 +1,14 @@
 {
   "name": "app",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync": "node scripts/sync-version.js"
+    "data:sync": "node scripts/process-csv.js",
+    "sync": "npm run data:sync && node scripts/sync-version.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

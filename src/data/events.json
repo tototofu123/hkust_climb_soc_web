@@ -1,38 +1,38 @@
 [
-    {
-        "id": "1",
-        "dateUploaded": "2026-01-29",
-        "eventName": "Top Out Climbing",
-        "eventType": "Indoor Funday",
-        "dateOfEvent": "7 February (Saturday)",
-        "time": "1:30 PM - 4:30 PM",
-        "location": "Location TBA",
-        "price": "100 HKD/person (includes rentals)",
-        "details": "Join us for a session of top out climbing! Perfect for those looking to push their limits and reach the top.",
-        "hashtags": [
-            "Climbing",
-            "Social",
-            "Indoor"
-        ],
-        "image": "/photos/events/top_out_climbing.jpg",
-        "signupLink": ""
-    },
-    {
-        "id": "2",
-        "dateUploaded": "2026-01-29",
-        "eventName": "Outdoor Climbing Trip",
-        "eventType": "Outdoor Funday",
-        "dateOfEvent": "28 February (Saturday)",
-        "time": "12:00 PM - 6:00 PM",
-        "location": "Location TBA",
-        "price": "Details soon",
-        "details": "Experience the thrill of outdoor climbing on real rock. A great opportunity to apply your gym skills in nature.",
-        "hashtags": [
-            "Outdoor",
-            "Adventure",
-            "RockClimbing"
-        ],
-        "image": "/photos/events/pak_shui_wun_group.jpg",
-        "signupLink": ""
-    }
+  {
+    "id": "1",
+    "dateUploaded": "2026-01-29",
+    "eventName": "Top Out Climbing",
+    "eventType": "Indoor Funday",
+    "dateOfEvent": "7 February (Saturday)",
+    "time": "1:30 PM - 4:30 PM",
+    "location": "Location TBA",
+    "price": "100 HKD/person (includes rentals)",
+    "details": "Join us for a session of top out climbing! Perfect for those looking to push their limits and reach the top.",
+    "hashtags": [
+      "Climbing",
+      "Social",
+      "Indoor"
+    ],
+    "image": "/photos/events/top_out_climbing.jpg",
+    "signupLink": ""
+  },
+  {
+    "id": "2",
+    "dateUploaded": "2026-01-29",
+    "eventName": "Outdoor Climbing Trip",
+    "eventType": "Outdoor Funday",
+    "dateOfEvent": "28 February (Saturday)",
+    "time": "12:00 PM - 6:00 PM",
+    "location": "Location TBA",
+    "price": "Details soon",
+    "details": "Experience the thrill of outdoor climbing on real rock. A great opportunity to apply your gym skills in nature.",
+    "hashtags": [
+      "Outdoor",
+      "Adventure",
+      "RockClimbing"
+    ],
+    "image": "/photos/events/pak_shui_wun_group.jpg",
+    "signupLink": ""
+  }
 ]
