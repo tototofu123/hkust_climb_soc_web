@@ -1,4 +1,4 @@
-# HKUST Climbing Society Website (V0.3.2)
+# HKUST Climbing Society Website (V1.0.1)
 
 A modern, high-performance web application for the **HKUST Sport Climbing Students' Society**. Built with Next.js, TypeScript, and Framer Motion, featuring a "pro-max" design aesthetic, interactive calendar, and comprehensive member resources.
 
@@ -53,8 +53,16 @@ npm run dev
 ---
 © 2026 HKUST Climbing Society. All rights reserved.
 
-### � Release: v0.3.1 (Pre-1.0 Candidate)
-- **Quality of Life**: Restored "Contact Us" title and corrected venue address.
+### 🚀 Release: v1.0.0 (Official Launch)
+- **Milestone**: Official stable release of the new HKUST Climbing Society website.
+- **Features**: Complete visual overhaul, CSV-driven event management, interactive wall guide, and mobile-first design.
+- **Date**: 2026-01-29
+
+### 🚀 Release: v0.3.2
+- **UI Tweaks**: Refined Contact page headers for clarity ("Get in Touch", "Contact Us").
+- **Documentation**: Corrected version history logs.
+- **Date**: 2026-01-29
+
 - **Hygiene**: Cleaned up repetitive versioning history.
 - **Date**: 2026-01-29
 
@@ -64,95 +72,21 @@ npm run dev
 - **UI/UX**: Standardized button design system (removed Liquid Glass) and cleaned up navigation routes.
 - **Date**: 2026-01-29
 
-
-
-### 📝 Edited: CSV Database Integration (v0.3.2)
+### 📝 Edited: CSV Database Integration (v1.0.1)
 - **Database**: Migrated to CSV-first storage (src/data/events.csv).
 - **Date**: 2026-01-29
 
-### 📝 Edited: UI Cleanup & Standardisation (v0.2.5)
-- **UI**: Removed Liquid Glass effects from CTA buttons.
-- **UI**: Standardized "Join Us" and "Learn More" sizing and text scale for unified look.
-- **Date**: 2026-01-29
-
-### 📝 Edited: CSV Database Integration (v0.2.3)
+### 📝 Edited: CSV Database Integration (v0.3.3)
 - **Database**: Migrated to CSV-first storage (src/data/events.csv).
-- **Automation**: Build script auto-syncs CSV to JSON for frontend use.
-- **Date**: 2026-01-29
-- **UI**: Integrated Liquid Glass Button for Hero CTA.
-- **Performance**: Replaced event thumbnails with higher resolution assets.
 - **Date**: 2026-01-29
 
-### 📝 Edited: UI & Performance Upgrade (v0.2.2)
-- **UI**: Integrated Liquid Glass Button for Hero CTA.
-- **Performance**: Replaced event thumbnails with higher resolution assets.
+### 📝 Edited: UI Cleanup & Standardization (v0.2.x)
+- **UI**: Removed Liquid Glass effects, standardized CTA buttons.
+- **Data**: CSV Pipeline integration.
 - **Date**: 2026-01-29
 
-### 📝 Edited: UI & Performance Upgrade (v0.1.6)
-- **UI**: Integrated Liquid Glass Button for Hero CTA.
-- **Performance**: Replaced event thumbnails with higher resolution assets.
+### 📝 Edited: Architecture & Safety (v0.1.x)
+- **Security**: Added pre-push linting and auditing.
+- **Privacy**: Hidden internal dev tools.
+- **UI**: Initial Liquid Glass implementation and performance upgrades.
 - **Date**: 2026-01-29
-
-### 📝 Edited: UI & Interaction Polish (v0.2.1)
-- **UI**: Fixed Liquid Button visual artifacts (black dots) by scaling down displacement map and adding a native "blue" variant.
-- **UI**: Harmonized CTA button text sizes (text-lg) for a more unified and professional aesthetic.
-- **Date**: 2026-01-29
-
-### 📝 Edited: Data-Driven Architecture (v0.2.0)
-- **Database**: Migrated Events to JSON-driven architecture (`src/data/events.json`) for easier society management.
-- **Logic**: Implemented automated registration status system (e.g., "No registration needed" for Fundays).
-- **Date**: 2026-01-29
-
-### 📝 Edited: UI & Performance Upgrade (v0.1.6)
-- **UI**: Matched font sizes for "Join Us" and "Learn More" buttons for cleaner look.
-- **Date**: 2026-01-29
-
-### 📝 Edited: UI & Performance Upgrade (v0.1.5)
-- **UI**: Integrated Liquid Glass Button for Hero CTA.
-- **Performance**: Replaced event thumbnails with higher resolution assets.
-- **Date**: 2026-01-29
-
-### 📝 Edited: UI & Performance Upgrade (v0.1.4)
-- **UI**: Integrated Liquid Glass Button for Hero CTA.
-- **Performance**: Replaced event thumbnails with higher resolution assets.
-- **Date**: 2026-01-29
-
-### 📝 Edited: UI & Performance Upgrade (v0.1.3)
-- **UI**: Integrated Liquid Glass Button for Hero CTA.
-- **Performance**: Replaced event thumbnails with higher resolution assets.
-- **Date**: 2026-01-29
-
-### 📝 Edited: UI & Performance Upgrade (v0.1.2)
-- **UI**: Integrated Liquid Glass Button for Hero CTA.
-- **Performance**: Replaced event thumbnails with higher resolution assets.
-- **Date**: 2026-01-29
-
-### 📝 Edited: UI & Performance Upgrade (v0.1.1)
-- **UI**: Integrated Liquid Glass Button for Hero CTA.
-- **Performance**: Replaced event thumbnails with higher resolution assets.
-- **Date**: 2026-01-29
-
-### 📝 Edited: Safety & Privacy Overhaul (v0.1.0)
-- **Security**: Integrated pre-push build, lint, and security auditing.
-- **Privacy**: Hidden internal agent tools and development docs from public view.
-- **Date**: 2026-01-29
-
-### 📝 Edited: Auto-Sync (v0.0.8)
-- **Commit**: Automatic version bump and push protocol enforcement.
-- **Date**: 2026-01-29
-
-### 📝 Edited: Actual Section Removal (v0.0.7)
-- **Hard Section Removal**: Physically removed the statistics section code which was previously documented but remained in the source.
-- **Protocol Sync**: Synchronized all metadata files to version 0.0.7 following instruction refresh.
-
-### 📝 Edited: Protocol Guardrails (v0.0.6)
-- **Instruction Enforcement**: Added a "Mandatory Session Entry Checklist" to `.agent/instructions.md` to ensure any new agent follows the versioning/push protocol immediately.
-- **Workflow Rigidity**: Strengthened the `minor-adjustment.md` workflow to be the absolute source of truth for all project changes.
-
-### 📝 Edited: Minimalist Home (v0.0.5)
-- **UI Refinement**: Removed the statistics section from the homepage for a cleaner, more focused user experience.
-- **Sync**: Version bump across all metadata files.
-
-### 📝 Edited: Agent Instruction System (v0.0.4)
-- **AI Agent Support**: Implemented `.agent/` directory with persistent instructions and workflows for future AI pair programmers.
-- **Architecture Mapping**: Updated `CODEBASE.md` to reflect the current flattened directory structure and AI knowledge base.

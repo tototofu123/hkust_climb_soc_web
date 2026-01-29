@@ -39,7 +39,7 @@ export default function ContactPage() {
                 <ScrollReveal>
                     <div className="text-center mb-16">
                         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                            Contact <span className="text-[var(--accent)]">Us</span>
+                            Get in <span className="text-[var(--accent)]">Touch</span>
                         </h1>
                         <p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
                             Have questions about joining, training, or events? We&apos;d love to hear from you.
@@ -75,7 +75,7 @@ export default function ContactPage() {
 
                 <ScrollReveal delay={0.4}>
                     <div className="bg-[var(--surface)] border border-[var(--border)] rounded-3xl p-8 md:p-12 text-center">
-                        <h2 className="text-3xl font-bold mb-6">Exec Committee Contact</h2>
+                        <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
                         <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16">
                             <div className="flex flex-col items-center">
                                 <Phone className="w-8 h-8 mb-4 text-[var(--accent)]" />
