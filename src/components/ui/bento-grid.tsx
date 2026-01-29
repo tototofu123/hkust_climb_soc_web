@@ -120,7 +120,7 @@ export const BentoGrid = ({
             header: (
                 <div className="flex flex-1 w-full h-full min-h-[100px] rounded-xl overflow-hidden mb-2 relative">
                     <Image
-                        src="/photos/equipment/chalk_ball.jpg"
+                        src="/photos/wall/equipment/chalk/chalk_ball.jpg"
                         alt="Climbing Chalk Ball"
                         fill
                         className="object-contain group-hover/bento:scale-110 transition-transform duration-500"
