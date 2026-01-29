@@ -63,7 +63,8 @@ const liquidbuttonVariants = cva(
     {
         variants: {
             variant: {
-                default: "bg-transparent hover:scale-105 duration-300 transition text-primary",
+                default: "bg-transparent text-primary",
+                blue: "bg-blue-600 text-white hover:bg-blue-500 active:bg-blue-700",
                 destructive:
                     "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
                 outline:
@@ -103,27 +104,27 @@ function LiquidButton({
     const Comp = asChild ? Slot : "button"
 
     return (
-        <div className={cn("relative inline-flex items-center justify-center p-0", className)}>
+        <div className={cn("relative inline-flex items-center justify-center p-0 isolate group", className)}>
             {/* Decorative Elements (Liquid Glass Effect) */}
             <div className="absolute inset-0 z-0 rounded-full 
             shadow-[0_0_6px_rgba(0,0,0,0.03),0_2px_6px_rgba(0,0,0,0.08),inset_3px_3px_0.5px_-3px_rgba(0,0,0,0.9),inset_-3px_-3px_0.5px_-3px_rgba(0,0,0,0.85),inset_1px_1px_1px_-0.5px_rgba(0,0,0,0.6),inset_-1px_-1px_1px_-0.5px_rgba(0,0,0,0.6),inset_0_0_6px_6px_rgba(0,0,0,0.12),inset_0_0_2px_2px_rgba(0,0,0,0.06),0_0_12px_rgba(255,255,255,0.15)] 
-        transition-all pointer-events-none
+        transition-all duration-300 pointer-events-none group-hover:scale-105
         dark:shadow-[0_0_8px_rgba(0,0,0,0.03),0_2px_6px_rgba(0,0,0,0.08),inset_3px_3px_0.5px_-3.5px_rgba(255,255,255,0.09),inset_-3px_-3px_0.5px_-3.5px_rgba(255,255,255,0.85),inset_1px_1px_1px_-0.5px_rgba(255,255,255,0.6),inset_-1px_-1px_1px_-0.5px_rgba(255,255,255,0.6),inset_0_0_6px_6px_rgba(255,255,255,0.12),inset_0_0_2px_2px_rgba(255,255,255,0.06),0_0_12px_rgba(0,0,0,0.15)]" />
-            <div
-                className="absolute inset-0 isolate -z-10 overflow-hidden rounded-md pointer-events-none"
-                style={{ backdropFilter: 'url("#container-glass")' }}
-            />
 
             <Comp
                 data-slot="button"
                 className={cn(
-                    "z-10 flex items-center justify-center w-full h-full",
+                    "z-10 flex items-center justify-center w-full h-full rounded-full transition-transform duration-300",
                     liquidbuttonVariants({ variant, size })
                 )}
                 {...props}
             >
                 {children}
             </Comp>
+            <div
+                className="absolute inset-0 -z-10 overflow-hidden rounded-full pointer-events-none opacity-50 blur-[2px]"
+                style={{ backdropFilter: 'url("#container-glass")' }}
+            />
             <GlassFilter />
         </div>
     )
@@ -158,9 +159,9 @@ function GlassFilter() {
                     <feDisplacementMap
                         in="SourceGraphic"
                         in2="blurredNoise"
-                        scale="70"
+                        scale="12"
                         xChannelSelector="R"
-                        yChannelSelector="B"
+                        yChannelSelector="G"
                         result="displaced"
                     />
 
