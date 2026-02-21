@@ -1,38 +1,56 @@
 [
   {
     "id": "1",
-    "dateUploaded": "2026-01-29",
-    "eventName": "Top Out Climbing",
-    "eventType": "Indoor Funday",
-    "dateOfEvent": "7 February (Saturday)",
-    "time": "1:30 PM - 4:30 PM",
-    "location": "Location TBA",
-    "price": "100 HKD/person (includes rentals)",
-    "details": "Join us for a session of top out climbing! Perfect for those looking to push their limits and reach the top.",
+    "dateUploaded": "2026-02-21",
+    "eventName": "Speed Climbing Competition",
+    "eventType": "Competition",
+    "dateOfEvent": "24 February (Tuesday)",
+    "time": "7:00 PM - 9:45 PM",
+    "location": "LG4 Climbing Wall",
+    "price": "50 HKD (Non-members) / 40 HKD (Members)",
+    "details": "Join us for our thrilling Speed Climbing Competition! Test your speed and agility on the wall.",
     "hashtags": [
-      "Climbing",
-      "Social",
-      "Indoor"
+      "SpeedClimbing",
+      "Competition",
+      "HKUST"
     ],
-    "image": "/photos/events/top_out_climbing.jpg",
-    "signupLink": ""
+    "image": "/photos/events/hkust_umcup.jpg",
+    "signupLink": "https://forms.cloud.microsoft.com/r/JBMh2q4WLS"
   },
   {
     "id": "2",
-    "dateUploaded": "2026-01-29",
-    "eventName": "Outdoor Climbing Trip",
-    "eventType": "Outdoor Funday",
+    "dateUploaded": "2026-02-21",
+    "eventName": "Sisyphus Fun Day",
+    "eventType": "Fun Day",
     "dateOfEvent": "28 February (Saturday)",
-    "time": "12:00 PM - 6:00 PM",
-    "location": "Location TBA",
-    "price": "Details soon",
-    "details": "Experience the thrill of outdoor climbing on real rock. A great opportunity to apply your gym skills in nature.",
+    "time": "1:00 PM - 6:00 PM",
+    "location": "Ma On Shan",
+    "price": "Free (Members) / 30 HKD (Non-members)",
+    "details": "A day of fun community and climbing! No signup needed just come and enjoy the vibes.",
     "hashtags": [
-      "Outdoor",
-      "Adventure",
-      "RockClimbing"
+      "FunDay",
+      "Community",
+      "Outdoor"
     ],
     "image": "/photos/events/pak_shui_wun_group.jpg",
+    "signupLink": ""
+  },
+  {
+    "id": "3",
+    "dateUploaded": "2026-02-22",
+    "eventName": "Top Rope Fun Day",
+    "eventType": "Fun Day",
+    "dateOfEvent": "3 March (Tuesday)",
+    "time": "7:00 PM - 10:00 PM",
+    "location": "LG4 Climbing Wall",
+    "price": "Free for all",
+    "details": "Come hang out and climb some top rope routes! Open to everyone - no signup needed.",
+    "hashtags": [
+      "TopRope",
+      "FunDay",
+      "Free"
+    ],
+    "image": "/photos/events/top_out_climbing.jpg",
     "signupLink": ""
   }
 ]
