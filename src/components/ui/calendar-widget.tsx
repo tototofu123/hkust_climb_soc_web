@@ -7,8 +7,8 @@ import { useState, useMemo } from "react";
 // Hardcoded Data for Jan-May 2026
 const SPECIAL_DATES = {
     indoor: ["2026-02-07", "2026-03-07", "2026-04-11", "2026-05-02"],
-    outdoor: ["2026-02-28", "2026-03-14", "2026-03-21"],
-    competition: ["2026-03-03", "2026-05-05"],
+    outdoor: ["2026-03-14", "2026-03-21"],
+    competition: ["2026-05-05"],
     holidays: [
         "2026-01-01", // New Year
         "2026-02-17", "2026-02-18", "2026-02-19", // Lunar New Year
