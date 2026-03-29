@@ -48,3 +48,5 @@ scripts/
 # Private Documents
 *.md
 !README.md
+.github/workflows/notify-repo-blog-hub.yml
+.opencode/
