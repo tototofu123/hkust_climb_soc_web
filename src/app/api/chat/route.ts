@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const FAQs: { id: string; keywords: string[]; answer: string }[] = [
-  { id: "training_time", keywords: ["training", "session", "tuesday", "7pm", "10pm"], answer: "Regular training is every Tuesday from 7:00 PM to 10:00 PM." },
-  { id: "training_cost", keywords: ["cost", "free", "price", "money", "payment", "fee"], answer: "Weekly training sessions are free for everyone." },
+  { id: "training_time", keywords: ["training", "session", "tuesday", "7pm", "10pm", "time"], answer: "Regular training is every Tuesday from 7:00 PM to 10:00 PM." },
+  { id: "training_cost", keywords: ["cost", "free", "price", "money", "payment", "fee", "open", "public"], answer: "Weekly training sessions are free for everyone and open to all HKUST students." },
   { id: "equipment_rental", keywords: ["shoes", "harness", "equipment", "rental", "rent", "own", "gear"], answer: "Climbing shoes and harnesses are provided for free." },
   { id: "experience_needed", keywords: ["beginner", "experience", "new", "never", "first"], answer: "Beginners are welcome! Committee members teach top rope and bouldering safety." },
   { id: "wall_location", keywords: ["location", "where", "address", "place", "lg4", "sports complex"], answer: "Climbing wall location: LG4, Indoor Sports Complex, HKUST." },
   { id: "wall_specs", keywords: ["size", "big", "height", "wide", "meters", "dimension"], answer: "Wall dimensions are 8 meters high by 4 meters wide." },
-  { id: "contact_email", keywords: ["email", "mail", "su_climb"], answer: "Email: su_climb@connect.ust.hk" },
-  { id: "contact_instagram", keywords: ["instagram", "insta", "social"], answer: "Instagram: @climbing_hkustsu" },
+  { id: "contact_email", keywords: ["email", "mail", "su_climb"], answer: "su_climb@connect.ust.hk" },
+  { id: "contact_instagram", keywords: ["instagram", "insta", "social"], answer: "@climbing_hkustsu" },
   { id: "membership", keywords: ["member", "membership", "join", "apply", "register"], answer: "Apply through the Society Membership form at https://forms.office.com/r/HYMFaiP8qv" },
   { id: "contact_whatsapp", keywords: ["whatsapp", "phone", "call", "contact"], answer: "Contact: +852 6618 6981 (Toto) or +49 1521 5397558 (Gus)" },
 ];
