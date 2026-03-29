@@ -40,7 +40,13 @@ npm run dev
 ```
 
 ## Notes
- 
- ### Release: v1.4.0 (Chat polish)
+
+### Release: v1.5.0 (Vercel-first chatbot)
+- **Feature**: Moved chatbot to Vercel serverless - now runs without VM
+- **Changes**: TypeScript-based retrieval, JSON index, no external dependencies
+- **Future**: Will reconnect to VM for LLM when AWS credentials provided
+- **Date**: 2026-03-29
+
+### Release: v1.4.0 (Chat polish)
 - **Fixes**: Prevent duplicate user messages; improved mobile keyboard handling and auto-scroll; show stored name only on initial greeting; status messages while loading.
 - **Date**: 2026-03-29
