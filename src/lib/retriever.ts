@@ -6,103 +6,81 @@ export interface RetrievalHit {
   score: number;
 }
 
-interface Doc {
+interface FAQItem {
   id: string;
   question: string;
   answer: string;
   source: string;
 }
 
-interface IndexPayload {
-  idf: Record<string, number>;
-  doc_vectors: Record<string, number>[];
-  docs: Doc[];
-}
+let _faqs: FAQItem[] | null = null;
 
-const TOKEN_RE = /[a-z0-9_@./:+-]+/g;
+async function loadFAQs(): Promise<FAQItem[]> {
+  if (!_faqs) {
+    const res = await fetch('/faq.json');
+    _faqs = await res.json() as FAQItem[];
+  }
+  return _faqs;
+}
 
 function tokenize(text: string): string[] {
-  return text.toLowerCase().match(TOKEN_RE) || [];
+  return text.toLowerCase().match(/[a-z0-9@./:+-]+/g) || [];
 }
 
-function dot(a: Record<string, number>, b: Record<string, number>): number {
-  const keys = Object.keys(a).length > Object.keys(b).length ? Object.keys(b) : Object.keys(a);
-  return keys.reduce((sum, k) => sum + (a[k] || 0) * (b[k] || 0), 0);
-}
-
-function norm(vec: Record<string, number>): number {
-  return Math.sqrt(Object.values(vec).reduce((sum, v) => sum + v * v, 0));
-}
-
-class Retriever {
-  private idf: Record<string, number>;
-  private docVectors: Record<string, number>[];
-  private docs: Doc[];
-  private docNorms: number[];
-
-  constructor(payload: IndexPayload) {
-    this.idf = payload.idf;
-    this.docVectors = payload.doc_vectors;
-    this.docs = payload.docs;
-    this.docNorms = this.docVectors.map(v => norm(v));
+function scoreMatch(query: string, faq: FAQItem): number {
+  const qTokens = tokenize(query);
+  const qText = tokenize(faq.question + " " + faq.answer);
+  const textSet = new Set(qText);
+  
+  let matches = 0;
+  for (const tok of qTokens) {
+    if (textSet.has(tok)) matches++;
   }
-
-  search(query: string, topK: number = 4): RetrievalHit[] {
-    const qTokens = tokenize(query);
-    const qTf: Record<string, number> = {};
-    for (const tok of qTokens) {
-      qTf[tok] = (qTf[tok] || 0) + 1;
+  
+  // Also check for partial matches in question
+  const qLower = faq.question.toLowerCase();
+  for (const tok of qTokens) {
+    if (tok.length > 2 && qLower.includes(tok)) {
+      matches += 2; // Bonus for question match
     }
-    const qLen = Math.max(1, qTokens.length);
-    const qVec: Record<string, number> = {};
-    for (const [tok, count] of Object.entries(qTf)) {
-      if (tok in this.idf) {
-        qVec[tok] = (count / qLen) * this.idf[tok];
-      }
-    }
-    const qNormVal = norm(qVec);
-
-    const sims: number[] = [];
-    for (let i = 0; i < this.docVectors.length; i++) {
-      const dVec = this.docVectors[i];
-      const dNorm = this.docNorms[i];
-      if (qNormVal === 0 || dNorm === 0) {
-        sims.push(0);
-      } else {
-        sims.push(dot(qVec, dVec) / (qNormVal * dNorm));
-      }
-    }
-
-    const topIdx = sims
-      .map((score, idx) => ({ score, idx }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, topK)
-      .map(x => x.idx);
-
-    return topIdx.map(idx => ({
-      id: this.docs[idx].id,
-      question: this.docs[idx].question,
-      answer: this.docs[idx].answer,
-      source: this.docs[idx].source,
-      score: sims[idx],
-    }));
   }
+  
+  return matches / Math.max(qTokens.length, 1);
 }
 
-let _retriever: Retriever | null = null;
-
-export async function getRetriever(): Promise<Retriever> {
-  if (!_retriever) {
-    const res = await fetch('/index.json');
-    const payload = await res.json() as IndexPayload;
-    _retriever = new Retriever(payload);
-  }
-  return _retriever;
+export async function getRetriever(): Promise<FAQItem[]> {
+  return loadFAQs();
 }
 
 export async function searchFAQ(query: string, topK: number = 4): Promise<RetrievalHit[]> {
-  const retriever = await getRetriever();
-  return retriever.search(query, topK);
+  const faqs = await loadFAQs();
+  
+  if (!query.trim()) return [];
+  
+  // Score all FAQs
+  const scored = faqs.map(faq => ({
+    faq,
+    score: scoreMatch(query, faq)
+  }));
+  
+  // Sort by score
+  scored.sort((a, b) => b.score - a.score);
+  
+  // Return top matches with score > 0
+  const results: RetrievalHit[] = [];
+  for (const { faq, score } of scored) {
+    if (score > 0 && results.length < topK) {
+      results.push({
+        id: faq.id,
+        question: faq.question,
+        answer: faq.answer,
+        source: faq.source,
+        score: Math.min(score, 1) // Normalize to 0-1
+      });
+    }
+  }
+  
+  return results;
 }
 
 export function extractName(message: string): string | null {

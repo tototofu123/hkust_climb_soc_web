@@ -1,0 +1,194 @@
+[
+  {
+    "id": "training_time",
+    "question": "When are weekly training sessions?",
+    "answer": "Regular training is every Tuesday from 7:00 PM to 10:00 PM.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "training_cost",
+    "question": "How much does weekly training cost?",
+    "answer": "Weekly training sessions are free for everyone.",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "equipment_rental",
+    "question": "Do I need my own climbing shoes or harness?",
+    "answer": "No. Climbing shoes and harnesses are provided for free.",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "experience_needed",
+    "question": "Can beginners join?",
+    "answer": "Yes. Beginners are welcome and committee members teach top rope and bouldering safety.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "wall_location",
+    "question": "Where is the climbing wall?",
+    "answer": "Climbing wall location: LG4, Indoor Sports Complex, HKUST.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "wall_specs",
+    "question": "How big is the wall?",
+    "answer": "Wall dimensions are 8 meters high by 4 meters wide.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "contact_email",
+    "question": "What is your email address?",
+    "answer": "General inquiries email: su_climb@connect.ust.hk",
+    "source": "src/app/contact/page.tsx"
+  },
+  {
+    "id": "contact_instagram",
+    "question": "What is your Instagram account?",
+    "answer": "Instagram: @climbing_hkustsu (https://www.instagram.com/climbing_hkustsu/)",
+    "source": "src/app/contact/page.tsx"
+  },
+  {
+    "id": "membership_join",
+    "question": "How do I join the society?",
+    "answer": "Apply through the Society Membership form at https://forms.office.com/r/HYMFaiP8qv and follow membership steps.",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "toprope_permission",
+    "question": "How do I get Top Rope permission?",
+    "answer": "Top Rope Permission form: https://forms.office.com/r/vNEG0JG1sm",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "hangboard_permission",
+    "question": "How do I get Hangboard permission?",
+    "answer": "Hangboard Permission form: https://forms.office.com/r/wgtJrpDAxc",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "society_since",
+    "question": "When was the society founded?",
+    "answer": "The HKUST Sport Climbing Society was founded in 1994.",
+    "source": "src/app/about/page.tsx"
+  },
+  {
+    "id": "event_sisyphus",
+    "question": "What is the next event?",
+    "answer": "Sisyphus Fun Day: 14 March (Saturday), 12:00 PM - 6:00 PM, Ma On Shan. Price: Free (Members) / 30 HKD (Non-members).",
+    "source": "src/data/events.csv"
+  },
+  {
+    "id": "gym_discount_butterfly",
+    "question": "What gym discounts do members get?",
+    "answer": "Butterfly Climbing Gym: HKD 110/day pass (includes rental shoes & chalk). Location: 14A, Magnet Place Tower 2, Kwai Chung.",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "gym_discount_campus",
+    "question": "What is the campus Jordan gym discount?",
+    "answer": "Campus Jordan: HKD 120/day pass (includes rental shoes). Location: 1/F, Jade Suites, Jordan.",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "gym_discount_topout",
+    "question": "What is the Top Out Climbing discount?",
+    "answer": "TOP OUT Climbing: HKD 100/day pass (includes rental shoes). Location: Shop LG126, Shan King Comm. Centre, Tuen Mun.",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "gym_discount_proxy",
+    "question": "What is the Proxy Climbing discount?",
+    "answer": "Proxy Climbing: HKD 180/day pass (includes rental shoes). Location: K11 Atelier, Quarry Bay.",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "gym_discount_mizu",
+    "question": "What is the Mizu Climbing discount?",
+    "answer": "Mizu Climbing (水岩舍): HKD 528/month pass (no renewal discounts). Location: Tai Kok Tsui.",
+    "source": "src/app/apply/page.tsx"
+  },
+  {
+    "id": "eq_climbing_gear",
+    "question": "What climbing gear do you have?",
+    "answer": "We have climbing shoes (free rentals, aggressive and neutral options), harnesses, chalk bags (bouldering and top rope), thick training ropes, belaying glasses, and climbing brushes.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "eq_hangboard",
+    "question": "What hangboards do you have?",
+    "answer": "Hangboard area includes Beastmaker 1000 (premier wooden hangboard), Metolius Green Hangboard, pegboard, hanging ball holds, and cylinder hang sticks.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "eq_strength",
+    "question": "What strength equipment do you have?",
+    "answer": "Strength equipment includes metal weight plates (1.25kg to 20kg, total 70kg), weight belts, pulley systems, gymnastic rings, push-up handles, push-up boards, and front arm sticks.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "eq_grip",
+    "question": "What finger and grip training equipment do you have?",
+    "answer": "Grip training tools include blue fingerboard (resin), triangle fingerboard (pinch grips), pinch blocks, gyro balls (Momentum Grip Trainer), spring grip trainers, wrist rollers, wrist trainers, individual finger trainers, dynamometer, digital crane scale, and boulder balls.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "eq_mobility",
+    "question": "What mobility and balance equipment do you have?",
+    "answer": "Mobility gear includes slab volumes, yoga mats & blocks, balance boards, surfboard balance trainers, skiing mats (slide boards), reaction balls, ab wheels, and resistance bands.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "eq_recovery",
+    "question": "What recovery and tech equipment do you have?",
+    "answer": "Recovery and tech includes massage guns & balls, finger tape, nail clippers, shoe spray, route setting kits (tape, markers, rulers), utility knives, one-time use socks, tissues, phone stands, laser pointers, and charging stations.",
+    "source": "src/app/wall/page.tsx"
+  },
+  {
+    "id": "team_competition",
+    "question": "What competitions does the team participate in?",
+    "answer": "We participate in the HKUST-UM Cup (annual inter-university climbing competition) and the Cheung Chau Bun Festival Bun Scrambling Competition.",
+    "source": "src/app/team/page.tsx"
+  },
+  {
+    "id": "team_join",
+    "question": "How do I join the climbing team?",
+    "answer": "Join the society first. Then look out for selection competitions for the climbing team. The climbing team welcomes anyone who studies at HKUST long-term.",
+    "source": "src/app/team/page.tsx"
+  },
+  {
+    "id": "ig_latest_post",
+    "question": "What is the latest post about",
+    "answer": "Latest post: 🎉 New semester starts next week! First training session: Tuesday 7PM. All beginners welcome - we'll teach you everything from scratch!",
+    "source": "instagram_manual"
+  },
+  {
+    "id": "ig_recent_update",
+    "question": "Any recent updates or news",
+    "answer": "Recent update: Huge thank you to everyone who came to Sisyphus Fun Day! Amazing vibes and climbing all day. See you next time!",
+    "source": "instagram_manual"
+  },
+  {
+    "id": "ig_new_semester",
+    "question": "Is there a new semester schedule",
+    "answer": "Training schedule update: Tuesday sessions now 7-10PM at LG4. Free for members!",
+    "source": "instagram_manual"
+  },
+  {
+    "id": "latest_news",
+    "question": "latest news",
+    "answer": "Recent update: Huge thank you to everyone who came to Sisyphus Fun Day! Amazing vibes and climbing all day. See you next time!",
+    "source": "instagram_manual"
+  },
+  {
+    "id": "recent_post",
+    "question": "recent post",
+    "answer": "Latest post: 🎉 New semester starts next week! First training session: Tuesday 7PM. All beginners welcome - we'll teach you everything from scratch!",
+    "source": "instagram_manual"
+  },
+  {
+    "id": "whats_new",
+    "question": "whats new",
+    "answer": "Training schedule update: Tuesday sessions now 7-10PM at LG4. Free for members!",
+    "source": "instagram_manual"
+  }
+]
