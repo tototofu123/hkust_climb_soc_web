@@ -41,6 +41,10 @@ npm run dev
 
 ## Notes
 
+### Release: v1.7.0 (LLM badge disabled)
+- **Change**: Disabled 🤖 LLM badge (will re-enable when VM LLM reconnected)
+- **Date**: 2026-03-29
+
 ### Release: v1.6.0 (Chat fixes & cookie session)
 - **Fix**: Chat UI - top gradient not overwritten, proper mobile positioning
 - **Fix**: Better error handling for chat API

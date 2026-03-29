@@ -301,11 +301,13 @@ export function ChatWidget() {
               )}
             </div>
             <div className="flex items-center gap-2">
+              {/* TODO: Re-enable LLM badge when VM LLM is connected
               {llmRemaining > 0 && (
                 <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full" title="AI messages remaining">
                   🤖 {llmRemaining}
                 </span>
               )}
+              */}
             </div>
             <button
               onClick={() => setIsOpen(false)}
