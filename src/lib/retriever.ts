@@ -31,24 +31,31 @@ export async function searchFAQ(query: string, topK: number = 4): Promise<Retrie
   const qLower = query.toLowerCase();
   const qWords = qLower.split(/\s+/).filter(w => w.length > 1);
   
+  if (qWords.length === 0) return [];
+  
   // Score each FAQ by keyword overlap
   const scored = faqs.map(faq => {
-    const fLower = (faq.question + " " + faq.answer).toLowerCase();
+    const fQuestion = faq.question.toLowerCase();
+    const fAnswer = faq.answer.toLowerCase();
     let score = 0;
     
     // Check each query word
     for (const word of qWords) {
+      // Skip common words
+      const skipWords = ['when', 'where', 'how', 'what', 'who', 'can', 'does', 'do', 'is', 'are', 'the', 'a', 'an', 'i', 'you', 'we', 'they', 'my', 'your', 'our'];
+      if (skipWords.includes(word)) continue;
+      
       // Exact match in question (highest weight)
-      if (faq.question.toLowerCase().includes(word)) {
-        score += 3;
+      if (fQuestion.includes(word)) {
+        score += 10;
       }
       // Match in answer
-      if (faq.answer.toLowerCase().includes(word)) {
-        score += 1;
+      if (fAnswer.includes(word)) {
+        score += 5;
       }
-      // Partial match
-      if (fLower.includes(word)) {
-        score += 1;
+      // Partial match in question
+      if (fQuestion.split(/\s+/).some(w => w.includes(word) || word.includes(w))) {
+        score += 3;
       }
     }
     
@@ -67,7 +74,7 @@ export async function searchFAQ(query: string, topK: number = 4): Promise<Retrie
       question: s.faq.question,
       answer: s.faq.answer,
       source: s.faq.source,
-      score: Math.min(s.score / 10, 1) // Normalize to 0-1
+      score: Math.min(s.score / 20, 1) // Normalize to 0-1
     }));
   
   return results;

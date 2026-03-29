@@ -41,6 +41,10 @@ npm run dev
 
 ## Notes
 
+### Release: v1.8.2 (Fix keyword matching)
+- **Fix**: Better keyword matching - skip common words, use weighted scoring
+- **Date**: 2026-03-29
+
 ### Release: v1.8.1 (Fix retrieval & contact formatting)
 - **Fix**: Improved keyword matching - now finds matches properly
 - **Fix**: Contact formatting only on real answers, not fallback
