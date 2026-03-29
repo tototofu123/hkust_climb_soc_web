@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
 
     let answer: string;
     if (bestMatch && bestScore > 0) {
-      answer = bestMatch.answer;
+      answer = "[TESTv3] " + bestMatch.answer;
     } else {
       answer = "I can help with HKUST Climbing Society basics like training time, location, membership, permissions, and contacts. Please ask one of these, or contact su_climb@connect.ust.hk / @climbing_hkustsu for details.";
     }
