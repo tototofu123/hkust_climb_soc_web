@@ -40,3 +40,7 @@ npm run dev
 ```
 
 ## Notes
+ 
+ ### Release: v1.4.0 (Chat polish)
+- **Fixes**: Prevent duplicate user messages; improved mobile keyboard handling and auto-scroll; show stored name only on initial greeting; status messages while loading.
+- **Date**: 2026-03-29
