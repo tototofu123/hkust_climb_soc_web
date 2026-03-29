@@ -1,8 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchFAQ, extractName } from "@/lib/retriever";
+import { searchFAQ, extractName, getRetriever, RetrievalHit } from "@/lib/retriever";
+
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if retriever is loaded
+    try {
+      await getRetriever();
+    } catch (e) {
+      console.error("Retriever init error:", e);
+      return NextResponse.json(
+        { answer: "Chat is initializing. Please try again in a few seconds.", error: "init_error" },
+        { status: 200 }
+      );
+    }
+    
     const body = await req.json();
     
     const userId = body.user_id || "anonymous";
@@ -16,7 +29,14 @@ export async function POST(req: NextRequest) {
     }
 
     // Search the FAQ
-    const hits = await searchFAQ(message, 4);
+    let hits: RetrievalHit[] = [];
+    try {
+      hits = await searchFAQ(message, 4);
+    } catch (e) {
+      console.error("Search error:", e);
+      hits = [];
+    }
+    
     const bestScore = hits.length > 0 ? hits[0].score : 0;
     const SIMILARITY_THRESHOLD = 0.15;
 
@@ -49,13 +69,13 @@ export async function POST(req: NextRequest) {
       answer,
       used_fallback: usedFallback,
       sources,
-      llm_remaining: 0, // LLM disabled on Vercel for now
+      llm_remaining: 0,
     });
   } catch (error) {
     console.error("Chat API error:", error);
     return NextResponse.json(
-      { error: "Failed to process chat request" },
-      { status: 500 }
+      { answer: "Sorry, I'm having trouble connecting right now. Please try again later.", error: "server_error" },
+      { status: 200 }
     );
   }
 }

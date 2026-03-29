@@ -15,6 +15,19 @@ interface ChatResponse {
   llm_remaining: number;
 }
 
+// Cookie helpers
+function getCookie(name: string): string | null {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+function setCookie(name: string, value: string, days: number = 365) {
+  if (typeof document === "undefined") return;
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires};path=/;SameSite=Lax`;
+}
+
 function generateUserId(): string {
   if (typeof window === "undefined") return "anonymous";
   let id = localStorage.getItem("hkust_climb_user_id");
@@ -22,18 +35,22 @@ function generateUserId(): string {
     id = "user_" + Math.random().toString(36).substring(2, 15);
     localStorage.setItem("hkust_climb_user_id", id);
   }
+  // Also set cookie for persistence
+  setCookie("hkust_user_id", id);
   return id;
 }
 
 function getUserName(): string {
   if (typeof window === "undefined") return "";
-  return localStorage.getItem("hkust_climb_user_name") || "";
+  // Try cookie first, then localStorage
+  return getCookie("hkust_user_name") || localStorage.getItem("hkust_climb_user_name") || "";
 }
 
 function setUserName(name: string) {
   if (typeof window === "undefined") return;
   if (name) {
     localStorage.setItem("hkust_climb_user_name", name);
+    setCookie("hkust_user_name", name);
   }
 }
 
@@ -269,8 +286,8 @@ export function ChatWidget() {
       {/* Chat Window */}
       {isOpen && (
         <div 
-          className="fixed bottom-0 right-0 left-0 z-50 md:bottom-6 md:right-6 md:left-auto md:w-96 md:max-w-[calc(100vw-3rem)] md:h-[500px] md:max-h-[calc(100vh-6rem)] h-[calc(100vh-4rem)] bg-[var(--card)] border border-[var(--border)] md:rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-          style={keyboardHeight > 0 ? { height: `calc(100vh - ${keyboardHeight}px)` } : {}}
+          className="fixed bottom-0 right-0 left-0 z-50 md:bottom-6 md:right-6 md:left-auto md:w-96 md:max-w-[calc(100vw-3rem)] md:h-[500px] md:max-h-[calc(100vh-6rem)] h-[calc(100dvh-5rem)] top-16 md:top-auto bg-[var(--card)] border border-[var(--border)] md:rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+          style={keyboardHeight > 0 ? { height: `calc(100dvh - 5rem - ${keyboardHeight}px)`, top: '4rem' } : {}}
         >
           {/* Header */}
           <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">

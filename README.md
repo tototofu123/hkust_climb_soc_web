@@ -41,6 +41,12 @@ npm run dev
 
 ## Notes
 
+### Release: v1.6.0 (Chat fixes & cookie session)
+- **Fix**: Chat UI - top gradient not overwritten, proper mobile positioning
+- **Fix**: Better error handling for chat API
+- **Feature**: Cookie-based session for user name persistence
+- **Date**: 2026-03-29
+
 ### Release: v1.5.0 (Vercel-first chatbot)
 - **Feature**: Moved chatbot to Vercel serverless - now runs without VM
 - **Changes**: TypeScript-based retrieval, JSON index, no external dependencies
