@@ -41,6 +41,20 @@ npm run dev
 
 ## Notes
 
+### Release: v1.8.5 (Fix duplicate labels & cost FAQ)
+- **Fix**: Duplicate "Email: Email:" and "Instagram: Instagram:" labels
+- **Feature**: Added "open", "public" keywords to cost FAQ
+- **Fix**: Cost answer now includes "open to all HKUST students"
+- **Date**: 2026-03-30
+
+### Release: v1.8.4 (Fix FAQ prefixes)
+- **Fix**: Removed "No." and "Yes." prefixes from FAQ answers
+- **Date**: 2026-03-30
+
+### Release: v1.8.3 (Chat fixes)
+- **Fix**: Removed test markers and cleaned up responses
+- **Date**: 2026-03-30
+
 ### Release: v1.8.2 (Fix keyword matching)
 - **Fix**: Better keyword matching - skip common words, use weighted scoring
 - **Date**: 2026-03-29
