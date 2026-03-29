@@ -14,13 +14,13 @@
   {
     "id": "equipment_rental",
     "question": "Do I need my own climbing shoes or harness?",
-    "answer": "No. Climbing shoes and harnesses are provided for free.",
+    "answer": "Climbing shoes and harnesses are provided for free.",
     "source": "src/app/apply/page.tsx"
   },
   {
     "id": "experience_needed",
     "question": "Can beginners join?",
-    "answer": "Yes. Beginners are welcome and committee members teach top rope and bouldering safety.",
+    "answer": "Beginners are welcome! Committee members teach top rope and bouldering safety.",
     "source": "src/app/wall/page.tsx"
   },
   {

@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 const FAQs: { id: string; keywords: string[]; answer: string }[] = [
   { id: "training_time", keywords: ["training", "session", "tuesday", "7pm", "10pm"], answer: "Regular training is every Tuesday from 7:00 PM to 10:00 PM." },
   { id: "training_cost", keywords: ["cost", "free", "price", "money", "payment", "fee"], answer: "Weekly training sessions are free for everyone." },
-  { id: "equipment_rental", keywords: ["shoes", "harness", "equipment", "rental", "rent", "own", "gear"], answer: "No. Climbing shoes and harnesses are provided for free." },
-  { id: "experience_needed", keywords: ["beginner", "experience", "new", "never", "first"], answer: "Yes. Beginners are welcome and committee members teach top rope and bouldering safety." },
+  { id: "equipment_rental", keywords: ["shoes", "harness", "equipment", "rental", "rent", "own", "gear"], answer: "Climbing shoes and harnesses are provided for free." },
+  { id: "experience_needed", keywords: ["beginner", "experience", "new", "never", "first"], answer: "Beginners are welcome! Committee members teach top rope and bouldering safety." },
   { id: "wall_location", keywords: ["location", "where", "address", "place", "lg4", "sports complex"], answer: "Climbing wall location: LG4, Indoor Sports Complex, HKUST." },
   { id: "wall_specs", keywords: ["size", "big", "height", "wide", "meters", "dimension"], answer: "Wall dimensions are 8 meters high by 4 meters wide." },
   { id: "contact_email", keywords: ["email", "mail", "su_climb"], answer: "Email: su_climb@connect.ust.hk" },
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
 
     let answer: string;
     if (bestMatch && bestScore > 0) {
-      answer = "[TESTv3] " + bestMatch.answer;
+      answer = bestMatch.answer;
     } else {
       answer = "I can help with HKUST Climbing Society basics like training time, location, membership, permissions, and contacts. Please ask one of these, or contact su_climb@connect.ust.hk / @climbing_hkustsu for details.";
     }
