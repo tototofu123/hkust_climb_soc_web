@@ -1,4 +1,4 @@
-# HKUST Climbing Society Website (V1.0.1)
+# HKUST Climbing Society Website (V1.2.0)
 
 A modern, high-performance web application for the **HKUST Sport Climbing Students' Society**. Built with Next.js, TypeScript, and Framer Motion, featuring a "pro-max" design aesthetic, interactive calendar, and comprehensive member resources.
 
@@ -11,6 +11,7 @@ To provide a seamless digital hub for the HKUST climbing community—bridging th
 - **Mobile-Responsive**: Optimized for all devices with premium animations and transitions.
 - **Asset Hub**: Organized equipment gallery and community event showcase.
 - **Custom 404 Experience**: Branded error handling with generative background patterns.
+- **AI Chatbot**: Smart assistant powered by AI (Ollama + Qwen 0.5B) that answers FAQs about training, membership, equipment, and events. Uses hybrid LLM/retrieval system - first 5 messages per user use LLM, then switches to retrieval-only.
 
 ## 🛠️ Tech Stack
 - **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
@@ -18,6 +19,7 @@ To provide a seamless digital hub for the HKUST climbing community—bridging th
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Components**: Custom-built UI library with Radix primitives.
+- **AI Chatbot**: FastAPI backend with Ollama (Qwen 0.5B) deployed on AWS EC2
 
 ## 📦 Project Structure
 Detailed structural mapping can be found in `CODEBASE.md`.
@@ -52,6 +54,12 @@ npm run dev
 
 ---
 © 2026 HKUST Climbing Society. All rights reserved.
+
+### 🚀 Release: v1.2.0 (AI Chatbot Integration)
+- **Feature**: Added AI chatbot with smart FAQ answering
+- **Backend**: Connected to AWS EC2 deployed chatbot (Ollama + Qwen 0.5B)
+- **Hybrid AI**: LLM for first 5 messages per user, then retrieval-only
+- **Date**: 2026-03-29
 
 ### 🚀 Release: v1.0.1 (Post-Launch Patch)
 - **Fixes**: Updated Google Maps links in Contact page and Footer to point correctly to the HKUST Sports Complex.
