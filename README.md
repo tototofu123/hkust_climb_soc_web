@@ -70,3 +70,40 @@ npm run dev
 ### Release: v1.4.0 (Chat polish)
 - **Fixes**: Prevent duplicate user messages; improved mobile keyboard handling and auto-scroll; show stored name only on initial greeting; status messages while loading.
 - **Date**: 2026-03-29
+
+### Release: v1.1.0 (AI Chatbot Integration)
+- **Feature**: Added AI chatbot with smart FAQ answering
+- **Backend**: Connected to AWS EC2 deployed chatbot (Ollama + Qwen 0.5B)
+- **Hybrid AI**: LLM for first 5 messages per user, then retrieval-only
+- **Date**: 2026-03-29
+
+### Release: v1.0.1 (Post-Launch Patch)
+- **Fixes**: Updated Google Maps links in Contact page and Footer to point correctly to the HKUST Sports Complex.
+- **Date**: 2026-01-29
+
+### Release: v1.0.0 (Official Launch)
+- **Milestone**: Official stable release of the new HKUST Climbing Society website.
+- **Features**: Complete visual overhaul, CSV-driven event management, interactive wall guide, and mobile-first design.
+- **Date**: 2026-01-29
+
+### Release: v0.3.2
+- **UI Tweaks**: Refined Contact page headers for clarity ("Get in Touch", "Contact Us").
+- **Documentation**: Corrected version history logs.
+- **Date**: 2026-01-29
+
+### Release: v0.3.0
+- **Architecture**: Implemented CSV-driven database (`src/data/events.csv`) for easy Excel management.
+- **Assets**: Complete restructuring of `public/photos` into strict categories (`wall`, `equipment`, `events`).
+- **UI/UX**: Standardized button design system (removed Liquid Glass) and cleaned up navigation routes.
+- **Date**: 2026-01-29
+
+### Release: v0.2.x
+- **UI**: Removed Liquid Glass effects, standardized CTA buttons.
+- **Data**: CSV Pipeline integration.
+- **Date**: 2026-01-29
+
+### Release: v0.1.x
+- **Security**: Added pre-push linting and auditing.
+- **Privacy**: Hidden internal dev tools.
+- **UI**: Initial Liquid Glass implementation and performance upgrades.
+- **Date**: 2026-01-29
