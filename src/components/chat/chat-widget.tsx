@@ -214,26 +214,26 @@ export function ChatWidget() {
       
       // Personalize response only if a name was present before this session
       let answer = data.answer;
-      // Format contact mentions with labels
-      const formatAssistantText = (txt: string) => {
-        if (!txt) return txt;
-        // email
-        txt = txt.replace(/([\w.-]+@[\w.-]+\.[A-Za-z]{2,})/g, (_m, p1) => {
-          if (/Email:\s*/i.test(p1)) return p1;
-          return `Email: ${p1}`;
-        });
-        // instagram handles known
-        txt = txt.replace(/@climbing_hkustsu/gi, 'Instagram: @climbing_hkustsu');
-        txt = txt.replace(/@climbingwallinhk/gi, 'Outdoor activities (Instagram): @climbingwallinhk');
-        // generic @ handle fallback (label as Instagram)
-        txt = txt.replace(/@(\w+)/g, (m, p1) => {
-          // avoid relabeling ones we already labeled
-          if (/Instagram:\s*|Outdoor activities/.test(m)) return m;
-          return `Instagram: @${p1}`;
-        });
-        return txt;
-      };
-      answer = formatAssistantText(answer);
+      
+      // Only format contacts if NOT using fallback
+      if (!data.used_fallback) {
+        const formatAssistantText = (txt: string) => {
+          if (!txt) return txt;
+          // email - only add label if not already there
+          txt = txt.replace(/su_climb@connect\.ust\.hk/gi, 'su_climb@connect.ust.hk');
+          txt = txt.replace(/([\w.-]+@[\w.-]+\.[A-Za-z]{2,})/g, 'Email: $1');
+          // instagram handles known
+          txt = txt.replace(/@climbing_hkustsu/gi, 'Instagram: @climbing_hkustsu');
+          txt = txt.replace(/@climbingwallinhk/gi, 'Outdoor activities (Instagram): @climbingwallinhk');
+          // generic @ handle - but skip already labeled
+          txt = txt.replace(/(?<![\w:])@(\w+)/g, (m, p1) => {
+            if (p1 === 'climbing_hkustsu' || p1 === 'climbingwallinhk') return m;
+            return `Instagram: @${p1}`;
+          });
+          return txt;
+        };
+        answer = formatAssistantText(answer);
+      }
       const initialName = initialStoredNameRef.current;
       if (initialName && !greetedRef.current && !answer.toLowerCase().startsWith(`hi ${initialName.toLowerCase()}`)) {
         answer = `Hi ${initialName}, ${answer}`;

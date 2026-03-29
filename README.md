@@ -41,6 +41,11 @@ npm run dev
 
 ## Notes
 
+### Release: v1.8.1 (Fix retrieval & contact formatting)
+- **Fix**: Improved keyword matching - now finds matches properly
+- **Fix**: Contact formatting only on real answers, not fallback
+- **Date**: 2026-03-29
+
 ### Release: v1.8.0 (Fixed chat - keyword-based retrieval)
 - **Fix**: Changed from TF-IDF to simple keyword matching for reliability
 - **Change**: Uses faq.json directly instead of index.joblib

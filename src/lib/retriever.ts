@@ -23,62 +23,52 @@ async function loadFAQs(): Promise<FAQItem[]> {
   return _faqs;
 }
 
-function tokenize(text: string): string[] {
-  return text.toLowerCase().match(/[a-z0-9@./:+-]+/g) || [];
-}
-
-function scoreMatch(query: string, faq: FAQItem): number {
-  const qTokens = tokenize(query);
-  const qText = tokenize(faq.question + " " + faq.answer);
-  const textSet = new Set(qText);
-  
-  let matches = 0;
-  for (const tok of qTokens) {
-    if (textSet.has(tok)) matches++;
-  }
-  
-  // Also check for partial matches in question
-  const qLower = faq.question.toLowerCase();
-  for (const tok of qTokens) {
-    if (tok.length > 2 && qLower.includes(tok)) {
-      matches += 2; // Bonus for question match
-    }
-  }
-  
-  return matches / Math.max(qTokens.length, 1);
-}
-
-export async function getRetriever(): Promise<FAQItem[]> {
-  return loadFAQs();
-}
-
 export async function searchFAQ(query: string, topK: number = 4): Promise<RetrievalHit[]> {
   const faqs = await loadFAQs();
   
   if (!query.trim()) return [];
   
-  // Score all FAQs
-  const scored = faqs.map(faq => ({
-    faq,
-    score: scoreMatch(query, faq)
-  }));
+  const qLower = query.toLowerCase();
+  const qWords = qLower.split(/\s+/).filter(w => w.length > 1);
   
-  // Sort by score
+  // Score each FAQ by keyword overlap
+  const scored = faqs.map(faq => {
+    const fLower = (faq.question + " " + faq.answer).toLowerCase();
+    let score = 0;
+    
+    // Check each query word
+    for (const word of qWords) {
+      // Exact match in question (highest weight)
+      if (faq.question.toLowerCase().includes(word)) {
+        score += 3;
+      }
+      // Match in answer
+      if (faq.answer.toLowerCase().includes(word)) {
+        score += 1;
+      }
+      // Partial match
+      if (fLower.includes(word)) {
+        score += 1;
+      }
+    }
+    
+    return { faq, score };
+  });
+  
+  // Sort by score descending
   scored.sort((a, b) => b.score - a.score);
   
-  // Return top matches with score > 0
-  const results: RetrievalHit[] = [];
-  for (const { faq, score } of scored) {
-    if (score > 0 && results.length < topK) {
-      results.push({
-        id: faq.id,
-        question: faq.question,
-        answer: faq.answer,
-        source: faq.source,
-        score: Math.min(score, 1) // Normalize to 0-1
-      });
-    }
-  }
+  // Return top results with score > 0
+  const results: RetrievalHit[] = scored
+    .filter(s => s.score > 0)
+    .slice(0, topK)
+    .map(s => ({
+      id: s.faq.id,
+      question: s.faq.question,
+      answer: s.faq.answer,
+      source: s.faq.source,
+      score: Math.min(s.score / 10, 1) // Normalize to 0-1
+    }));
   
   return results;
 }
