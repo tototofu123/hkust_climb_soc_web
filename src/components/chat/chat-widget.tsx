@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { MessageCircle, X, Send, Loader2, Bot, User } from "lucide-react";
 
 interface Message {
@@ -64,13 +64,27 @@ export function ChatWidget() {
   const [isLoading, setIsLoading] = useState(false);
   const [llmRemaining, setLlmRemaining] = useState<number>(5);
   const [userName, setUserNameState] = useState<string>("");
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const userIdRef = useRef<string>("");
+
+  const handleResize = useCallback(() => {
+    const visualViewport = window.visualViewport;
+    if (visualViewport) {
+      const keyboardOpen = window.innerHeight - visualViewport.height > 100;
+      setKeyboardHeight(keyboardOpen ? window.innerHeight - visualViewport.height : 0);
+    }
+  }, []);
 
   useEffect(() => {
     userIdRef.current = generateUserId();
     setUserNameState(getUserName());
-  }, []);
+    
+    if (typeof window !== "undefined" && window.visualViewport) {
+      window.visualViewport.addEventListener("resize", handleResize);
+      return () => window.visualViewport?.removeEventListener("resize", handleResize);
+    }
+  }, [handleResize]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -161,7 +175,10 @@ export function ChatWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-0 right-0 left-0 z-50 md:bottom-6 md:right-6 md:left-auto md:w-96 md:max-w-[calc(100vw-3rem)] md:h-[500px] md:max-h-[calc(100vh-6rem)] h-[calc(100vh-4rem)] bg-[var(--card)] border border-[var(--border)] md:rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        <div 
+          className="fixed bottom-0 right-0 left-0 z-50 md:bottom-6 md:right-6 md:left-auto md:w-96 md:max-w-[calc(100vw-3rem)] md:h-[500px] md:max-h-[calc(100vh-6rem)] h-[calc(100vh-4rem)] bg-[var(--card)] border border-[var(--border)] md:rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+          style={keyboardHeight > 0 ? { height: `calc(100vh - ${keyboardHeight}px)` } : {}}
+        >
           {/* Header */}
           <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
             <div className="flex items-center gap-2">
