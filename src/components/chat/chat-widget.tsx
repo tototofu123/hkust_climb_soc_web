@@ -62,6 +62,7 @@ export function ChatWidget() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState("");
   const [llmRemaining, setLlmRemaining] = useState<number>(5);
   const [userName, setUserNameState] = useState<string>("");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
@@ -105,10 +106,13 @@ export function ChatWidget() {
     setInput("");
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
+    setStatus("Reading your message...");
 
     try {
+      setStatus("Searching knowledge base...");
+      
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      const timeoutId = setTimeout(() => controller.abort(), 20000);
       
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -124,6 +128,7 @@ export function ChatWidget() {
 
       if (!response.ok) throw new Error("Failed to get response");
 
+      setStatus("Generating response...");
       const data: ChatResponse = await response.json();
       
       // Personalize response with user name if detected
@@ -137,9 +142,10 @@ export function ChatWidget() {
         { role: "assistant", content: answer },
       ]);
       setLlmRemaining(data.llm_remaining);
+      setStatus("");
     } catch (error: unknown) {
       const errorMessage = error instanceof Error && error.name === "AbortError" 
-        ? "Request timed out. Please try again." 
+        ? "Request timed out (took >20s). Server might be busy. Please try again." 
         : "Sorry, I'm having trouble connecting right now. Please try again later.";
       setMessages((prev) => [
         ...prev,
@@ -148,6 +154,7 @@ export function ChatWidget() {
           content: errorMessage,
         },
       ]);
+      setStatus("");
     } finally {
       setIsLoading(false);
     }
@@ -231,8 +238,9 @@ export function ChatWidget() {
             ))}
             {isLoading && (
               <div className="flex gap-2">
-                <div className="bg-[var(--surface)] border border-[var(--border)] p-3 rounded-2xl">
+                <div className="bg-[var(--surface)] border border-[var(--border)] p-3 rounded-2xl flex items-center gap-2">
                   <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="text-xs text-[var(--text-secondary)]">{status || "Thinking..."}</span>
                 </div>
               </div>
             )}
