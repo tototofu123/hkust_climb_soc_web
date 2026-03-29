@@ -70,6 +70,8 @@ export function ChatWidget() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const userIdRef = useRef<string>("");
+  const initialStoredNameRef = useRef<string>(getUserName());
+  const greetedRef = useRef<boolean>(false);
 
   const handleResize = useCallback(() => {
     const visualViewport = window.visualViewport;
@@ -81,7 +83,9 @@ export function ChatWidget() {
 
   useEffect(() => {
     userIdRef.current = generateUserId();
-    setUserNameState(getUserName());
+    // show name in header only if it was stored before this session (persisted)
+    const stored = initialStoredNameRef.current;
+    if (stored) setUserNameState(stored);
     
     if (typeof window !== "undefined" && window.visualViewport) {
       window.visualViewport.addEventListener("resize", handleResize);
@@ -150,12 +154,17 @@ export function ChatWidget() {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
-    
+    // prevent immediate duplicate consecutive user messages
+    const last = messages[messages.length - 1];
+    if (last && last.role === "user" && last.content === userMessage) {
+      // ignore duplicate
+      return;
+    }
     // Extract and save name from user message
     const extractedName = extractName(userMessage);
     if (extractedName) {
+      // save for future sessions, but do not update displayed name immediately
       setUserName(extractedName);
-      setUserNameState(extractedName);
     }
     
     setInput("");
@@ -186,10 +195,12 @@ export function ChatWidget() {
       setStatus("Generating response...");
       const data: ChatResponse = await response.json();
       
-      // Personalize response with user name if detected
+      // Personalize response only if a name was present before this session
       let answer = data.answer;
-      if (userName && !answer.toLowerCase().includes(userName.toLowerCase())) {
-        answer = `Hi ${userName}, ${answer}`;
+      const initialName = initialStoredNameRef.current;
+      if (initialName && !greetedRef.current && !answer.toLowerCase().startsWith(`hi ${initialName.toLowerCase()}`)) {
+        answer = `Hi ${initialName}, ${answer}`;
+        greetedRef.current = true;
       }
       
       setMessages((prev) => [
