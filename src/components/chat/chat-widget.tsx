@@ -197,6 +197,26 @@ export function ChatWidget() {
       
       // Personalize response only if a name was present before this session
       let answer = data.answer;
+      // Format contact mentions with labels
+      const formatAssistantText = (txt: string) => {
+        if (!txt) return txt;
+        // email
+        txt = txt.replace(/([\w.-]+@[\w.-]+\.[A-Za-z]{2,})/g, (_m, p1) => {
+          if (/Email:\s*/i.test(p1)) return p1;
+          return `Email: ${p1}`;
+        });
+        // instagram handles known
+        txt = txt.replace(/@climbing_hkustsu/gi, 'Instagram: @climbing_hkustsu');
+        txt = txt.replace(/@climbingwallinhk/gi, 'Outdoor activities (Instagram): @climbingwallinhk');
+        // generic @ handle fallback (label as Instagram)
+        txt = txt.replace(/@(\w+)/g, (m, p1) => {
+          // avoid relabeling ones we already labeled
+          if (/Instagram:\s*|Outdoor activities/.test(m)) return m;
+          return `Instagram: @${p1}`;
+        });
+        return txt;
+      };
+      answer = formatAssistantText(answer);
       const initialName = initialStoredNameRef.current;
       if (initialName && !greetedRef.current && !answer.toLowerCase().startsWith(`hi ${initialName.toLowerCase()}`)) {
         answer = `Hi ${initialName}, ${answer}`;
@@ -264,7 +284,7 @@ export function ChatWidget() {
               )}
             </div>
             <div className="flex items-center gap-2">
-              {llmRemaining < 5 && (
+              {llmRemaining > 0 && (
                 <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full" title="AI messages remaining">
                   🤖 {llmRemaining}
                 </span>
