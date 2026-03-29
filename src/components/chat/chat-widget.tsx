@@ -67,6 +67,7 @@ export function ChatWidget() {
   const [userName, setUserNameState] = useState<string>("");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const userIdRef = useRef<string>("");
 
@@ -101,6 +102,45 @@ export function ChatWidget() {
       document.body.style.overflow = prev;
     };
   }, [isOpen]);
+
+  // Keep input visible above mobile keyboard and always show latest messages
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const onViewport = () => {
+      const vv = (window as any).visualViewport;
+      if (!containerRef.current) return;
+      if (vv) {
+        const keyboardHeight = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+        // keep the chat container height and bottom offset so input stays above keyboard
+        containerRef.current.style.height = keyboardHeight > 0 ? `calc(100vh - ${keyboardHeight}px)` : "calc(100vh - 4rem)";
+        containerRef.current.style.bottom = keyboardHeight > 0 ? `${keyboardHeight}px` : "0px";
+      } else {
+        containerRef.current.style.height = "calc(100vh - 4rem)";
+        containerRef.current.style.bottom = "0px";
+      }
+    };
+
+    const onFocusIn = (e: FocusEvent) => {
+      const target = e.target as HTMLElement;
+      if (target === inputRef.current && messagesEndRef.current && containerRef.current) {
+        // small delay to wait keyboard animation
+        setTimeout(() => {
+          messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+          containerRef.current!.scrollTop = containerRef.current!.scrollHeight;
+        }, 50);
+      }
+    };
+
+    window.addEventListener("resize", onViewport);
+    document.addEventListener("focusin", onFocusIn);
+    // initial run
+    onViewport();
+    return () => {
+      window.removeEventListener("resize", onViewport);
+      document.removeEventListener("focusin", onFocusIn);
+    };
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -275,7 +315,11 @@ export function ChatWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                onFocus={() => messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })}
+                onFocus={() => {
+                  messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+                  inputRef.current?.scrollIntoView({ behavior: "smooth" });
+                }}
+                ref={(el) => { inputRef.current = el ?? null; }}
                 placeholder="Ask about climbing..."
                 className="flex-1 bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 disabled={isLoading}
