@@ -25,6 +25,33 @@ function generateUserId(): string {
   return id;
 }
 
+function getUserName(): string {
+  if (typeof window === "undefined") return "";
+  return localStorage.getItem("hkust_climb_user_name") || "";
+}
+
+function setUserName(name: string) {
+  if (typeof window === "undefined") return;
+  if (name) {
+    localStorage.setItem("hkust_climb_user_name", name);
+  }
+}
+
+function extractName(message: string): string | null {
+  const patterns = [
+    /my name is (\w+)/i,
+    /i am (\w+)/i,
+    /i'm (\w+)/i,
+    /this is (\w+)/i,
+    /call me (\w+)/i,
+  ];
+  for (const pattern of patterns) {
+    const match = message.match(pattern);
+    if (match) return match[1];
+  }
+  return null;
+}
+
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -36,11 +63,13 @@ export function ChatWidget() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [llmRemaining, setLlmRemaining] = useState<number>(5);
+  const [userName, setUserNameState] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const userIdRef = useRef<string>("");
 
   useEffect(() => {
     userIdRef.current = generateUserId();
+    setUserNameState(getUserName());
   }, []);
 
   useEffect(() => {
@@ -51,11 +80,22 @@ export function ChatWidget() {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
+    
+    // Extract and save name from user message
+    const extractedName = extractName(userMessage);
+    if (extractedName) {
+      setUserName(extractedName);
+      setUserNameState(extractedName);
+    }
+    
     setInput("");
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -63,22 +103,35 @@ export function ChatWidget() {
           user_id: userIdRef.current,
           message: userMessage,
         }),
+        signal: controller.signal,
       });
+      
+      clearTimeout(timeoutId);
 
       if (!response.ok) throw new Error("Failed to get response");
 
       const data: ChatResponse = await response.json();
+      
+      // Personalize response with user name if detected
+      let answer = data.answer;
+      if (userName && !answer.toLowerCase().includes(userName.toLowerCase())) {
+        answer = `Hi ${userName}, ${answer}`;
+      }
+      
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.answer },
+        { role: "assistant", content: answer },
       ]);
       setLlmRemaining(data.llm_remaining);
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error && error.name === "AbortError" 
+        ? "Request timed out. Please try again." 
+        : "Sorry, I'm having trouble connecting right now. Please try again later.";
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: "Sorry, I'm having trouble connecting right now. Please try again later.",
+          content: errorMessage,
         },
       ]);
     } finally {
@@ -108,15 +161,22 @@ export function ChatWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-6rem)] bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-0 right-0 left-0 z-50 md:bottom-6 md:right-6 md:left-auto md:w-96 md:max-w-[calc(100vw-3rem)] md:h-[500px] md:max-h-[calc(100vh-6rem)] h-[calc(100vh-4rem)] bg-[var(--card)] border border-[var(--border)] md:rounded-2xl shadow-2xl flex flex-col overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5" />
               <span className="font-semibold">HKUST Climbing Bot</span>
-              {llmRemaining < 5 && llmRemaining > 0 && (
+              {userName && (
                 <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">
-                  {llmRemaining} LLM left
+                  {userName}
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-2">
+              {llmRemaining < 5 && (
+                <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full" title="AI messages remaining">
+                  🤖 {llmRemaining}
                 </span>
               )}
             </div>
