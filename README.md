@@ -41,6 +41,11 @@ npm run dev
 
 ## Notes
 
+### Release: v1.8.6 (No Upcoming Events UI)
+- **Feature**: Implemented "No Upcoming Events" placeholder UI for both `/events` and `/news` pages.
+- **Maintenance**: Cleared all existing events from `events.json` and `events.csv`.
+- **Date**: 2026-03-31
+
 ### Release: v1.8.5 (Fix duplicate labels & cost FAQ)
 - **Fix**: Duplicate "Email: Email:" and "Instagram: Instagram:" labels
 - **Feature**: Added "open", "public" keywords to cost FAQ
