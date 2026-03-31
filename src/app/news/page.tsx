@@ -29,7 +29,7 @@ export default function EventsPage() {
                 {/* Events Grid */}
                 {upcomingEvents.length > 0 ? (
                     <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
-                        {upcomingEvents.map((event, index) => (
+                        {upcomingEvents.map((event: any, index: number) => (
                             <ScrollReveal key={event.id} delay={index * 0.1}>
                                 <div className="group bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
                                     {/* Event Image Placeholder Area */}
@@ -43,7 +43,7 @@ export default function EventsPage() {
                                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
                                         <div className="absolute bottom-4 left-4 z-20 flex gap-2">
-                                            {event.tags.map(tag => (
+                                            {event.tags.map((tag: string) => (
                                                 <Badge key={tag} variant="secondary" className="bg-white/10 backdrop-blur-md text-white border-white/20">
                                                     {tag}
                                                 </Badge>
