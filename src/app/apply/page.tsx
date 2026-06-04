@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ClipboardList, CheckCircle, AlertCircle, MapPin, Dumbbell } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import Image from "next/image";
 
 export default function ApplyPage() {
     return (
@@ -37,7 +38,7 @@ export default function ApplyPage() {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {/* Butterfly */}
                             <div className="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                                <h3 className="text-xl font-bold mb-2">🦋 Butterfly Climbing Gym</h3>
+                                <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Image src="/icons/butterfly.svg" alt="" width={24} height={24} className="w-6 h-6 text-[var(--accent)]" /> Butterfly Climbing Gym</h3>
                                 <p className="text-2xl font-bold text-[var(--accent)] mb-4">HKD 110 <span className="text-sm font-normal text-[var(--text-secondary)]">/ Day Pass</span></p>
                                 <p className="text-sm text-[var(--text-secondary)] mb-4">Includes rental shoes & chalk</p>
                                 <div className="flex items-start gap-2 text-xs text-[var(--text-muted)]">
@@ -48,7 +49,7 @@ export default function ApplyPage() {
 
                             {/* Campus Jordan */}
                             <div className="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                                <h3 className="text-xl font-bold mb-2">🌰 Campus Jordan</h3>
+                                <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Image src="/icons/squirrel.svg" alt="" width={24} height={24} className="w-6 h-6" /> Campus Jordan</h3>
                                 <p className="text-2xl font-bold text-[var(--accent)] mb-4">HKD 120 <span className="text-sm font-normal text-[var(--text-secondary)]">/ Day Pass</span></p>
                                 <p className="text-sm text-[var(--text-secondary)] mb-4">Includes rental shoes</p>
                                 <div className="flex items-start gap-2 text-xs text-[var(--text-muted)]">
@@ -59,7 +60,7 @@ export default function ApplyPage() {
 
                             {/* TOP OUT */}
                             <div className="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                                <h3 className="text-xl font-bold mb-2">🏞️ TOP OUT Climbing</h3>
+                                <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Image src="/icons/cat.svg" alt="" width={24} height={24} className="w-6 h-6" /> TOP OUT Climbing</h3>
                                 <p className="text-2xl font-bold text-[var(--accent)] mb-4">HKD 100 <span className="text-sm font-normal text-[var(--text-secondary)]">/ Day Pass</span></p>
                                 <p className="text-sm text-[var(--text-secondary)] mb-4">Includes rental shoes</p>
                                 <div className="flex items-start gap-2 text-xs text-[var(--text-muted)]">
@@ -70,7 +71,7 @@ export default function ApplyPage() {
 
                             {/* Proxy */}
                             <div className="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                                <h3 className="text-xl font-bold mb-2">🌏 Proxy Climbing</h3>
+                                <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Image src="/icons/globe.svg" alt="" width={24} height={24} className="w-6 h-6" /> Proxy Climbing</h3>
                                 <p className="text-2xl font-bold text-[var(--accent)] mb-4">HKD 180 <span className="text-sm font-normal text-[var(--text-secondary)]">/ Day Pass</span></p>
                                 <p className="text-sm text-[var(--text-secondary)] mb-4">Includes rental shoes</p>
                                 <div className="flex items-start gap-2 text-xs text-[var(--text-muted)]">
@@ -81,7 +82,7 @@ export default function ApplyPage() {
 
                             {/* Mizu */}
                             <div className="bg-[var(--card)] p-6 rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                                <h3 className="text-xl font-bold mb-2">💧 Mizu Climbing 水岩舎</h3>
+                                <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Image src="/icons/tsunami.svg" alt="" width={24} height={24} className="w-6 h-6" /> Mizu Climbing 水岩舎</h3>
                                 <p className="text-2xl font-bold text-[var(--accent)] mb-4">HKD 528 <span className="text-sm font-normal text-[var(--text-secondary)]">/ Month Pass</span></p>
                                 <p className="text-sm text-[var(--text-secondary)] mb-4">No renewal discounts</p>
                                 <div className="flex items-start gap-2 text-xs text-[var(--text-muted)]">
