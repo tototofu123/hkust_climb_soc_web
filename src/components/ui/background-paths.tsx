@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 export function BackgroundPaths({ position = 1 }: { position?: number }) {
     const paths = Array.from({ length: 36 }, (_, i) => ({
         id: i,
@@ -20,23 +16,12 @@ export function BackgroundPaths({ position = 1 }: { position?: number }) {
                 fill="none"
             >
                 {paths.map((path) => (
-                    <motion.path
+                    <path
                         key={path.id}
                         d={path.d}
                         stroke="currentColor"
                         strokeWidth={path.width}
                         strokeOpacity={0.1 + path.id * 0.02}
-                        initial={{ pathLength: 0.3, opacity: 0.6 }}
-                        animate={{
-                            pathLength: 1,
-                            opacity: [0.3, 0.6, 0.3],
-                            pathOffset: [0, 1, 0],
-                        }}
-                        transition={{
-                            duration: 20 + (path.id % 10),
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "linear",
-                        }}
                     />
                 ))}
             </svg>

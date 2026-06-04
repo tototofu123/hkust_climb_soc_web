@@ -19,8 +19,8 @@ html::-webkit-scrollbar {
   --text-primary: #2A2A2A;
   --text-secondary: #5A5A5A;
   --text-muted: #8A8A8A;
-  --accent: #3B82F6;
-  --accent-hover: #2563EB;
+  --accent: #1E40AF;
+  --accent-hover: #1E3A8A;
   --border: #D5D5D3;
 
   /* shadcn compatibility */
@@ -46,8 +46,8 @@ html::-webkit-scrollbar {
   --text-primary: #E5E5E5;
   --text-secondary: #A0A0A0;
   --text-muted: #707070;
-  --accent: #60A5FA;
-  --accent-hover: #3B82F6;
+  --accent: #3B82F6;
+  --accent-hover: #2563EB;
   --border: #3A3A3A;
 
   /* shadcn compatibility */
@@ -70,9 +70,6 @@ body {
 }
 
 /* Smooth transitions for theme switching */
-* {
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
 
 /* Link styles - only for plain links, not buttons */
 a:not([class]) {
@@ -95,18 +92,4 @@ a:not([class]):hover {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
-@keyframes spotlight {
-  0% {
-    opacity: 0;
-    transform: translate(-72%, -62%) scale(0.5);
-  }
 
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -40%) scale(1);
-  }
-}
-
-.animate-spotlight {
-  animation: spotlight 2s ease 0.75s 1 forwards;
-}

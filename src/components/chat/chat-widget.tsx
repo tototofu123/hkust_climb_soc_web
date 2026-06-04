@@ -275,7 +275,7 @@ export function ChatWidget() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
+        className={`fixed bottom-6 right-6 z-50 bg-[var(--accent)] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
           isOpen ? "hidden" : "flex items-center justify-center"
         }`}
         aria-label="Open chat"
@@ -290,7 +290,7 @@ export function ChatWidget() {
           style={keyboardHeight > 0 ? { height: `calc(100dvh - 5rem - ${keyboardHeight}px)`, top: '4rem' } : {}}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+          <div className="flex items-center justify-between p-4 bg-[var(--accent)] text-white">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5" />
               <span className="font-semibold">HKUST Climbing Bot</span>

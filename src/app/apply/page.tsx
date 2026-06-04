@@ -124,7 +124,7 @@ export default function ApplyPage() {
                                     </li>
                                 </ul>
                                 <Button
-                                    className="w-full relative overflow-hidden group bg-gradient-to-r from-[var(--accent)] to-blue-600 text-white hover:from-blue-600 hover:to-[var(--accent)] shadow-lg hover:shadow-xl transition-all duration-300"
+                                    className="w-full relative overflow-hidden group bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)] shadow-lg hover:shadow-xl transition-all duration-300"
                                     asChild
                                 >
                                     <a href="https://forms.office.com/r/HYMFaiP8qv" target="_blank">
@@ -149,7 +149,7 @@ export default function ApplyPage() {
                                         Safety certification
                                     </li>
                                 </ul>
-                                <Button variant="outline" className="w-full hover:bg-[var(--accent)] hover:text-white transition-colors" asChild>
+                                <Button variant="outline" className="w-full hover:bg-[var(--accent)] hover:text-white transition-colors hover:border-[var(--accent)]" asChild>
                                     <a href="https://forms.office.com/r/vNEG0JG1sm" target="_blank">Application Form</a>
                                 </Button>
                             </div>
@@ -170,7 +170,7 @@ export default function ApplyPage() {
                                         Advanced equipment
                                     </li>
                                 </ul>
-                                <Button variant="outline" className="w-full hover:bg-[var(--accent)] hover:text-white transition-colors" asChild>
+                                <Button variant="outline" className="w-full hover:bg-[var(--accent)] hover:text-white transition-colors hover:border-[var(--accent)]" asChild>
                                     <a href="https://forms.office.com/r/wgtJrpDAxc" target="_blank">Application Form</a>
                                 </Button>
                             </div>

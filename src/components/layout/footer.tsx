@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
 import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
 
 interface FooterLink {
@@ -48,34 +47,6 @@ const footerLinks: FooterSection[] = [
     },
 ];
 
-function AnimatedContainer({
-    className,
-    delay = 0.1,
-    children
-}: {
-    className?: string;
-    delay?: number;
-    children: React.ReactNode;
-}) {
-    const shouldReduceMotion = useReducedMotion();
-
-    if (shouldReduceMotion) {
-        return <div className={className}>{children}</div>;
-    }
-
-    return (
-        <motion.div
-            initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
-            whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay, duration: 0.8 }}
-            className={className}
-        >
-            {children}
-        </motion.div>
-    );
-}
-
 export function Footer() {
     return (
         <footer className="relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center rounded-t-3xl border-t border-[var(--border)] bg-[var(--surface)] px-6 py-12 lg:py-16">
@@ -84,7 +55,7 @@ export function Footer() {
 
             <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
                 {/* Logo & Copyright */}
-                <AnimatedContainer className="space-y-4">
+                <div className="space-y-4">
                     <div className="flex items-center gap-2">
                         <span className="text-2xl font-bold">HKUST Climbing</span>
                     </div>
@@ -94,12 +65,12 @@ export function Footer() {
                     <p className="text-[var(--text-muted)] mt-8 text-sm">
                         © {new Date().getFullYear()} HKUST Climbing Society. All rights reserved.
                     </p>
-                </AnimatedContainer>
+                </div>
 
                 {/* Links */}
                 <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-3 xl:col-span-2 xl:mt-0">
-                    {footerLinks.map((section, index) => (
-                        <AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
+                    {footerLinks.map((section) => (
+                        <div key={section.label}>
                             <div className="mb-10 md:mb-0">
                                 <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
                                     {section.label}
@@ -130,7 +101,7 @@ export function Footer() {
                                     ))}
                                 </ul>
                             </div>
-                        </AnimatedContainer>
+                        </div>
                     ))}
                 </div>
             </div>

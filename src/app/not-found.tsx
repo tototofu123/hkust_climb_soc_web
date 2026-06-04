@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 
@@ -17,11 +14,7 @@ export default function NotFound() {
             </div>
 
             <div className="relative z-10 container mx-auto px-4 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
+                <div>
                     {/* Big 404 */}
                     <h1 className="text-8xl md:text-9xl font-bold text-[var(--text-primary)] mb-8 tracking-tighter">
                         404
@@ -37,11 +30,8 @@ export default function NotFound() {
                         </p>
                     </div>
 
-                    {/* CTA Button - Cyan/Teal style from image */}
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
+                    {/* CTA Button */}
+                    <div>
                         <Button
                             asChild
                             size="lg"
@@ -51,8 +41,8 @@ export default function NotFound() {
                                 Back to Home Page
                             </Link>
                         </Button>
-                    </motion.div>
-                </motion.div>
+                    </div>
+                </div>
             </div>
         </div>
     );

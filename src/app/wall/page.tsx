@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Ruler, MapPin, Calendar, ChevronRight, ExternalLink } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 export default function WallPage() {
@@ -45,7 +44,7 @@ export default function WallPage() {
             name: "Mobility & Balance",
             desc: "Core & Stability: Yoga, Balance Boards, and Ab Wheels.",
             image: "/photos/wall/equipment/misc/yoga_mat_and_block.jpg",
-            bg: "bg-purple-500/10"
+            bg: "bg-blue-800/10"
         },
         {
             id: "recovery_tech",
@@ -105,19 +104,19 @@ export default function WallPage() {
         { id: "boulder_ball", name: "Boulder Ball", category: "grip", image: "/photos/wall/equipment/training/boulderball.jpg", desc: "Spherical grip training.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=boulder+ball+climbing" },
 
         // Mobility (Yoga, Balance)
-        { id: "slab", name: "Slab Volume", category: "mobility", image: "/photos/wall/equipment/misc/slab_volume.jpg", desc: "Technical volumes.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+volume" },
-        { id: "yoga_gear", name: "Yoga Mat & Blocks", category: "mobility", image: "/photos/wall/equipment/misc/yoga_mat_and_block.jpg", desc: "Flexibility.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=yoga+mat+and+blocks" },
-        { id: "balance_board", name: "Balance Board", category: "mobility", image: "/photos/wall/equipment/training/balance_board.jpg", desc: "Stabilizer training.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=balance+board" },
-        { id: "surfboard_balance", name: "Surfboard Balance Trainer", category: "mobility", image: "/photos/wall/equipment/training/surfboard.jpg", desc: "Core & balance training.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=surfboard+balance+trainer" },
-        { id: "soft_platform", name: "Soft Platform", category: "mobility", image: "https://images.unsplash.com/photo-1544367563-12123d8965cd?auto=format&fit=crop&w=600&q=80", desc: "Balance pad.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=foam+balance+pad" },
-        { id: "skiing_mat", name: "Skiing Mat", category: "mobility", image: "/photos/wall/equipment/misc/skimat.jpg", desc: "Slide board.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=slide+board+exercise" },
-        { id: "reaction_ball", name: "Reaction Ball", category: "mobility", image: "/photos/wall/equipment/training/reaction_ball.jpg", desc: "Hand-eye coord.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=reaction+abll" },
-        { id: "ab_wheel", name: "Ab Wheel", category: "mobility", image: "/photos/wall/equipment/strengthandweights/ab_wheel.jpg", desc: "Core rollout.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=ab+wheel" },
-        { id: "resistance_bands", name: "Resistance Bands", category: "mobility", image: "/photos/wall/equipment/strengthandweights/resistance_bands.jpg", desc: "Warm-up.", bg: "bg-purple-500/10", link: "https://www.google.com/search?tbm=shop&q=resistance+bands" },
+        { id: "slab", name: "Slab Volume", category: "mobility", image: "/photos/wall/equipment/misc/slab_volume.jpg", desc: "Technical volumes.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=climbing+volume" },
+        { id: "yoga_gear", name: "Yoga Mat & Blocks", category: "mobility", image: "/photos/wall/equipment/misc/yoga_mat_and_block.jpg", desc: "Flexibility.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=yoga+mat+and+blocks" },
+        { id: "balance_board", name: "Balance Board", category: "mobility", image: "/photos/wall/equipment/training/balance_board.jpg", desc: "Stabilizer training.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=balance+board" },
+        { id: "surfboard_balance", name: "Surfboard Balance Trainer", category: "mobility", image: "/photos/wall/equipment/training/surfboard.jpg", desc: "Core & balance training.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=surfboard+balance+trainer" },
+        { id: "soft_platform", name: "Soft Platform", category: "mobility", image: "https://images.unsplash.com/photo-1544367563-12123d8965cd?auto=format&fit=crop&w=600&q=80", desc: "Balance pad.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=foam+balance+pad" },
+        { id: "skiing_mat", name: "Skiing Mat", category: "mobility", image: "/photos/wall/equipment/misc/skimat.jpg", desc: "Slide board.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=slide+board+exercise" },
+        { id: "reaction_ball", name: "Reaction Ball", category: "mobility", image: "/photos/wall/equipment/training/reaction_ball.jpg", desc: "Hand-eye coord.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=reaction+abll" },
+        { id: "ab_wheel", name: "Ab Wheel", category: "mobility", image: "/photos/wall/equipment/strengthandweights/ab_wheel.jpg", desc: "Core rollout.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=ab+wheel" },
+        { id: "resistance_bands", name: "Resistance Bands", category: "mobility", image: "/photos/wall/equipment/strengthandweights/resistance_bands.jpg", desc: "Warm-up.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=resistance+bands" },
 
         // Recovery & Tech (Merged)
         { id: "massage", name: "Massage Tools", category: "recovery_tech", image: "/photos/wall/equipment/electronics/massage_gun.jpg", desc: "Gun & Balls for release.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=massage+gun" },
-        { id: "finger_tape", name: "Finger Tape", category: "recovery_tech", image: "/photos/equipment/finger_tape.jpg", desc: "Skin protection.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+tape" },
+        { id: "finger_tape", name: "Finger Tape", category: "recovery_tech", image: "/photos/wall/equipment/misc/finger_tape.jpg", desc: "Skin protection.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+tape" },
         { id: "nail_clipper", name: "Nail Clippers", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/nail_clipper.jpg", desc: "Hygiene essential.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=nail+clippers" },
         { id: "shoe_spray", name: "Shoe Spray", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/shoe_spray.jpg", desc: "Odor control.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=shoe+deodorizer+spray" },
         { id: "route_setting", name: "Route Setting Kit", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/climbing_tapes_route_setting.jpg", desc: "Tape, Markers, Rulers.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=gaffer+tape" },
@@ -156,9 +155,9 @@ export default function WallPage() {
             <section className="py-8 px-4">
                 <ScrollReveal>
                     <div className="max-w-6xl mx-auto">
-                        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 p-8 md:p-12 text-white shadow-2xl">
+                        <div className="relative overflow-hidden rounded-3xl bg-[var(--accent)] p-8 md:p-12 text-white shadow-2xl">
                             <div className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-                            <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-purple-500/20 rounded-full blur-xl pointer-events-none"></div>
+                            <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
 
                             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                                 <div className="text-center md:text-left">
@@ -206,7 +205,7 @@ export default function WallPage() {
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-4">
-                                            <div className="p-2 bg-purple-500/10 rounded-lg text-purple-500">
+                                            <div className="p-2 bg-blue-800/10 rounded-lg text-[var(--accent)]">
                                                 <MapPin className="w-5 h-5" />
                                             </div>
                                             <div>
@@ -281,16 +280,9 @@ export default function WallPage() {
                             </div>
                         </div>
 
-                        <AnimatePresence mode="wait">
-                            {!activeCategory ? (
+                        {!activeCategory ? (
                                 /* Categories Grid View */
-                                <motion.div
-                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    transition={{ duration: 0.3 }}
-                                >
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {categories.map((cat) => (
                                         <div
                                             key={cat.id}
@@ -319,16 +311,10 @@ export default function WallPage() {
                                             </div>
                                         </div>
                                     ))}
-                                </motion.div>
+                                </div>
                             ) : (
                                 /* Items Grid View */
-                                <motion.div
-                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -20 }}
-                                    transition={{ duration: 0.3 }}
-                                >
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                     {displayedItems.map((item) => (
                                         <a
                                             key={item.id}
@@ -361,9 +347,8 @@ export default function WallPage() {
                                             </div>
                                         </a>
                                     ))}
-                                </motion.div>
+                                </div>
                             )}
-                        </AnimatePresence>
                     </ScrollReveal>
                 </div>
             </section>

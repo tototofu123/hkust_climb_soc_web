@@ -51,7 +51,7 @@ export default function Home() {
               <p className="text-lg text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto">
                 Become a member today and get full access to our facilities, equipment, and training sessions.
               </p>
-              <Button size="lg" className="rounded-full px-8 bg-gradient-to-r from-[var(--accent)] to-blue-600 hover:shadow-lg hover:scale-105 transition-all duration-300 " asChild>
+              <Button size="lg" className="rounded-full px-8 bg-[var(--accent)] hover:bg-[var(--accent-hover)] hover:shadow-lg hover:scale-105 transition-all duration-300 " asChild>
                 <Link href="/apply" className="text-white">
                   Apply for Membership <Flame className="ml-2 w-5 h-5" />
                 </Link>

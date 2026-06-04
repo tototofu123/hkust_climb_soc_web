@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Mail, Instagram, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";

@@ -86,7 +86,7 @@ export default function ShopPage() {
                         <p className="text-[var(--text-secondary)] mb-6">
                             If you are interested in buying any items, please DM us on Instagram.
                         </p>
-                        <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 transition-opacity">
+                        <Button asChild size="lg" className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] transition-colors">
                             <a href="https://www.instagram.com/climbing_hkustsu/" target="_blank">
                                 <Instagram className="mr-2 w-5 h-5" />
                                 DM on Instagram
