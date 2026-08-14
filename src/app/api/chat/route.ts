@@ -10,7 +10,7 @@ const FAQs: { id: string; keywords: string[]; answer: string }[] = [
   { id: "contact_email", keywords: ["email", "mail", "su_climb"], answer: "su_climb@connect.ust.hk" },
   { id: "contact_instagram", keywords: ["instagram", "insta", "social"], answer: "@climbing_hkustsu" },
   { id: "membership", keywords: ["member", "membership", "join", "apply", "register"], answer: "Apply through the Society Membership form at https://forms.office.com/r/HYMFaiP8qv" },
-  { id: "contact_whatsapp", keywords: ["whatsapp", "phone", "call", "contact"], answer: "Contact: +852 6618 6981 (Toto) or +49 1521 5397558 (Gus)" },
+  { id: "contact_whatsapp", keywords: ["whatsapp", "phone", "call", "contact"], answer: "Contact: Roma: +852 8060 0793; Toto: +852 6618 6981." },
 ];
 
 function extractName(message: string): string | null {

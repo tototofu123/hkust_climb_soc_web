@@ -40,8 +40,8 @@ const footerLinks: FooterSection[] = [
         links: [
             { title: 'su_climb@connect.ust.hk', href: 'mailto:su_climb@connect.ust.hk', icon: Mail },
             { title: '@climbing_hkustsu', href: 'https://www.instagram.com/climbing_hkustsu/', icon: Instagram, external: true },
+            { title: 'Roma (+852 8060 0793)', href: 'tel:+85280600793', icon: Phone },
             { title: 'Toto (+852 6618 6981)', href: 'tel:+85266186981', icon: Phone },
-            { title: 'Gus (+49 1521 5397558)', href: 'tel:+4915215397558', icon: Phone },
             { title: 'LG4, HKUST', href: 'https://www.google.com/maps?sca_esv=02d96f4dae5a5963&biw=843&bih=900&aic=0&output=search&q=sports+complex+hkust&source=lnms&fbs=ADc_l-YQanUcJSoe62luYRIM6gsUt2zjmW_MvZe6pHkYHWOdy8woxLkmF_YUe3IvdgohA_8I4_ca4rhKIxeMpNo7WLG7bYpGpb7DGicGHMGxd4PB52sz6mSoR4bK03a8gm2D5q8RpvTZxhQfb1PuO9XLUxTAO3cw0l4q95lLBfT1G9-JkSqSNpAJFBxCABp2C05myxtrAi5k88yruABA1rdNzCDzB3jXB-SdcAkdwKAvKLw8ZSpSxqM&entry=mc&ved=1t:200715&ictx=111', icon: MapPin, external: true },
         ],
     },

@@ -76,16 +76,16 @@ export default function ContactPage() {
                         <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16">
                             <div className="flex flex-col items-center">
                                 <Phone className="w-8 h-8 mb-4 text-[var(--accent)]" />
-                                <h3 className="font-bold text-lg">Toto</h3>
-                                <a href="tel:+85266186981" className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
-                                    +852 6618 6981
+                                <h3 className="font-bold text-lg">Roma</h3>
+                                <a href="tel:+85280600793" className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
+                                    +852 8060 0793
                                 </a>
                             </div>
                             <div className="flex flex-col items-center">
                                 <Phone className="w-8 h-8 mb-4 text-[var(--accent)]" />
-                                <h3 className="font-bold text-lg">Gus</h3>
-                                <a href="tel:+4915215397558" className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
-                                    +49 1521 5397558
+                                <h3 className="font-bold text-lg">Toto</h3>
+                                <a href="tel:+85266186981" className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
+                                    +852 6618 6981
                                 </a>
                             </div>
                         </div>
