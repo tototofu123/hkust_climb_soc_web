@@ -33,7 +33,7 @@ export const BentoGrid = ({
             title: "Calendar",
             meta: "Schedule",
             description: "Check out our upcoming training sessions and events.",
-            header: <CalendarWidget className="scale-90 origin-top-left" isCompact={true} />,
+            header: <CalendarWidget className="h-full" isCompact={true} />,
             href: "/events",
             colSpan: 1,
             className: "md:row-span-2", // Make it tall
@@ -45,9 +45,10 @@ export const BentoGrid = ({
             header: (
                 <div className="flex flex-1 w-full h-full min-h-[160px] rounded-xl overflow-hidden mb-4 relative">
                     <Image
-                        src="/photos/events/top_out_climbing.jpg"
+                        src="/photos/events/top_out_climbing.avif"
                         alt="Top Out Climbing Event"
-                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                         className="object-cover group-hover/bento:scale-105 transition-transform duration-500"
                     />
                 </div>
@@ -64,9 +65,10 @@ export const BentoGrid = ({
             header: (
                 <div className="w-full aspect-[2/1] rounded-xl overflow-hidden mb-2 relative bg-zinc-900/50">
                     <Image
-                        src="/photos/events/shek_o_group.jpg"
+                        src="/photos/events/shek_o_group.avif"
                         alt="HKUST Climbing Team @ Shek O"
-                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                         className="object-contain group-hover/bento:scale-105 transition-transform duration-500"
                     />
                 </div>
@@ -82,9 +84,10 @@ export const BentoGrid = ({
             header: (
                 <div className="w-full aspect-[2/1] rounded-xl overflow-hidden mb-2 relative bg-zinc-900/50">
                     <Image
-                        src="/photos/location/hangboard_area.jpg"
+                        src="/photos/location/hangboard_area.avif"
                         alt="Climbing Wall Area"
-                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                         className="object-contain group-hover/bento:scale-105 transition-transform duration-500"
                     />
                 </div>
@@ -101,9 +104,10 @@ export const BentoGrid = ({
             header: (
                 <div className="flex flex-1 w-full h-full min-h-[100px] rounded-xl overflow-hidden mb-2 relative">
                     <Image
-                        src="/photos/events/hkust_umcup.jpg"
+                        src="/photos/events/hkust_umcup.avif"
                         alt="HKUST-UM Cup"
-                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                         className="object-cover group-hover/bento:scale-105 transition-transform duration-500"
                     />
                 </div>
@@ -120,9 +124,10 @@ export const BentoGrid = ({
             header: (
                 <div className="flex flex-1 w-full h-full min-h-[100px] rounded-xl overflow-hidden mb-2 relative">
                     <Image
-                        src="/photos/wall/equipment/chalk/chalk_ball.jpg"
+                        src="/photos/wall/equipment/chalk/chalk_ball.avif"
                         alt="Climbing Chalk Ball"
-                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                         className="object-contain group-hover/bento:scale-110 transition-transform duration-500"
                     />
                 </div>
@@ -139,9 +144,10 @@ export const BentoGrid = ({
             header: (
                 <div className="w-full aspect-[2/1] rounded-xl overflow-hidden mb-2 relative bg-zinc-900/50">
                     <Image
-                        src="/photos/events/pak_shui_wun_group.jpg"
+                        src="/photos/events/pak_shui_wun_group.avif"
                         alt="Join HKUST Climbing Community"
-                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                         className="object-contain group-hover/bento:scale-105 transition-transform duration-500"
                     />
                 </div>

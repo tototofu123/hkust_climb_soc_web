@@ -1,78 +1,77 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const FAQs: { id: string; keywords: string[]; answer: string }[] = [
-  { id: "training_time", keywords: ["training", "session", "tuesday", "7pm", "10pm", "time"], answer: "Regular training is every Tuesday from 7:00 PM to 10:00 PM." },
-  { id: "training_cost", keywords: ["cost", "free", "price", "money", "payment", "fee", "open", "public"], answer: "Weekly training sessions are free for everyone and open to all HKUST students." },
-  { id: "equipment_rental", keywords: ["shoes", "harness", "equipment", "rental", "rent", "own", "gear"], answer: "Climbing shoes and harnesses are provided for free." },
-  { id: "experience_needed", keywords: ["beginner", "experience", "new", "never", "first"], answer: "Beginners are welcome! Committee members teach top rope and bouldering safety." },
-  { id: "wall_location", keywords: ["location", "where", "address", "place", "lg4", "sports complex"], answer: "Climbing wall location: LG4, Indoor Sports Complex, HKUST." },
-  { id: "wall_specs", keywords: ["size", "big", "height", "wide", "meters", "dimension"], answer: "Wall dimensions are 8 meters high by 4 meters wide." },
-  { id: "contact_email", keywords: ["email", "mail", "su_climb"], answer: "su_climb@connect.ust.hk" },
-  { id: "contact_instagram", keywords: ["instagram", "insta", "social"], answer: "@climbing_hkustsu" },
-  { id: "membership", keywords: ["member", "membership", "join", "apply", "register"], answer: "Apply through the Society Membership form at https://forms.office.com/r/HYMFaiP8qv" },
-  { id: "contact_whatsapp", keywords: ["whatsapp", "phone", "call", "contact"], answer: "Contact: Roma: +852 8060 0793; Toto: +852 6618 6981." },
+type Faq = {
+  id: string;
+  keywords: string[];
+  answer: string;
+};
+
+const FAQS: Faq[] = [
+  {
+    id: "training",
+    keywords: ["training", "session", "tuesday", "time", "schedule", "630", "9:30"],
+    answer: "Training runs on Tuesdays from 6:30 PM to 9:30 PM during the published autumn and spring windows. The Events page calendar shows every active training date and public-holiday cancellation.",
+  },
+  {
+    id: "wall",
+    keywords: ["wall", "location", "where", "lg4", "climbing wall", "hangboard"],
+    answer: "The climbing wall and hangboard area are at LG4, HKUST. Please follow society and wall rules when using the facilities.",
+  },
+  {
+    id: "join",
+    keywords: ["join", "membership", "apply", "member", "signup", "sign up"],
+    answer: "You can join through the Apply page. Weekly training is open to society members, and the page explains the current membership and safety requirements.",
+  },
+  {
+    id: "equipment",
+    keywords: ["equipment", "gear", "shoe", "shoes", "harness", "rent", "rental", "chalk"],
+    answer: "Check the Wall page for available climbing and training equipment. For rentals or equipment questions, contact the society directly.",
+  },
+  {
+    id: "events",
+    keywords: ["event", "competition", "outing", "trip", "calendar", "registration"],
+    answer: "The Events page has the current training calendar and event updates. Registration links appear there when an event is open.",
+  },
+  {
+    id: "contact",
+    keywords: ["contact", "phone", "call", "whatsapp", "email", "roma", "toto", "instagram"],
+    answer: "Contact Roma at +852 8060 0793 first, then Toto at +852 6618 6981. You can also email su_climb@connect.ust.hk or message @climbing_hkustsu on Instagram.",
+  },
+  {
+    id: "cost",
+    keywords: ["cost", "price", "fee", "money", "pay", "payment"],
+    answer: "Please check the Apply, Shop, or Events page for the relevant current fee. If a fee is not listed, contact Roma or Toto for confirmation.",
+  },
 ];
 
-function extractName(message: string): string | null {
-  const patterns = [/my name is (\w+)/i, /i am (\w+)/i, /i'm (\w+)/i, /this is (\w+)/i, /call me (\w+)/i];
-  for (const pattern of patterns) {
-    const match = message.match(pattern);
-    if (match) return match[1];
-  }
-  return null;
+function scoreFaq(question: string, faq: Faq) {
+  const normalizedQuestion = question.toLowerCase();
+  return faq.keywords.reduce((score, keyword) => {
+    return normalizedQuestion.includes(keyword) ? score + keyword.length : score;
+  }, 0);
 }
 
-export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const rawMessage = body.message || "";
-    const message = rawMessage.toLowerCase().trim();
-    
-    if (!message) {
-      return NextResponse.json({ error: "Empty message" }, { status: 400 });
-    }
+export async function POST(request: NextRequest) {
+  const body = await request.json().catch(() => null);
+  const message = typeof body?.message === "string" ? body.message.trim() : "";
 
-    // Find matching FAQ
-    let bestMatch: typeof FAQs[0] | null = null;
-    let bestScore = 0;
-    
-    for (const faq of FAQs) {
-      let score = 0;
-      for (const kw of faq.keywords) {
-        if (message.includes(kw.toLowerCase())) {
-          score += 1;
-        }
-      }
-      if (score > bestScore) {
-        bestScore = score;
-        bestMatch = faq;
-      }
-    }
-
-    let answer: string;
-    if (bestMatch && bestScore > 0) {
-      answer = bestMatch.answer;
-    } else {
-      answer = "I can help with HKUST Climbing Society basics like training time, location, membership, permissions, and contacts. Please ask one of these, or contact su_climb@connect.ust.hk / @climbing_hkustsu for details.";
-    }
-
-    // Personalize
-    const name = extractName(rawMessage);
-    if (name && !answer.toLowerCase().startsWith(`hi ${name.toLowerCase()}`)) {
-      answer = `Hi ${name}, ${answer}`;
-    }
-
-    return NextResponse.json({
-      answer,
-      used_fallback: !bestMatch || bestScore === 0,
-      sources: bestMatch ? [{ id: bestMatch.id, source: "faq", score: bestScore }] : [],
-      llm_remaining: 0,
-    });
-  } catch (error) {
-    console.error("Chat error:", error);
-    return NextResponse.json(
-      { answer: "Sorry, I'm having trouble connecting right now. Please try again later." },
-      { status: 200 }
-    );
+  if (!message) {
+    return NextResponse.json({ answer: "Please enter a question about the society." }, { status: 400 });
   }
+
+  const ranked = FAQS.map((faq) => ({ faq, score: scoreFaq(message, faq) })).sort((left, right) => right.score - left.score);
+  const bestMatch = ranked[0];
+
+  if (!bestMatch || bestMatch.score === 0) {
+    return NextResponse.json({
+      answer: "I can help with training, the wall, joining, equipment, events, and contact details. For another question, please contact Roma at +852 8060 0793 or Toto at +852 6618 6981.",
+      used_fallback: true,
+    });
+  }
+
+  return NextResponse.json({
+    answer: bestMatch.faq.answer,
+    used_fallback: false,
+    topic: bestMatch.faq.id,
+  });
 }

@@ -49,9 +49,10 @@ export default function EventsPage() {
                                         {/* We use a generic gradient or image if specific one not available, or the one from the object */}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
                                         <Image
-                                            src={event.image || "/photos/icons/image02.jpg"}
+                                            src={event.image || "/photos/icons/image02.avif"}
                                             alt={event.title}
-                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
                                         <div className="absolute bottom-4 left-4 z-20 flex gap-2">
@@ -109,7 +110,7 @@ export default function EventsPage() {
                             </div>
                             <h3 className="text-2xl font-bold mb-3">No Upcoming Events</h3>
                             <p className="text-[var(--text-secondary)] mb-8">
-                                We&apos;re currently planning our next climbing sessions and community trips. 
+                                We&apos;re currently planning our next climbing sessions and community trips.
                                 Follow us for the latest updates!
                             </p>
                             <Button asChild variant="outline" className="rounded-full">

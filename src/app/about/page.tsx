@@ -33,9 +33,10 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="relative aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
                                 <Image
-                                    src="/photos/events/pak_shui_wun_group.jpg"
+                                    src="/photos/events/pak_shui_wun_group.avif"
                                     alt="HKUST Climbing Society Group Photo at Pak Shui Wun"
-                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                     className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
@@ -46,9 +47,10 @@ export default function AboutPage() {
                             {/* Moved Photo from Team Page */}
                             <div className="relative aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
                                 <Image
-                                    src="/photos/events/shek_o_group.jpg"
+                                    src="/photos/events/shek_o_group.avif"
                                     alt="HKUST Climbing Team @ Shek O"
-                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                     className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">

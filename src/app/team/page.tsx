@@ -15,7 +15,7 @@ export default function TeamPage() {
                 <ScrollReveal>
                     <div className="max-w-4xl mx-auto text-center">
                         <Image
-                            src="/photos/logos/base_logo.jpg"
+                            src="/photos/logos/base_logo.avif"
                             alt="HKUST Climbing Society Logo"
                             width={120}
                             height={120}
@@ -64,9 +64,10 @@ export default function TeamPage() {
                             {/* Large Item */}
                             <div className="md:col-span-2 md:row-span-2 relative rounded-2xl overflow-hidden shadow-lg group">
                                 <Image
-                                    src="/photos/events/hkust_umcup.jpg"
+                                    src="/photos/events/hkust_umcup.avif"
                                     alt="HKUST-UM Cup Team"
-                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                     className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -80,9 +81,10 @@ export default function TeamPage() {
                             {/* Tall Item - Bun Festival */}
                             <div className="md:row-span-2 relative rounded-2xl overflow-hidden shadow-lg group bg-black">
                                 <Image
-                                    src="/photos/events/2024_bun_carnival.jpg"
+                                    src="/photos/events/2024_bun_carnival.avif"
                                     alt="Bun Festival Competition"
-                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                     className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -98,9 +100,10 @@ export default function TeamPage() {
                             {/* Wide Item - Moonboard */}
                             <div className="md:col-span-3 relative rounded-2xl overflow-hidden shadow-lg group h-64">
                                 <Image
-                                    src="/photos/events/ustum_moonboard.jpg"
+                                    src="/photos/events/ustum_moonboard.avif"
                                     alt="HKUST-UM Moonboard Session"
-                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                     className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">

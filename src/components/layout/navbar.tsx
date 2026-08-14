@@ -50,12 +50,12 @@ export function Navbar() {
                         : "bg-transparent"
                 )}
             >
-                <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
                     <div className="flex items-center justify-between h-16">
                         {/* Logo */}
                         <Link href="/" className="flex items-center gap-2">
                             <Image
-                                src="/photos/icons/image02.jpg"
+                                src="/photos/icons/image02.avif"
                                 alt="HKUST Climbing"
                                 width={40}
                                 height={40}
@@ -96,6 +96,8 @@ export function Navbar() {
                                 onClick={() => setIsOpen(!isOpen)}
                                 className="md:hidden p-2 rounded-lg hover:bg-[var(--surface)] transition-colors"
                                 aria-label="Toggle menu"
+                    aria-expanded={isOpen}
+                    aria-controls="mobile-navigation"
                             >
                                 {isOpen ? (
                                     <X className="w-6 h-6" />
@@ -110,12 +112,12 @@ export function Navbar() {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="fixed inset-0 z-40 md:hidden">
+                <div id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Mobile navigation" className="fixed inset-0 z-40 md:hidden">
                     <div
                         className="absolute inset-0 bg-[#1A1A1A]/60 backdrop-blur-sm"
                         onClick={() => setIsOpen(false)}
                     />
-                    <div className="absolute right-0 top-0 h-full w-[280px] bg-[var(--background)] 
+                    <div className="absolute right-0 top-0 h-full w-[min(22rem,calc(100vw-1rem))] bg-[var(--background)]
                 border-l border-[var(--border)] shadow-xl">
                         <div className="pt-20 px-4">
                             {navLinks.map((link) => (

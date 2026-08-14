@@ -25,26 +25,26 @@ async function loadFAQs(): Promise<FAQItem[]> {
 
 export async function searchFAQ(query: string, topK: number = 4): Promise<RetrievalHit[]> {
   const faqs = await loadFAQs();
-  
+
   if (!query.trim()) return [];
-  
+
   const qLower = query.toLowerCase();
   const qWords = qLower.split(/\s+/).filter(w => w.length > 1);
-  
+
   if (qWords.length === 0) return [];
-  
+
   // Score each FAQ by keyword overlap
   const scored = faqs.map(faq => {
     const fQuestion = faq.question.toLowerCase();
     const fAnswer = faq.answer.toLowerCase();
     let score = 0;
-    
+
     // Check each query word
     for (const word of qWords) {
       // Skip common words
       const skipWords = ['when', 'where', 'how', 'what', 'who', 'can', 'does', 'do', 'is', 'are', 'the', 'a', 'an', 'i', 'you', 'we', 'they', 'my', 'your', 'our'];
       if (skipWords.includes(word)) continue;
-      
+
       // Exact match in question (highest weight)
       if (fQuestion.includes(word)) {
         score += 10;
@@ -58,13 +58,13 @@ export async function searchFAQ(query: string, topK: number = 4): Promise<Retrie
         score += 3;
       }
     }
-    
+
     return { faq, score };
   });
-  
+
   // Sort by score descending
   scored.sort((a, b) => b.score - a.score);
-  
+
   // Return top results with score > 0
   const results: RetrievalHit[] = scored
     .filter(s => s.score > 0)
@@ -76,7 +76,7 @@ export async function searchFAQ(query: string, topK: number = 4): Promise<Retrie
       source: s.faq.source,
       score: Math.min(s.score / 20, 1) // Normalize to 0-1
     }));
-  
+
   return results;
 }
 

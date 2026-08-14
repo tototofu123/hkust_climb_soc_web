@@ -1,389 +1,150 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import { MessageCircle, X, Send, Loader2, Bot, User } from "lucide-react";
+import { CircleHelp, Send, X } from "lucide-react";
+import { FormEvent, useState } from "react";
 
-interface Message {
-  role: "user" | "assistant";
+type Message = {
+  role: "assistant" | "user";
   content: string;
-}
+};
 
-interface ChatResponse {
-  answer: string;
-  used_fallback: boolean;
-  sources: { id: string; source: string; score: number }[];
-  llm_remaining: number;
-}
-
-// Cookie helpers
-function getCookie(name: string): string | null {
-  if (typeof document === "undefined") return null;
-  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  return match ? decodeURIComponent(match[2]) : null;
-}
-
-function setCookie(name: string, value: string, days: number = 365) {
-  if (typeof document === "undefined") return;
-  const expires = new Date(Date.now() + days * 864e5).toUTCString();
-  document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires};path=/;SameSite=Lax`;
-}
-
-function generateUserId(): string {
-  if (typeof window === "undefined") return "anonymous";
-  let id = localStorage.getItem("hkust_climb_user_id");
-  if (!id) {
-    id = "user_" + Math.random().toString(36).substring(2, 15);
-    localStorage.setItem("hkust_climb_user_id", id);
-  }
-  // Also set cookie for persistence
-  setCookie("hkust_user_id", id);
-  return id;
-}
-
-function getUserName(): string {
-  if (typeof window === "undefined") return "";
-  // Try cookie first, then localStorage
-  return getCookie("hkust_user_name") || localStorage.getItem("hkust_climb_user_name") || "";
-}
-
-function setUserName(name: string) {
-  if (typeof window === "undefined") return;
-  if (name) {
-    localStorage.setItem("hkust_climb_user_name", name);
-    setCookie("hkust_user_name", name);
-  }
-}
-
-function extractName(message: string): string | null {
-  const patterns = [
-    /my name is (\w+)/i,
-    /i am (\w+)/i,
-    /i'm (\w+)/i,
-    /this is (\w+)/i,
-    /call me (\w+)/i,
-  ];
-  for (const pattern of patterns) {
-    const match = message.match(pattern);
-    if (match) return match[1];
-  }
-  return null;
-}
+const SUGGESTIONS = [
+  "When is training?",
+  "Where is the climbing wall?",
+  "How do I join?",
+  "How can I contact the society?",
+];
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi there! I'm the HKUST Climbing Society bot. Ask me anything about training, membership, equipment, or events!",
+      content: "Hello. I can help with training, the wall, joining, equipment, events, and society contacts.",
     },
   ]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState("");
-  const [userName, setUserNameState] = useState<string>("");
-  const [keyboardHeight, setKeyboardHeight] = useState(0);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const userIdRef = useRef<string>("");
-  const initialStoredNameRef = useRef<string>(getUserName());
-  const greetedRef = useRef<boolean>(false);
 
-  const handleResize = useCallback(() => {
-    const visualViewport = window.visualViewport;
-    if (visualViewport) {
-      const keyboardOpen = window.innerHeight - visualViewport.height > 100;
-      setKeyboardHeight(keyboardOpen ? window.innerHeight - visualViewport.height : 0);
-    }
-  }, []);
+  async function askQuestion(question: string) {
+    const trimmedQuestion = question.trim();
+    if (!trimmedQuestion || isLoading) return;
 
-  useEffect(() => {
-    userIdRef.current = generateUserId();
-    // show name in header only if it was stored before this session (persisted)
-    const stored = initialStoredNameRef.current;
-    if (stored) setUserNameState(stored);
-    
-    if (typeof window !== "undefined" && window.visualViewport) {
-      window.visualViewport.addEventListener("resize", handleResize);
-      return () => window.visualViewport?.removeEventListener("resize", handleResize);
-    }
-  }, [handleResize]);
-
-  // Prevent body/page from scrolling when chat is open
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    const prev = document.body.style.overflow;
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = prev;
-    }
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen]);
-
-  // Keep input visible above mobile keyboard and always show latest messages
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const onViewport = () => {
-      const vv = window.visualViewport;
-      if (!containerRef.current) return;
-      if (vv) {
-        const keyboardHeight = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-        // keep the chat container height and bottom offset so input stays above keyboard
-        containerRef.current.style.height = keyboardHeight > 0 ? `calc(100vh - ${keyboardHeight}px)` : "calc(100vh - 4rem)";
-        containerRef.current.style.bottom = keyboardHeight > 0 ? `${keyboardHeight}px` : "0px";
-      } else {
-        containerRef.current.style.height = "calc(100vh - 4rem)";
-        containerRef.current.style.bottom = "0px";
-      }
-    };
-
-    const onFocusIn = (e: FocusEvent) => {
-      const target = e.target as HTMLElement;
-      if (target === inputRef.current && messagesEndRef.current && containerRef.current) {
-        // small delay to wait keyboard animation
-        setTimeout(() => {
-          messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-          containerRef.current!.scrollTop = containerRef.current!.scrollHeight;
-        }, 50);
-      }
-    };
-
-    window.addEventListener("resize", onViewport);
-    document.addEventListener("focusin", onFocusIn);
-    // initial run
-    onViewport();
-    return () => {
-      window.removeEventListener("resize", onViewport);
-      document.removeEventListener("focusin", onFocusIn);
-    };
-  }, []);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
-
-    const userMessage = input.trim();
-    // prevent immediate duplicate consecutive user messages
-    const last = messages[messages.length - 1];
-    if (last && last.role === "user" && last.content === userMessage) {
-      // ignore duplicate
-      return;
-    }
-    // Extract and save name from user message
-    const extractedName = extractName(userMessage);
-    if (extractedName) {
-      // save for future sessions, but do not update displayed name immediately
-      setUserName(extractedName);
-    }
-    
+    setMessages((current) => [...current, { role: "user", content: trimmedQuestion }]);
     setInput("");
-    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
-    setStatus("Reading your message...");
 
     try {
-      setStatus("Searching knowledge base...");
-      
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 20000);
-      
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_id: userIdRef.current,
-          message: userMessage,
-        }),
-        signal: controller.signal,
+        body: JSON.stringify({ message: trimmedQuestion }),
       });
-      
-      clearTimeout(timeoutId);
 
-      if (!response.ok) throw new Error("Failed to get response");
-
-      setStatus("Generating response...");
-      const data: ChatResponse = await response.json();
-      
-      // Personalize response only if a name was present before this session
-      let answer = data.answer;
-      
-      // Only format contacts if NOT using fallback
-      if (!data.used_fallback) {
-        const formatAssistantText = (txt: string) => {
-          if (!txt) return txt;
-          // email - only add label if not already there
-          txt = txt.replace(/su_climb@connect\.ust\.hk/gi, 'su_climb@connect.ust.hk');
-          txt = txt.replace(/([\w.-]+@[\w.-]+\.[A-Za-z]{2,})/g, 'Email: $1');
-          // instagram handles known
-          txt = txt.replace(/@climbing_hkustsu/gi, 'Instagram: @climbing_hkustsu');
-          txt = txt.replace(/@climbingwallinhk/gi, 'Outdoor activities (Instagram): @climbingwallinhk');
-          // generic @ handle - but skip already labeled
-          txt = txt.replace(/(?<![\w:])@(\w+)/g, (m, p1) => {
-            if (p1 === 'climbing_hkustsu' || p1 === 'climbingwallinhk') return m;
-            return `Instagram: @${p1}`;
-          });
-          return txt;
-        };
-        answer = formatAssistantText(answer);
-      }
-      const initialName = initialStoredNameRef.current;
-      if (initialName && !greetedRef.current && !answer.toLowerCase().startsWith(`hi ${initialName.toLowerCase()}`)) {
-        answer = `Hi ${initialName}, ${answer}`;
-        greetedRef.current = true;
-      }
-      
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: answer },
-      ]);
-      setStatus("");
-    } catch (error: unknown) {
-      const errorMessage = error instanceof Error && error.name === "AbortError" 
-        ? "Request timed out (took >20s). Server might be busy. Please try again." 
-        : "Sorry, I'm having trouble connecting right now. Please try again later.";
-      setMessages((prev) => [
-        ...prev,
+      if (!response.ok) throw new Error("FAQ request failed");
+      const data: { answer?: string } = await response.json();
+      const answer = data.answer ?? "I could not find that in the society FAQ. Please contact Roma or Toto for help.";
+      setMessages((current) => [...current, { role: "assistant", content: answer }]);
+    } catch {
+      setMessages((current) => [
+        ...current,
         {
           role: "assistant",
-          content: errorMessage,
+          content: "I could not load the FAQ right now. Please contact Roma at +852 8060 0793 or Toto at +852 6618 6981.",
         },
       ]);
-      setStatus("");
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  };
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    void askQuestion(input);
+  }
 
   return (
-    <>
-      {/* Floating Button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 bg-[var(--accent)] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
-          isOpen ? "hidden" : "flex items-center justify-center"
-        }`}
-        aria-label="Open chat"
-      >
-        <MessageCircle className="w-6 h-6" />
-      </button>
-
-      {/* Chat Window */}
+    <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
       {isOpen && (
-        <div 
-          className="fixed bottom-0 right-0 left-0 z-50 md:bottom-6 md:right-6 md:left-auto md:w-96 md:max-w-[calc(100vw-3rem)] md:h-[500px] md:max-h-[calc(100vh-6rem)] h-[calc(100dvh-5rem)] top-16 md:top-auto bg-[var(--card)] border border-[var(--border)] md:rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-          style={keyboardHeight > 0 ? { height: `calc(100dvh - 5rem - ${keyboardHeight}px)`, top: '4rem' } : {}}
+        <section
+          id="society-help-panel"
+          role="dialog"
+          aria-label="HKUST Climbing Society help"
+          className="absolute bottom-16 right-0 flex w-[min(24rem,calc(100vw-1.5rem))] max-h-[min(34rem,calc(100dvh-6rem))] flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-2xl sm:bottom-20"
         >
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 bg-[var(--accent)] text-white">
-            <div className="flex items-center gap-2">
-              <Bot className="w-5 h-5" />
-              <span className="font-semibold">HKUST Climbing Bot</span>
-              {userName && (
-                <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">
-                  {userName}
-                </span>
-              )}
-            </div>
-            <div className="flex items-center gap-2">
-              {/* TODO: Re-enable LLM badge when VM LLM is connected
-              {llmRemaining > 0 && (
-                <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full" title="AI messages remaining">
-                  Bot {llmRemaining}
-                </span>
-              )}
-              */}
+          <header className="flex items-start justify-between gap-3 border-b border-[var(--border)] px-4 py-3">
+            <div>
+              <p className="text-sm font-bold text-[var(--text-primary)]">Society Help</p>
+              <p className="text-xs text-[var(--text-secondary)]">Quick answers from the society FAQ</p>
             </div>
             <button
+              type="button"
               onClick={() => setIsOpen(false)}
-              className="p-1 hover:bg-white/20 rounded-lg transition-colors"
-              aria-label="Close chat"
+              className="rounded-lg p-2 text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--text-primary)]"
+              aria-label="Close society help"
             >
-              <X className="w-5 h-5" />
+              <X className="h-4 w-4" />
             </button>
-          </div>
+          </header>
 
-          {/* Messages */}
-          <div
-            ref={containerRef}
-            className="flex-1 overflow-y-auto p-4 space-y-4 touch-auto"
-            onTouchStart={(e) => e.stopPropagation()}
-            onWheel={(e) => e.stopPropagation()}
-          >
-            {messages.map((msg, i) => (
+          <div className="flex-1 space-y-3 overflow-y-auto p-4" aria-live="polite">
+            {messages.map((message, index) => (
               <div
-                key={i}
-                className={`flex gap-2 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
+                key={`${message.role}-${index}`}
+                className={message.role === "user" ? "ml-8 rounded-2xl bg-[var(--accent)] px-3 py-2 text-sm text-white" : "mr-4 rounded-2xl bg-[var(--surface)] px-3 py-2 text-sm leading-6 text-[var(--text-primary)]"}
               >
-                <div
-                  className={`p-3 rounded-2xl max-w-[80%] ${
-                    msg.role === "user"
-                      ? "bg-blue-600 text-white"
-                      : "bg-[var(--surface)] border border-[var(--border)]"
-                  }`}
-                >
-                  {msg.role === "user" ? (
-                    <User className="w-4 h-4 mb-1" />
-                  ) : (
-                    <Bot className="w-4 h-4 mb-1" />
-                  )}
-                  <p className="text-sm">{msg.content}</p>
-                </div>
+                {message.content}
               </div>
             ))}
-            {isLoading && (
-              <div className="flex gap-2">
-                <div className="bg-[var(--surface)] border border-[var(--border)] p-3 rounded-2xl flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span className="text-xs text-[var(--text-secondary)]">{status || "Thinking..."}</span>
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
+            {isLoading && <div className="mr-4 rounded-2xl bg-[var(--surface)] px-3 py-2 text-sm text-[var(--text-secondary)]">Looking that up…</div>}
           </div>
 
-          {/* Input */}
-          <div className="p-4 border-t border-[var(--border)]">
-            <div className="flex gap-2">
+          <div className="border-t border-[var(--border)] p-3">
+            <div className="mb-3 flex flex-wrap gap-2">
+              {SUGGESTIONS.map((suggestion) => (
+                <button
+                  key={suggestion}
+                  type="button"
+                  onClick={() => void askQuestion(suggestion)}
+                  disabled={isLoading}
+                  className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
+            <form onSubmit={handleSubmit} className="flex gap-2">
+              <label htmlFor="society-help-question" className="sr-only">Ask a society question</label>
               <input
-                type="text"
+                id="society-help-question"
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                onFocus={() => {
-                  messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-                  inputRef.current?.scrollIntoView({ behavior: "smooth" });
-                }}
-                ref={(el) => { inputRef.current = el ?? null; }}
-                placeholder="Ask about climbing..."
-                className="flex-1 bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                disabled={isLoading}
+                onChange={(event) => setInput(event.target.value)}
+                placeholder="Ask a society question"
+                className="min-w-0 flex-1 rounded-xl border border-[var(--border)] bg-transparent px-3 py-2 text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-secondary)] focus:border-[var(--accent)]"
               />
               <button
-                onClick={sendMessage}
-                disabled={isLoading || !input.trim()}
-                className="p-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                aria-label="Send message"
+                type="submit"
+                disabled={!input.trim() || isLoading}
+                className="rounded-xl bg-[var(--accent)] px-3 text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                aria-label="Send question"
               >
-                <Send className="w-5 h-5" />
+                <Send className="h-4 w-4" />
               </button>
-            </div>
+            </form>
           </div>
-        </div>
+        </section>
       )}
-    </>
+
+      <button
+        type="button"
+        onClick={() => setIsOpen((open) => !open)}
+        aria-expanded={isOpen}
+        aria-controls="society-help-panel"
+        className="flex min-h-12 items-center gap-2 rounded-full bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
+      >
+        <CircleHelp className="h-5 w-5" />
+        Help
+      </button>
+    </div>
   );
 }

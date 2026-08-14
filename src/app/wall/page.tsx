@@ -15,49 +15,49 @@ export default function WallPage() {
             id: "climbing_gear",
             name: "Climbing Gear",
             desc: "The essentials: Shoes, Harnesses, Chalk, and Ropes.",
-            image: "/photos/wall/equipment/rental/climbing_shoes.jpg",
+            image: "/photos/wall/equipment/rental/climbing_shoes.avif",
             bg: "bg-blue-500/10"
         },
         {
             id: "hangboard",
             name: "Hangboard Area",
             desc: "Wall-mounted training: Beastmaker, Pegboards, and Holds.",
-            image: "/photos/location/hangboard_area.jpg",
+            image: "/photos/location/hangboard_area.avif",
             bg: "bg-green-500/10"
         },
         {
             id: "strength",
             name: "Strength & Weights",
             desc: "Heavy lifting: Plates, Belts, Rings, and Bars.",
-            image: "/photos/wall/equipment/strengthandweights/metal_weight_plates.jpg",
+            image: "/photos/wall/equipment/strengthandweights/metal_weight_plates.avif",
             bg: "bg-red-500/10"
         },
         {
             id: "grip",
             name: "Finger & Grip Training",
             desc: "Portable tools: Pinch blocks, Dynamometers, and Trainers.",
-            image: "/photos/wall/equipment/training/blue_fingerboard.jpg",
+            image: "/photos/wall/equipment/training/blue_fingerboard.avif",
             bg: "bg-orange-500/10"
         },
         {
             id: "mobility",
             name: "Mobility & Balance",
             desc: "Core & Stability: Yoga, Balance Boards, and Ab Wheels.",
-            image: "/photos/wall/equipment/misc/yoga_mat_and_block.jpg",
+            image: "/photos/wall/equipment/misc/yoga_mat_and_block.avif",
             bg: "bg-blue-800/10"
         },
         {
             id: "recovery_tech",
             name: "Recovery & Tech",
             desc: "Self-care, Filming gear, and Route Setting essentials.",
-            image: "/photos/wall/equipment/electronics/massage_gun.jpg",
+            image: "/photos/wall/equipment/electronics/massage_gun.avif",
             bg: "bg-teal-500/10"
         },
         {
             id: "others",
             name: "Others",
             desc: "Games, Challenges, and Miscellaneous.",
-            image: "/photos/wall/equipment/misc/climbing_dice.jpg",
+            image: "/photos/wall/equipment/misc/climbing_dice.avif",
             bg: "bg-slate-500/10"
         }
     ];
@@ -65,71 +65,71 @@ export default function WallPage() {
     // Equipment Items with REAL Images (Unsplash & Generic)
     const equipmentItems = [
         // Climbing Gear (Shoes, Ropes, Chalk)
-        { id: "shoes", name: "Climbing Shoes", category: "climbing_gear", image: "/photos/wall/equipment/rental/climbing_shoes.jpg", desc: "Free rentals for all sizes. Aggressive and neutral options.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+shoes" },
-        { id: "harness", name: "Climbing Harnesses", category: "climbing_gear", image: "/photos/wall/equipment/rental/harness.jpg", desc: "Safety harnesses for top-rope.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+harness" },
-        { id: "chalk_bouldering", name: "Bouldering Chalk Bag", category: "climbing_gear", image: "/photos/wall/equipment/chalk/boulder_chalk_bag.jpg", desc: "Individual chalk bags.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=bouldering+chalk+bag" },
-        { id: "chalk_toprope", name: "Top Rope Chalk Bag", category: "climbing_gear", image: "/photos/wall/equipment/chalk/small_chalk_bag.jpg", desc: "Waist-mounted chalk bags.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+chalk+bag" },
-        { id: "thick_rope", name: "Thick Climbing Rope", category: "climbing_gear", image: "/photos/wall/equipment/misc/thick_climbing_rope.jpg", desc: "Training rope.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=thick+climbing+training+rope" },
-        { id: "belay_glasses", name: "Belaying Glasses", category: "climbing_gear", image: "/photos/wall/equipment/misc/belay_glasses.jpg", desc: "Prism glasses.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=belay+glasses" },
-        { id: "brush", name: "Climbing Brush", category: "climbing_gear", image: "/photos/wall/equipment/maintenance/climbing_brush.jpg", desc: "Boar hair brushes.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+brush" },
-        { id: "brush_long", name: "Long Climbing Brush", category: "climbing_gear", image: "/photos/wall/equipment/maintenance/long_climbing_brush.jpg", desc: "Reach high holds.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+brush+stick" },
+        { id: "shoes", name: "Climbing Shoes", category: "climbing_gear", image: "/photos/wall/equipment/rental/climbing_shoes.avif", desc: "Free rentals for all sizes. Aggressive and neutral options.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+shoes" },
+        { id: "harness", name: "Climbing Harnesses", category: "climbing_gear", image: "/photos/wall/equipment/rental/harness.avif", desc: "Safety harnesses for top-rope.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+harness" },
+        { id: "chalk_bouldering", name: "Bouldering Chalk Bag", category: "climbing_gear", image: "/photos/wall/equipment/chalk/boulder_chalk_bag.avif", desc: "Individual chalk bags.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=bouldering+chalk+bag" },
+        { id: "chalk_toprope", name: "Top Rope Chalk Bag", category: "climbing_gear", image: "/photos/wall/equipment/chalk/small_chalk_bag.avif", desc: "Waist-mounted chalk bags.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+chalk+bag" },
+        { id: "thick_rope", name: "Thick Climbing Rope", category: "climbing_gear", image: "/photos/wall/equipment/misc/thick_climbing_rope.avif", desc: "Training rope.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=thick+climbing+training+rope" },
+        { id: "belay_glasses", name: "Belaying Glasses", category: "climbing_gear", image: "/photos/wall/equipment/misc/belay_glasses.avif", desc: "Prism glasses.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=belay+glasses" },
+        { id: "brush", name: "Climbing Brush", category: "climbing_gear", image: "/photos/wall/equipment/maintenance/climbing_brush.avif", desc: "Boar hair brushes.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+brush" },
+        { id: "brush_long", name: "Long Climbing Brush", category: "climbing_gear", image: "/photos/wall/equipment/maintenance/long_climbing_brush.avif", desc: "Reach high holds.", bg: "bg-blue-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+brush+stick" },
 
         // Hangboard Area (Wood & Training)
-        { id: "beastmaker", name: "Beastmaker 1000", category: "hangboard", image: "/photos/wall/equipment/training/beastmaker_1000.jpg", desc: "Premier wooden hangboard.", bg: "bg-green-500/10", link: "https://www.beastmaker.co.uk/products/beastmaker-1000-series" },
-        { id: "green_hangboard", name: "Metolius Green Hangboard", category: "hangboard", image: "/photos/wall/equipment/training/metolius_green_hangboard.jpg", desc: "Additional hangboard.", bg: "bg-green-500/10", link: "https://www.metoliusclimbing.com/simulator-3d.html" },
-        { id: "pegboard", name: "Pegboard", category: "hangboard", image: "/photos/wall/equipment/training/pegboard.jpg", desc: "Lock-off training.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+pegboard" },
-        { id: "hanging_Balls", name: "Hanging Ball Holds", category: "hangboard", image: "/photos/wall/equipment/training/hanging_ball_holds.jpg", desc: "Suspended spheres.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=hanging+ball+holds+climbing" },
-        { id: "cylinder_stick", name: "Cylinder Hang Stick", category: "hangboard", image: "/photos/wall/equipment/misc/climbing_hang_stick.jpg", desc: "Cylinder grip.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=cylinder+grip+climbing" },
+        { id: "beastmaker", name: "Beastmaker 1000", category: "hangboard", image: "/photos/wall/equipment/training/beastmaker_1000.avif", desc: "Premier wooden hangboard.", bg: "bg-green-500/10", link: "https://www.beastmaker.co.uk/products/beastmaker-1000-series" },
+        { id: "green_hangboard", name: "Metolius Green Hangboard", category: "hangboard", image: "/photos/wall/equipment/training/metolius_green_hangboard.avif", desc: "Additional hangboard.", bg: "bg-green-500/10", link: "https://www.metoliusclimbing.com/simulator-3d.html" },
+        { id: "pegboard", name: "Pegboard", category: "hangboard", image: "/photos/wall/equipment/training/pegboard.avif", desc: "Lock-off training.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+pegboard" },
+        { id: "hanging_Balls", name: "Hanging Ball Holds", category: "hangboard", image: "/photos/wall/equipment/training/hanging_ball_holds.avif", desc: "Suspended spheres.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=hanging+ball+holds+climbing" },
+        { id: "cylinder_stick", name: "Cylinder Hang Stick", category: "hangboard", image: "/photos/wall/equipment/misc/climbing_hang_stick.avif", desc: "Cylinder grip.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=cylinder+grip+climbing" },
 
         // Strength (Weights & Gym)
-        { id: "weight_plates", name: "Metal Weight Plates", category: "strength", image: "/photos/wall/equipment/strengthandweights/metal_weight_plates.jpg", desc: "1.25kg to 20kg (Total 70kg)", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=olympic+weight+plates" },
-        { id: "weight_belt", name: "Weight Belt & Pin", category: "strength", image: "/photos/wall/equipment/strengthandweights/weight_belt_and_pin.jpg", desc: "Weighted pulls.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=dip+belt+climbing" },
-        { id: "pulley", name: "Pulley System", category: "strength", image: "/photos/wall/equipment/training/pulleysystem.jpg", desc: "Assisted training.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+training+pulley" },
-        { id: "rings", name: "Gymnastic Rings", category: "strength", image: "/photos/wall/equipment/training/gymnastic_rings.jpg", desc: "Stability training.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=wood+gymnastic+rings" },
-        { id: "pushup_handles", name: "Push-up Handles", category: "strength", image: "/photos/wall/equipment/strengthandweights/pushup_handles.jpg", desc: "Ergonomic bars.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=push+up+bars" },
-        { id: "pushup_board", name: "Push-up Board", category: "strength", image: "/photos/wall/equipment/strengthandweights/pushup_board.jpg", desc: "Multi-position push-up board.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=push+up+board" },
-        { id: "front_arm_stick", name: "Front Arm Stick", category: "strength", image: "/photos/wall/equipment/strengthandweights/front_arm_stick.jpg", desc: "Shoulder tool.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=indian+clubs" },
+        { id: "weight_plates", name: "Metal Weight Plates", category: "strength", image: "/photos/wall/equipment/strengthandweights/metal_weight_plates.avif", desc: "1.25kg to 20kg (Total 70kg)", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=olympic+weight+plates" },
+        { id: "weight_belt", name: "Weight Belt & Pin", category: "strength", image: "/photos/wall/equipment/strengthandweights/weight_belt_and_pin.avif", desc: "Weighted pulls.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=dip+belt+climbing" },
+        { id: "pulley", name: "Pulley System", category: "strength", image: "/photos/wall/equipment/training/pulleysystem.avif", desc: "Assisted training.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+training+pulley" },
+        { id: "rings", name: "Gymnastic Rings", category: "strength", image: "/photos/wall/equipment/training/gymnastic_rings.avif", desc: "Stability training.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=wood+gymnastic+rings" },
+        { id: "pushup_handles", name: "Push-up Handles", category: "strength", image: "/photos/wall/equipment/strengthandweights/pushup_handles.avif", desc: "Ergonomic bars.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=push+up+bars" },
+        { id: "pushup_board", name: "Push-up Board", category: "strength", image: "/photos/wall/equipment/strengthandweights/pushup_board.avif", desc: "Multi-position push-up board.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=push+up+board" },
+        { id: "front_arm_stick", name: "Front Arm Stick", category: "strength", image: "/photos/wall/equipment/strengthandweights/front_arm_stick.avif", desc: "Shoulder tool.", bg: "bg-red-500/10", link: "https://www.google.com/search?tbm=shop&q=indian+clubs" },
 
         // Finger & Grip Training
-        { id: "blue_fingerboard", name: "Blue Fingerboard", category: "grip", image: "/photos/wall/equipment/training/blue_fingerboard.jpg", desc: "Resin board.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=resin+fingerboard+climbing" },
-        { id: "triangle_fingerboard", name: "Triangle Fingerboard", category: "grip", image: "/photos/wall/equipment/training/triangle_fingerboard.jpg", desc: "Pinch grips.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=triangle+pinch+climbing" },
-        { id: "pinch_block", name: "Pinch Block", category: "grip", image: "/photos/wall/equipment/training/pinchblock.jpg", desc: "Portable pinch.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+pinch+block" },
-        { id: "gyro_ball", name: "Momentum Grip Trainer", category: "grip", image: "/photos/wall/equipment/training/gyroball.jpg", desc: "Gyro ball.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=powerball+gyro" },
-        { id: "spring_grip", name: "Spring Grip Trainer", category: "grip", image: "/photos/wall/equipment/strengthandweights/spring_grip_trainer.jpg", desc: "Hand grippers.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=hand+grip+strengthener" },
-        { id: "wrist_roller", name: "Wrist Roller", category: "grip", image: "/photos/wall/equipment/strengthandweights/wrist_rolleer.jpg", desc: "Rope winding.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=wrist+roller" },
-        { id: "wrist_trainer", name: "Wrist Trainer", category: "grip", image: "/photos/wall/equipment/strengthandweights/finger_strength_wrist_trainer.jpg", desc: "Forearm strength.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=wrist+strengthener" },
-        { id: "individual_finger", name: "Individual Finger", category: "grip", image: "/photos/wall/equipment/strengthandweights/individual_finger_trainer.jpg", desc: "Isolate fingers.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=individual+finger+exerciser" },
-        { id: "grip_measure", name: "Dynamometer", category: "grip", image: "/photos/wall/equipment/electronics/dynamometer.jpg", desc: "Grip test.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=grip+dynamometer" },
-        { id: "finger_scale", name: "Digital Crane Scale", category: "grip", image: "/photos/wall/equipment/electronics/digital_crane_scale.jpg", desc: "Max load test.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=digital+crane+scale+climbing" },
-        { id: "boulder_ball", name: "Boulder Ball", category: "grip", image: "/photos/wall/equipment/training/boulderball.jpg", desc: "Spherical grip training.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=boulder+ball+climbing" },
+        { id: "blue_fingerboard", name: "Blue Fingerboard", category: "grip", image: "/photos/wall/equipment/training/blue_fingerboard.avif", desc: "Resin board.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=resin+fingerboard+climbing" },
+        { id: "triangle_fingerboard", name: "Triangle Fingerboard", category: "grip", image: "/photos/wall/equipment/training/triangle_fingerboard.avif", desc: "Pinch grips.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=triangle+pinch+climbing" },
+        { id: "pinch_block", name: "Pinch Block", category: "grip", image: "/photos/wall/equipment/training/pinchblock.avif", desc: "Portable pinch.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+pinch+block" },
+        { id: "gyro_ball", name: "Momentum Grip Trainer", category: "grip", image: "/photos/wall/equipment/training/gyroball.avif", desc: "Gyro ball.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=powerball+gyro" },
+        { id: "spring_grip", name: "Spring Grip Trainer", category: "grip", image: "/photos/wall/equipment/strengthandweights/spring_grip_trainer.avif", desc: "Hand grippers.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=hand+grip+strengthener" },
+        { id: "wrist_roller", name: "Wrist Roller", category: "grip", image: "/photos/wall/equipment/strengthandweights/wrist_rolleer.avif", desc: "Rope winding.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=wrist+roller" },
+        { id: "wrist_trainer", name: "Wrist Trainer", category: "grip", image: "/photos/wall/equipment/strengthandweights/finger_strength_wrist_trainer.avif", desc: "Forearm strength.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=wrist+strengthener" },
+        { id: "individual_finger", name: "Individual Finger", category: "grip", image: "/photos/wall/equipment/strengthandweights/individual_finger_trainer.avif", desc: "Isolate fingers.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=individual+finger+exerciser" },
+        { id: "grip_measure", name: "Dynamometer", category: "grip", image: "/photos/wall/equipment/electronics/dynamometer.avif", desc: "Grip test.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=grip+dynamometer" },
+        { id: "finger_scale", name: "Digital Crane Scale", category: "grip", image: "/photos/wall/equipment/electronics/digital_crane_scale.avif", desc: "Max load test.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=digital+crane+scale+climbing" },
+        { id: "boulder_ball", name: "Boulder Ball", category: "grip", image: "/photos/wall/equipment/training/boulderball.avif", desc: "Spherical grip training.", bg: "bg-orange-500/10", link: "https://www.google.com/search?tbm=shop&q=boulder+ball+climbing" },
 
         // Mobility (Yoga, Balance)
-        { id: "slab", name: "Slab Volume", category: "mobility", image: "/photos/wall/equipment/misc/slab_volume.jpg", desc: "Technical volumes.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=climbing+volume" },
-        { id: "yoga_gear", name: "Yoga Mat & Blocks", category: "mobility", image: "/photos/wall/equipment/misc/yoga_mat_and_block.jpg", desc: "Flexibility.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=yoga+mat+and+blocks" },
-        { id: "balance_board", name: "Balance Board", category: "mobility", image: "/photos/wall/equipment/training/balance_board.jpg", desc: "Stabilizer training.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=balance+board" },
-        { id: "surfboard_balance", name: "Surfboard Balance Trainer", category: "mobility", image: "/photos/wall/equipment/training/surfboard.jpg", desc: "Core & balance training.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=surfboard+balance+trainer" },
+        { id: "slab", name: "Slab Volume", category: "mobility", image: "/photos/wall/equipment/misc/slab_volume.avif", desc: "Technical volumes.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=climbing+volume" },
+        { id: "yoga_gear", name: "Yoga Mat & Blocks", category: "mobility", image: "/photos/wall/equipment/misc/yoga_mat_and_block.avif", desc: "Flexibility.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=yoga+mat+and+blocks" },
+        { id: "balance_board", name: "Balance Board", category: "mobility", image: "/photos/wall/equipment/training/balance_board.avif", desc: "Stabilizer training.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=balance+board" },
+        { id: "surfboard_balance", name: "Surfboard Balance Trainer", category: "mobility", image: "/photos/wall/equipment/training/surfboard.avif", desc: "Core & balance training.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=surfboard+balance+trainer" },
         { id: "soft_platform", name: "Soft Platform", category: "mobility", image: "https://images.unsplash.com/photo-1544367563-12123d8965cd?auto=format&fit=crop&w=600&q=80", desc: "Balance pad.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=foam+balance+pad" },
-        { id: "skiing_mat", name: "Skiing Mat", category: "mobility", image: "/photos/wall/equipment/misc/skimat.jpg", desc: "Slide board.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=slide+board+exercise" },
-        { id: "reaction_ball", name: "Reaction Ball", category: "mobility", image: "/photos/wall/equipment/training/reaction_ball.jpg", desc: "Hand-eye coord.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=reaction+abll" },
-        { id: "ab_wheel", name: "Ab Wheel", category: "mobility", image: "/photos/wall/equipment/strengthandweights/ab_wheel.jpg", desc: "Core rollout.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=ab+wheel" },
-        { id: "resistance_bands", name: "Resistance Bands", category: "mobility", image: "/photos/wall/equipment/strengthandweights/resistance_bands.jpg", desc: "Warm-up.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=resistance+bands" },
+        { id: "skiing_mat", name: "Skiing Mat", category: "mobility", image: "/photos/wall/equipment/misc/skimat.avif", desc: "Slide board.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=slide+board+exercise" },
+        { id: "reaction_ball", name: "Reaction Ball", category: "mobility", image: "/photos/wall/equipment/training/reaction_ball.avif", desc: "Hand-eye coord.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=reaction+abll" },
+        { id: "ab_wheel", name: "Ab Wheel", category: "mobility", image: "/photos/wall/equipment/strengthandweights/ab_wheel.avif", desc: "Core rollout.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=ab+wheel" },
+        { id: "resistance_bands", name: "Resistance Bands", category: "mobility", image: "/photos/wall/equipment/strengthandweights/resistance_bands.avif", desc: "Warm-up.", bg: "bg-blue-800/10", link: "https://www.google.com/search?tbm=shop&q=resistance+bands" },
 
         // Recovery & Tech (Merged)
-        { id: "massage", name: "Massage Tools", category: "recovery_tech", image: "/photos/wall/equipment/electronics/massage_gun.jpg", desc: "Gun & Balls for release.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=massage+gun" },
-        { id: "finger_tape", name: "Finger Tape", category: "recovery_tech", image: "/photos/wall/equipment/misc/finger_tape.jpg", desc: "Skin protection.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+tape" },
-        { id: "nail_clipper", name: "Nail Clippers", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/nail_clipper.jpg", desc: "Hygiene essential.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=nail+clippers" },
-        { id: "shoe_spray", name: "Shoe Spray", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/shoe_spray.jpg", desc: "Odor control.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=shoe+deodorizer+spray" },
-        { id: "route_setting", name: "Route Setting Kit", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/climbing_tapes_route_setting.jpg", desc: "Tape, Markers, Rulers.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=gaffer+tape" },
-        { id: "utility_knife", name: "Utility Knife", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/utility_knife.jpg", desc: "General purpose.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=utility+knife" },
-        { id: "socks", name: "One Time Use Socks", category: "recovery_tech", image: "/photos/wall/equipment/misc/one_time_use_socks.jpg", desc: "Emergency socks.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=disposable+socks" },
-        { id: "tissues", name: "Tissues", category: "recovery_tech", image: "/photos/wall/equipment/misc/tissue.jpg", desc: "General hygiene.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=facial+tissues" },
-        { id: "phone_stands", name: "Phone Stands", category: "recovery_tech", image: "/photos/wall/equipment/electronics/phone_stands.jpg", desc: "Tall stands & Holders.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=tripod+phone+stand" },
-        { id: "lazer_pointer", name: "Lazer Pointer", category: "recovery_tech", image: "/photos/wall/equipment/electronics/lazer_pointer.jpg", desc: "Route reading tool.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=laser+pointer" },
-        { id: "charging", name: "Charging Station", category: "recovery_tech", image: "/photos/wall/equipment/electronics/charging_plug.jpg", desc: "Cables & power.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=usb+charging+station" },
+        { id: "massage", name: "Massage Tools", category: "recovery_tech", image: "/photos/wall/equipment/electronics/massage_gun.avif", desc: "Gun & Balls for release.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=massage+gun" },
+        { id: "finger_tape", name: "Finger Tape", category: "recovery_tech", image: "/photos/wall/equipment/misc/finger_tape.avif", desc: "Skin protection.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+tape" },
+        { id: "nail_clipper", name: "Nail Clippers", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/nail_clipper.avif", desc: "Hygiene essential.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=nail+clippers" },
+        { id: "shoe_spray", name: "Shoe Spray", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/shoe_spray.avif", desc: "Odor control.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=shoe+deodorizer+spray" },
+        { id: "route_setting", name: "Route Setting Kit", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/climbing_tapes_route_setting.avif", desc: "Tape, Markers, Rulers.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=gaffer+tape" },
+        { id: "utility_knife", name: "Utility Knife", category: "recovery_tech", image: "/photos/wall/equipment/maintenance/utility_knife.avif", desc: "General purpose.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=utility+knife" },
+        { id: "socks", name: "One Time Use Socks", category: "recovery_tech", image: "/photos/wall/equipment/misc/one_time_use_socks.avif", desc: "Emergency socks.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=disposable+socks" },
+        { id: "tissues", name: "Tissues", category: "recovery_tech", image: "/photos/wall/equipment/misc/tissue.avif", desc: "General hygiene.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=facial+tissues" },
+        { id: "phone_stands", name: "Phone Stands", category: "recovery_tech", image: "/photos/wall/equipment/electronics/phone_stands.avif", desc: "Tall stands & Holders.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=tripod+phone+stand" },
+        { id: "lazer_pointer", name: "Lazer Pointer", category: "recovery_tech", image: "/photos/wall/equipment/electronics/lazer_pointer.avif", desc: "Route reading tool.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=laser+pointer" },
+        { id: "charging", name: "Charging Station", category: "recovery_tech", image: "/photos/wall/equipment/electronics/charging_plug.avif", desc: "Cables & power.", bg: "bg-teal-500/10", link: "https://www.google.com/search?tbm=shop&q=usb+charging+station" },
 
         // Others (Games, Misc)
-        { id: "dice_game", name: "Climbing Dice Game", category: "others", image: "/photos/wall/equipment/misc/climbing_dice.jpg", desc: "Training game.", bg: "bg-slate-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+dice+game" },
-        { id: "crimp_1v1", name: "Crimp 1v1 Board", category: "others", image: "/photos/wall/equipment/training/crimp_battle.jpg", desc: "Finger strength board.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=lattice+crimp+board" },
+        { id: "dice_game", name: "Climbing Dice Game", category: "others", image: "/photos/wall/equipment/misc/climbing_dice.avif", desc: "Training game.", bg: "bg-slate-500/10", link: "https://www.google.com/search?tbm=shop&q=climbing+dice+game" },
+        { id: "crimp_1v1", name: "Crimp 1v1 Board", category: "others", image: "/photos/wall/equipment/training/crimp_battle.avif", desc: "Finger strength board.", bg: "bg-green-500/10", link: "https://www.google.com/search?tbm=shop&q=lattice+crimp+board" },
     ];
 
     const displayedItems = activeCategory ? equipmentItems.filter(item => item.category === activeCategory) : [];
@@ -293,7 +293,8 @@ export default function WallPage() {
                                                 <Image
                                                     src={cat.image}
                                                     alt={cat.name}
-                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                                     className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                                                 />
                                                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
@@ -333,7 +334,8 @@ export default function WallPage() {
                                                     <Image
                                                         src={item.image}
                                                         alt={item.name}
-                                                        fill
+                                                        sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                                         className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                                                     />
                                                 </div>

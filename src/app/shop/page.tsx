@@ -31,9 +31,10 @@ export default function ShopPage() {
                                 <div className="group/item bg-[var(--surface)] p-4 rounded-xl transition-all hover:shadow-md">
                                     <div className="relative h-40 w-full mb-4 rounded-lg overflow-hidden bg-white/5">
                                         <Image
-                                            src="/photos/wall/equipment/chalk/chalk_ball.jpg"
+                                            src="/photos/wall/equipment/chalk/chalk_ball.avif"
                                             alt="Chalk Ball"
-                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                             className="object-contain transition-transform group-hover/item:scale-110"
                                         />
                                     </div>
@@ -46,9 +47,10 @@ export default function ShopPage() {
                                 <div className="group/item bg-[var(--surface)] p-4 rounded-xl transition-all hover:shadow-md">
                                     <div className="relative h-40 w-full mb-4 rounded-lg overflow-hidden bg-white/5">
                                         <Image
-                                            src="/photos/wall/equipment/misc/one_time_use_socks.jpg"
+                                            src="/photos/wall/equipment/misc/one_time_use_socks.avif"
                                             alt="Climbing Socks"
-                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+        fill
                                             className="object-contain transition-transform group-hover/item:scale-110"
                                         />
                                     </div>

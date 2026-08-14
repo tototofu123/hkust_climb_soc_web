@@ -38,8 +38,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <a href="#main-content" className="skip-link">Skip to main content</a>
           <Navbar />
-          <main className="min-h-screen">
+          <main id="main-content" tabIndex={-1} className="min-h-screen">
             {children}
           </main>
           <Footer />
