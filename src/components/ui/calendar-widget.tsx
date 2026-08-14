@@ -1,248 +1,166 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
 
-// Hardcoded Data for Jan-May 2026
-const SPECIAL_DATES = {
-    indoor: ["2026-02-07", "2026-03-07", "2026-04-11", "2026-05-02"],
-    outdoor: ["2026-03-14", "2026-03-21"],
-    competition: ["2026-05-05"],
-    holidays: [
-        "2026-01-01", // New Year
-        "2026-02-17", "2026-02-18", "2026-02-19", // Lunar New Year
-        "2026-04-03", // Good Friday
-        "2026-04-04", // Holy Saturday / Ching Ming
-        "2026-04-06", // Easter Monday
-        "2026-05-01", // Labour Day
-        "2026-05-25", // Buddha's Birthday
-    ],
-    exceptions: ["2026-04-07"] // User requested: 7/4 is not a training day
+const FIRST_MONTH = new Date(2026, 8, 1);
+const LAST_MONTH = new Date(2027, 4, 1);
+
+const TRAINING_WINDOWS = [
+  { start: "2026-09-01", end: "2026-11-30" },
+  { start: "2027-02-01", end: "2027-05-07" },
+] as const;
+
+// General-holiday dates published by the HKSAR Government for the visible schedule period.
+const PUBLIC_HOLIDAYS: Record<string, string> = {
+  "2026-09-26": "Day following Mid-Autumn Festival",
+  "2026-10-01": "National Day",
+  "2026-10-19": "Day following Chung Yeung Festival",
+  "2027-02-06": "Lunar New Year’s Day",
+  "2027-02-08": "Third day of Lunar New Year",
+  "2027-02-09": "Fourth day of Lunar New Year",
+  "2027-03-26": "Good Friday",
+  "2027-03-27": "Day following Good Friday",
+  "2027-03-29": "Easter Monday",
+  "2027-04-05": "Ching Ming Festival",
+  "2027-05-01": "Labour Day",
 };
 
-const TRAINING_START = new Date(2026, 1, 3); // Feb 3, 2026 (Month is 0-indexed: 1 = Feb)
-const TRAINING_END = new Date(2026, 4, 5);   // May 5, 2026 (4 = May)
+const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-// Max range: Jan 2026 - May 2026
-const MIN_DATE = new Date(2026, 0, 1);
-const MAX_DATE = new Date(2026, 4, 31);
+function toDateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
 
-export const CalendarWidget = ({
-    className,
-    isCompact = false,
+function isTrainingDate(date: Date) {
+  const key = toDateKey(date);
+  const isTuesday = date.getDay() === 2;
+  const inTrainingWindow = TRAINING_WINDOWS.some(
+    (window) => key >= window.start && key <= window.end,
+  );
+
+  return isTuesday && inTrainingWindow && !PUBLIC_HOLIDAYS[key];
+}
+
+function isSameDay(left: Date, right: Date) {
+  return toDateKey(left) === toDateKey(right);
+}
+
+export function CalendarWidget({
+  className,
+  isCompact = false,
 }: {
-    className?: string;
-    isCompact?: boolean;
-}) => {
-    // Start with current date, clamped to range
-    const [viewDate, setViewDate] = useState(() => {
-        const now = new Date();
-        // If outside 2026 or before Jan/after May, clamp?
-        // User said "locates at users recent date" which is Jan 2026.
-        if (now < MIN_DATE) return MIN_DATE;
-        if (now > MAX_DATE) return MAX_DATE;
-        return now;
-    });
+  className?: string;
+  isCompact?: boolean;
+}) {
+  const [viewDate, setViewDate] = useState(FIRST_MONTH);
+  const today = new Date();
+  const year = viewDate.getFullYear();
+  const month = viewDate.getMonth();
 
-    const { days, monthLabel, year, month } = useMemo(() => {
-        const year = viewDate.getFullYear();
-        const month = viewDate.getMonth();
-        const monthLabel = viewDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+  const { monthLabel, calendarCells } = useMemo(() => {
+    const firstDay = new Date(year, month, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const leadingEmptyCells = Array.from({ length: firstDay.getDay() }, () => null);
+    const dateCells = Array.from({ length: daysInMonth }, (_, index) => new Date(year, month, index + 1));
 
-        const firstDayOfMonth = new Date(year, month, 1);
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const startDayIndex = firstDayOfMonth.getDay();
-
-        const prevMonthDays = [];
-        for (let i = 0; i < startDayIndex; i++) {
-            prevMonthDays.push({ day: "", type: "empty", key: `prev-${i}` });
-        }
-
-        const currentMonthDays = [];
-        for (let i = 1; i <= daysInMonth; i++) {
-            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-            const currentDate = new Date(year, month, i);
-            const dayOfWeek = currentDate.getDay(); // 0=Sun, 1=Mon, 2=Tue... 6=Sat
-
-            let type = "default";
-            let label = "";
-
-            // Check specific lists first
-            if (SPECIAL_DATES.holidays.includes(dateStr)) {
-                type = "holiday";
-                // Optionally add label like "PH"
-            } else if (SPECIAL_DATES.competition.includes(dateStr)) {
-                type = "competition";
-                label = "Comp";
-            } else if (SPECIAL_DATES.indoor.includes(dateStr)) {
-                type = "funday-indoor";
-                label = "Indoor";
-            } else if (SPECIAL_DATES.outdoor.includes(dateStr)) {
-                type = "funday-outdoor";
-                label = "Outdoor";
-            } else {
-                // Regular Logic
-                // Training: Tuesdays, between Feb 3 and May 5
-                if (dayOfWeek === 2 && !SPECIAL_DATES.exceptions.includes(dateStr)) {
-                    if (currentDate >= TRAINING_START && currentDate <= TRAINING_END) {
-                        type = "training";
-                    }
-                }
-            }
-
-            // Current Date Check
-            const now = new Date();
-            const isToday =
-                currentDate.getDate() === now.getDate() &&
-                currentDate.getMonth() === now.getMonth() &&
-                currentDate.getFullYear() === now.getFullYear();
-
-            currentMonthDays.push({
-                day: i,
-                type,
-                label,
-                isToday,
-                key: `curr-${i}`
-            });
-        }
-
-        return {
-            days: [...prevMonthDays, ...currentMonthDays],
-            monthLabel,
-            year,
-            month
-        };
-    }, [viewDate]);
-
-    const handlePrev = (e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const newDate = new Date(year, month - 1, 1);
-        if (newDate >= MIN_DATE) {
-            setViewDate(newDate);
-        }
+    return {
+      monthLabel: firstDay.toLocaleString("en-HK", { month: "long", year: "numeric" }),
+      calendarCells: [...leadingEmptyCells, ...dateCells],
     };
+  }, [month, year]);
 
-    const handleNext = (e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const newDate = new Date(year, month + 1, 1);
-        if (newDate <= MAX_DATE) {
-            setViewDate(newDate);
-        }
-    };
+  const previousMonth = new Date(year, month - 1, 1);
+  const nextMonth = new Date(year, month + 1, 1);
+  const canGoPrevious = previousMonth >= FIRST_MONTH;
+  const canGoNext = nextMonth <= LAST_MONTH;
 
-    // Check bounds for buttons
-    const canGoPrev = new Date(year, month - 1, 1) >= MIN_DATE;
-    const canGoNext = new Date(year, month + 1, 1) <= MAX_DATE;
-
-    return (
-        <div className={cn(
-            "relative w-full h-full bg-[var(--card)] p-4 flex flex-col pointer-events-auto",
-            isCompact ? "p-3" : "p-6 rounded-2xl border border-[var(--border)] shadow-sm",
-            className
-        )}>
-            {/* Header */}
-            <div className="flex items-center justify-between mb-4">
-                <h3 className={cn("font-bold text-[var(--text-primary)]", isCompact ? "text-base" : "text-lg")}>
-                    {monthLabel}
-                </h3>
-                <div className="flex gap-1 z-20 relative">
-                    <div
-                        role="button"
-                        onClick={canGoPrev ? handlePrev : undefined}
-                        className={cn(
-                            "p-1 rounded-md transition-colors text-[var(--text-secondary)]",
-                            canGoPrev ? "hover:bg-[var(--surface)] cursor-pointer" : "opacity-30 cursor-not-allowed"
-                        )}
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                    </div>
-                    <div
-                        role="button"
-                        onClick={canGoNext ? handleNext : undefined}
-                        className={cn(
-                            "p-1 rounded-md transition-colors text-[var(--text-secondary)]",
-                            canGoNext ? "hover:bg-[var(--surface)] cursor-pointer" : "opacity-30 cursor-not-allowed"
-                        )}
-                    >
-                        <ChevronRight className="w-5 h-5" />
-                    </div>
-                </div>
-            </div>
-
-            {/* Grid Headers */}
-            <div className="grid grid-cols-7 mb-2">
-                {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-                    <div key={i} className="text-center text-[10px] font-semibold text-[var(--text-muted)]">
-                        {d}
-                    </div>
-                ))}
-            </div>
-
-            {/* Days Grid */}
-            <div className="grid grid-cols-7 gap-1 flex-grow">
-                {days.map((d) => (
-                    <div
-                        key={d.key}
-                        className={cn(
-                            "min-h-[40px] md:min-h-[50px] aspect-square rounded-lg flex flex-col items-center justify-center text-sm relative transition-all",
-                            d.type === "empty" && "invisible",
-                            d.type === "default" && "text-[var(--text-secondary)] hover:bg-[var(--surface)]",
-                            // Training: Blue - Black text for light mode (Forced)
-                            d.type === "training" && "bg-blue-100 !text-black dark:bg-blue-500/20 dark:text-blue-100 font-bold",
-                            // Fun Days: Indoor/Outdoor - Black text
-                            (d.type === "funday-indoor" || d.type === "funday-outdoor") && "bg-orange-100 !text-black dark:bg-orange-500/20 dark:text-orange-100 font-bold",
-                            // Competition: Green - Black text
-                            d.type === "competition" && "bg-emerald-100 !text-black dark:bg-emerald-500/30 dark:text-emerald-100 font-bold border-2 border-emerald-500/50",
-                            // Public Holiday: Red Text Only
-                            d.type === "holiday" && "!text-red-700 dark:text-red-400 font-bold",
-
-                            // Today Border
-                            d.isToday && "border-2 border-[var(--accent)] shadow-sm z-10",
-
-                            isCompact && "text-xs"
-                        )}
-                    >
-                        <span className="z-10">{d.day}</span>
-
-                        {/* Labels - Inside the box */}
-                        {!isCompact && d.label && (
-                            <span className={cn(
-                                "text-[8px] font-bold leading-none absolute bottom-1 px-1 py-0.5 rounded-sm uppercase tracking-wider max-w-[95%] overflow-hidden text-ellipsis whitespace-nowrap z-20",
-                                // Custom label colors - aligned with black text
-                                d.type.includes("training") && "bg-blue-200 !text-black dark:bg-blue-900/50 dark:text-blue-100",
-                                d.type.includes("funday") && "bg-orange-200 !text-black dark:bg-orange-900/50 dark:text-orange-100",
-                                d.type.includes("competition") && "bg-emerald-200 !text-black dark:bg-emerald-900/50 dark:text-emerald-100"
-                            )}>
-                                {d.label}
-                            </span>
-                        )}
-                        {/* Compact Labels (Dots/Tiny Text) */}
-                        {isCompact && d.label && (
-                            <span className="text-[7px] font-normal absolute bottom-0.5 leading-none opacity-90 scale-90 origin-bottom">
-                                {d.label}
-                            </span>
-                        )}
-                    </div>
-                ))}
-            </div>
-
-            {/* Legend - No Link anymore */}
-            {!isCompact && (
-                <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs text-[var(--text-secondary)] justify-center border-t border-[var(--border)] pt-4">
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-blue-500/50 border border-blue-500"></div> Training
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-orange-500/50 border border-orange-500"></div> Fun Day
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/50 border border-emerald-500"></div> Comp
-                    </div>
-                </div>
-            )}
+  return (
+    <section
+      className={cn(
+        "w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-sm",
+        isCompact ? "p-3" : "p-4",
+        className,
+      )}
+      aria-label="HKUST Climbing Society training calendar"
+    >
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">2026–27 training</p>
+          <h3 className="text-lg font-bold text-[var(--text-primary)]">{monthLabel}</h3>
         </div>
-    );
-};
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => canGoPrevious && setViewDate(previousMonth)}
+            disabled={!canGoPrevious}
+            aria-label="View previous month"
+            className="rounded-lg p-2 text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface)] disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => canGoNext && setViewDate(nextMonth)}
+            disabled={!canGoNext}
+            aria-label="View next month"
+            className="rounded-lg p-2 text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface)] disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      <div className="mb-2 grid grid-cols-7 text-center text-[10px] font-semibold uppercase tracking-wide text-[var(--text-secondary)]">
+        {WEEKDAYS.map((weekday) => (
+          <span key={weekday} className="py-1">{weekday}</span>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-7 gap-1" role="grid" aria-label={monthLabel}>
+        {calendarCells.map((date, index) => {
+          if (!date) {
+            return <div key={`empty-${index}`} className="aspect-square" aria-hidden="true" />;
+          }
+
+          const dateKey = toDateKey(date);
+          const holidayName = PUBLIC_HOLIDAYS[dateKey];
+          const training = isTrainingDate(date);
+          const isToday = isSameDay(date, today);
+          const label = training
+            ? "Training · 6:30–9:30 PM"
+            : holidayName
+              ? `${holidayName} · no training`
+              : "No training";
+
+          return (
+            <div
+              key={dateKey}
+              role="gridcell"
+              aria-label={`${date.toLocaleDateString("en-HK", { dateStyle: "full" })}: ${label}`}
+              title={label}
+              className={cn(
+                "relative flex aspect-square min-h-10 flex-col items-center justify-center rounded-lg border text-xs transition-colors",
+                training && "border-[var(--accent)] bg-[var(--accent)] text-white shadow-sm",
+                holidayName && !training && "border-red-500/25 bg-red-500/10 text-red-700 dark:text-red-300",
+                !training && !holidayName && "border-transparent text-[var(--text-primary)] hover:bg-[var(--surface)]",
+                isToday && !training && "ring-1 ring-[var(--accent)] ring-offset-1 ring-offset-[var(--card)]",
+              )}
+            >
+              <span className="font-semibold">{date.getDate()}</span>
+              {training && <span className="text-[8px] font-medium leading-none opacity-90">6:30–9:30</span>}
+              {holidayName && <span className="mt-0.5 h-1 w-1 rounded-full bg-current" aria-hidden="true" />}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-4 space-y-2 border-t border-[var(--border)] pt-3 text-xs text-[var(--text-secondary)]">
+        <div className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-sm bg-[var(--accent)]" />Tuesday training · 6:30–9:30 PM</div>
+        <div className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-sm bg-red-500/70" />Public holiday · no training</div>
+        <p>Autumn: 1 Sep–30 Nov 2026. Spring: 1 Feb–7 May 2027.</p>
+      </div>
+    </section>
+  );
+}

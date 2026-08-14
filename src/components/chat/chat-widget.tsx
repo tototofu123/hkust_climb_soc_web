@@ -80,7 +80,6 @@ export function ChatWidget() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState("");
-  const [llmRemaining, setLlmRemaining] = useState<number>(5);
   const [userName, setUserNameState] = useState<string>("");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -129,7 +128,7 @@ export function ChatWidget() {
     if (typeof window === "undefined") return;
 
     const onViewport = () => {
-      const vv = (window as any).visualViewport;
+      const vv = window.visualViewport;
       if (!containerRef.current) return;
       if (vv) {
         const keyboardHeight = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
@@ -244,7 +243,6 @@ export function ChatWidget() {
         ...prev,
         { role: "assistant", content: answer },
       ]);
-      setLlmRemaining(data.llm_remaining);
       setStatus("");
     } catch (error: unknown) {
       const errorMessage = error instanceof Error && error.name === "AbortError" 

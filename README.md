@@ -1,10 +1,8 @@
 # hkust_climb_soc_web
-
 Public repository maintained by @tototofu123.
 
-## Website
-
-- GitHub Pages: https://tototofu123.github.io/hkust_climb_soc_web/
+## Deployment
+This Next.js application requires a Node.js-compatible host with support for route handlers, such as Vercel. GitHub Pages is not supported because the application uses dynamic API routes, including `/api/chat`.
 
 ## Features
 

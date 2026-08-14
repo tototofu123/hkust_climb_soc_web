@@ -23,7 +23,6 @@ const GlowingEffect = memo(
         variant = "default",
         glow = false,
         className,
-        movementDuration = 2,
         borderWidth = 1,
         disabled = true,
     }: GlowingEffectProps) => {
@@ -86,7 +85,7 @@ const GlowingEffect = memo(
                     element.style.setProperty("--start", String(newAngle));
                 });
             },
-            [inactiveZone, proximity, movementDuration]
+            [inactiveZone, proximity]
         );
 
         useEffect(() => {

@@ -1,7 +1,6 @@
 export const ScrollReveal = ({
     children,
-    width = "100%",
-    delay = 0
+    width = "100%"
 }: {
     children: React.ReactNode;
     width?: "fit-content" | "100%";

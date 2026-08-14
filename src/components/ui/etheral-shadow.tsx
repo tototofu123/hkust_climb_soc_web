@@ -72,7 +72,6 @@ export function EtheralShadow({
     const feColorMatrixRef = useRef<SVGFEColorMatrixElement>(null);
 
     const displacementScale = animation ? mapRange(animation.scale, 1, 100, 20, 100) : 0;
-    const animationDuration = animation ? mapRange(animation.speed, 1, 100, 1000, 50) : 1;
 
     useEffect(() => {
         if (feColorMatrixRef.current && animationEnabled) {

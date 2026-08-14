@@ -7,8 +7,20 @@ import { Clock, MapPin, ArrowRight, Calendar } from "lucide-react";
 import Image from "next/image";
 import { CalendarWidget } from "@/components/ui/calendar-widget";
 
+type ClimbingEvent = {
+    id: string;
+    title: string;
+    date: string;
+    time: string;
+    location: string;
+    image: string;
+    description: string;
+    fee: string;
+    tags: string[];
+};
+
 export default function EventsPage() {
-    const upcomingEvents: any[] = [];
+    const upcomingEvents: ClimbingEvent[] = [];
 
 
     return (
@@ -29,7 +41,7 @@ export default function EventsPage() {
                 {/* Events Grid */}
                 {upcomingEvents.length > 0 ? (
                     <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
-                        {upcomingEvents.map((event: any, index: number) => (
+                        {upcomingEvents.map((event, index) => (
                             <ScrollReveal key={event.id} delay={index * 0.1}>
                                 <div className="group bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
                                     {/* Event Image Placeholder Area */}
